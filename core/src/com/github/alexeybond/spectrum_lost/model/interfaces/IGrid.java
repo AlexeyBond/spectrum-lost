@@ -20,4 +20,9 @@ public interface IGrid {
      * Get collection of all cells.
      */
     Collection<? extends ICell> getCells();
+
+    /**
+     * Get state of the game played on this grid.
+     */
+    IGameState getGameState();
 }

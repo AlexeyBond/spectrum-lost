@@ -2,12 +2,11 @@ package com.github.alexeybond.spectrum_lost.cell_types;
 
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICellType;
-import com.github.alexeybond.spectrum_lost.model.util.Ray;
 
 /**
- * Cell emitting a ray in single direction.
+ *
  */
-public class EmitterCell implements ICellType {
+public class WallCell implements ICellType {
     @Override
     public void init(ICell cell) {
         cell.setState(null);
@@ -20,18 +19,17 @@ public class EmitterCell implements ICellType {
 
     @Override
     public void update(ICell cell) {
-        Ray emission = cell.emission(cell.direction());
-        emission.set(Ray.MAX_BRIGHTNESS, Ray.MAX_BRIGHTNESS, Ray.MAX_BRIGHTNESS);
+        // do nothing
     }
 
     @Override
     public String id() {
-        return "emitter";
+        return "wall";
     }
 
     @Override
     public Object getAttribute(String name) {
-        if ("noFlare".equals(name))
+        if ("noTurn".equals(name))
             return true;
 
         return null;

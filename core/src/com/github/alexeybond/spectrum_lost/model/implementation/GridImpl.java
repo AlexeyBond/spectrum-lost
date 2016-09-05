@@ -1,6 +1,7 @@
 package com.github.alexeybond.spectrum_lost.model.implementation;
 
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
+import com.github.alexeybond.spectrum_lost.model.interfaces.IGameState;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 
@@ -14,13 +15,15 @@ public class GridImpl implements IGrid {
     int frameCounter;
 
     private final int height, width;
+    private final IGameState gameState;
 
     private final ArrayList<CellImpl> cells;
     private final CellImpl noCell;
 
-    public GridImpl(final int width, final int height, final String defaultCellType) {
+    public GridImpl(final int width, final int height, final String defaultCellType, final IGameState gameState) {
         this.width = width;
         this.height = height;
+        this.gameState = gameState;
         cells = new ArrayList<CellImpl>(this.width * this.height);
 
         noCell = new CellImpl(this, -1, -1, Direction.DEFAULT, defaultCellType);
@@ -64,5 +67,10 @@ public class GridImpl implements IGrid {
     @Override
     public Collection<? extends ICell> getCells() {
         return cells;
+    }
+
+    @Override
+    public IGameState getGameState() {
+        return this.gameState;
     }
 }

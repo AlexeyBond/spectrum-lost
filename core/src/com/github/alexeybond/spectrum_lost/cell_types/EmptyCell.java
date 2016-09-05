@@ -39,6 +39,10 @@ public class EmptyCell implements ICellType {
 
     @Override
     public Object getAttribute(String name) {
+        // Do not let controller turn a cell, do not draw a flare sprite if a cell emits ray
+        if ("noTurn".equals(name) || "noFlare".equals(name))
+            return true;
+
         return null;
     }
 }

@@ -66,4 +66,9 @@ public interface ICell {
      * attribute.
      */
     Object getAttribute(final String name);
+
+    /**
+     * Get the grid this cell belongs to.
+     */
+    IGrid grid();
 }

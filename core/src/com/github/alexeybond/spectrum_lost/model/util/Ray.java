@@ -66,6 +66,13 @@ public final class Ray {
         set(r - amount, g - amount, b - amount);
     }
 
+    /**
+     * Check if this ray represents darkness i.e. all brightness components are 0's.
+     */
+    public boolean isDark() {
+        return (r == 0) && (g == 0) && (b == 0);
+    }
+
     /** The maximal value of a brightness component */
     public static final int MAX_BRIGHTNESS = 16;
 

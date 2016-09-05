@@ -16,5 +16,7 @@ public class $CellTypes {
         reg(new EmitterCell());
         reg(new PrismCell());
         reg(new MirrorCell());
+        reg(new ExpectorCell());
+        reg(new WallCell());
     }
 }

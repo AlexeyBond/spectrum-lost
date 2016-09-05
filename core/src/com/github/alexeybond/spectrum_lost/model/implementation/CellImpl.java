@@ -1,11 +1,8 @@
 package com.github.alexeybond.spectrum_lost.model.implementation;
 
+import com.github.alexeybond.spectrum_lost.model.interfaces.*;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
-import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
-import com.github.alexeybond.spectrum_lost.model.interfaces.ICellType;
-import com.github.alexeybond.spectrum_lost.model.interfaces.ICellView;
-import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -131,5 +128,10 @@ final class CellImpl implements ICell {
             return this.type.getAttribute(name);
 
         return val;
+    }
+
+    @Override
+    public IGrid grid() {
+        return grid;
     }
 }
