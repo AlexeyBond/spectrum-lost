@@ -31,9 +31,6 @@ public class EmitterCell implements ICellType {
 
     @Override
     public Object getAttribute(String name) {
-        if ("noFlare".equals(name))
-            return true;
-
         return null;
     }
 }
