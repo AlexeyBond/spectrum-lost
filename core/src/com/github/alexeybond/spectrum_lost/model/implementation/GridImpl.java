@@ -7,6 +7,7 @@ import com.github.alexeybond.spectrum_lost.model.util.Direction;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -24,13 +25,13 @@ public class GridImpl implements IGrid {
         this.width = width;
         this.height = height;
         this.gameState = gameState;
-        cells = new ArrayList<CellImpl>(this.width * this.height);
+        cells = new ArrayList<CellImpl>(Collections.<CellImpl>nCopies(this.width * this.height, null));
 
         noCell = new CellImpl(this, -1, -1, Direction.DEFAULT, defaultCellType);
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                cells.set(y * this.width, new CellImpl(this, x, y, Direction.DEFAULT, defaultCellType));
+                cells.set(x + y * this.width, new CellImpl(this, x, y, Direction.DEFAULT, defaultCellType));
             }
         }
 

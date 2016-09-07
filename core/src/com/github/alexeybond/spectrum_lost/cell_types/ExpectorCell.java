@@ -19,6 +19,7 @@ public class ExpectorCell implements ICellType {
     public void leave(ICell cell) {
         IExpectation expectation = (IExpectation)cell.state();
         expectation.remove();
+        cell.setState(null);
     }
 
     private boolean isExpectationDone(final ICell cell) {
