@@ -5,15 +5,33 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
+import com.github.alexeybond.spectrum_lost.model.implementation.GameStateImpl;
+import com.github.alexeybond.spectrum_lost.model.implementation.GridImpl;
+import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
+import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
+import com.github.alexeybond.spectrum_lost.model.util.Direction;
+import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.Renderer;
+import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
 
 public class SpectrumLostGdx extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
+
+	IGrid grid;
+    Renderer renderer;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+
+		$CellTypes.register();
+		$Sprite2DViews.register();
+		grid = new GridImpl(4, 4, "empty", new GameStateImpl());
+        grid.getCell(1, 2).setType(Locator.CELL_TYPES.get("expector"));
+        grid.getCell(1, 1).setType(Locator.CELL_TYPES.get("mirror"));
+        grid.getCell(1, 1).setDirection(Direction.UP_RT);
+        renderer = new Renderer(grid);
 	}
 
 	@Override
@@ -21,13 +39,12 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
+        renderer.render(batch, new Vector2(10, 10), 64);
 		batch.end();
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }

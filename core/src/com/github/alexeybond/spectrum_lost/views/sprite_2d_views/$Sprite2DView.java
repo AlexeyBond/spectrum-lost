@@ -43,9 +43,9 @@ public abstract class $Sprite2DView implements CellView2D {
 
         if (rotation != 0.f) {
             transformMatrix
-                    .translate(-hSize, -hSize, 0)
+                    .translate(pos.x + hSize, pos.y + hSize, 0)
                     .rotate(.0f, .0f, 1.f, rotation)
-                    .translate(pos.x + hSize, pos.y + hSize, 0);
+                    .translate(-hSize, -hSize, 0);
 
             batch.setTransformMatrix(transformMatrix);
             batch.draw(tx, 0, 0, size, size);
@@ -59,7 +59,7 @@ public abstract class $Sprite2DView implements CellView2D {
     }
 
     protected float angleFromDirection(final Direction dir) {
-        return (float)Math.PI * .25f * (float)dir.n;
+        return -45.f * (float)dir.n;
     }
 
     @Override
@@ -70,6 +70,6 @@ public abstract class $Sprite2DView implements CellView2D {
             return;
         }
 
-        drawSprite(batch, pos, size, tx, angleFromDirection(cell.direction()));
+        drawSprite(batch, pos, size, tx, (layer == 0)?0:angleFromDirection(cell.direction()));
     }
 }

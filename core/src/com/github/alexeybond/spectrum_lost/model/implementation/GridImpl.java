@@ -74,4 +74,14 @@ public class GridImpl implements IGrid {
     public IGameState getGameState() {
         return this.gameState;
     }
+
+    @Override
+    public int width() {
+        return width;
+    }
+
+    @Override
+    public int height() {
+        return height;
+    }
 }

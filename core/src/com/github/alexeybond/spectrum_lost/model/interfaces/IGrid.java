@@ -25,4 +25,14 @@ public interface IGrid {
      * Get state of the game played on this grid.
      */
     IGameState getGameState();
+
+    /**
+     * Get width of this grid (in cells).
+     */
+    int width();
+
+    /**
+     * Get height of this grid (in cells).
+     */
+    int height();
 }

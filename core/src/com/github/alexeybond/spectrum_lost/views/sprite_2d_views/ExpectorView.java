@@ -31,14 +31,14 @@ public class ExpectorView extends $Sprite2DView {
             return;
         }
 
-        float r = .001f * (float)TimeUtils.millis();
+        float r = .1f * (float) (TimeUtils.millis() % 3600);
         Texture symbolTexture;
 
         if (((IExpectation) cell.state()).isDone()) {
             symbolTexture = successTexture;
+            r = -r;
         } else {
             symbolTexture = failTexture;
-            r = -r;
         }
 
         drawSprite(batch, pos, size, fgTexture, 0);
