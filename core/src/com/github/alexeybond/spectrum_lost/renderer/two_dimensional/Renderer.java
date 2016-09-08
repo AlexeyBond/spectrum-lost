@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
+import com.github.alexeybond.spectrum_lost.model.util.Direction;
+import com.github.alexeybond.spectrum_lost.model.util.Ray;
 import com.github.alexeybond.spectrum_lost.views.CellView2D;
 
 /**
@@ -12,12 +14,15 @@ import com.github.alexeybond.spectrum_lost.views.CellView2D;
  */
 public class Renderer {
     private final IGrid grid;
+    private final IRayRenderer rayRenderer;
     private static Texture commonBgTexture;
 
     private static Vector2 tv0 = new Vector2();
+    private static Ray tr0 = new Ray();
 
-    public Renderer(final IGrid grid) {
+    public Renderer(final IGrid grid, final IRayRenderer rayRenderer) {
         this.grid = grid;
+        this.rayRenderer = rayRenderer;
 
         if (null == commonBgTexture) {
             commonBgTexture = new Texture("background/stones-00-00.png");
@@ -51,9 +56,40 @@ public class Renderer {
         }
     }
 
+    private void renderRays(final SpriteBatch batch, final Vector2 pos0, final float cellSize) {
+        rayRenderer.prepareFrame();
+        rayRenderer.beginRays(batch);
+
+        for (ICell cell: grid.getCells()) {
+            CellView2D view = (CellView2D) cell.getView();
+
+            tv0.set(pos0).add(cellSize * (.5f + (float) cell.x()), cellSize * (.5f + (float) cell.y()));
+            tr0.clear();
+
+            for (int n = 0; n < Direction.NUM; n++) {
+                Direction dir = Direction.get(n);
+
+                Ray e = cell.emission(dir);
+
+                if (e.isDark()) continue;
+
+                rayRenderer.drawRay(batch, tv0, dir, e, cellSize);
+
+                tr0.add(e);
+            }
+
+            if (view.enableFlare() && !tr0.isDark()) {
+                rayRenderer.drawFlare(batch, tv0, cellSize, tr0);
+            }
+        }
+
+        rayRenderer.endRays(batch);
+    }
+
     public void render(final SpriteBatch batch, final Vector2 pos0, final float cellSize) {
         renderCommonBackground(batch, pos0, cellSize);
         renderCellsLayer(batch, pos0, cellSize, 0);
+        renderRays(batch, pos0, cellSize);
         renderCellsLayer(batch, pos0, cellSize, 1);
     }
 }

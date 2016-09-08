@@ -25,7 +25,7 @@ public abstract class $Sprite2DView implements CellView2D {
 
     @Override
     public boolean enableFlare() {
-        // By default enable flare sprite
+        // By default disable flare sprite
         return false;
     }
 
