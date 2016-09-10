@@ -66,7 +66,7 @@ public class FboRayRenderer implements IRayRenderer {
             float na = 0; // TODO: Get from sound buffer
             float k_ = 1.f - (((float)min(x, FBO_SIZE_X-x)) / (float)FBO_SIZE_X);
             float k = 1.f - k_ * k_;
-            animation[x] = k * (kt * n + na) * 2.f * .5f * (float) FBO_SIZE_Y;
+            animation[x] = k * (kt * n + na) * 1.4f * .5f * (float) FBO_SIZE_Y;
         }
     }
 
