@@ -57,7 +57,6 @@ public class Renderer {
     }
 
     private void renderRays(final SpriteBatch batch, final Vector2 pos0, final float cellSize) {
-        rayRenderer.prepareFrame();
         rayRenderer.beginRays(batch);
 
         for (ICell cell: grid.getCells()) {
