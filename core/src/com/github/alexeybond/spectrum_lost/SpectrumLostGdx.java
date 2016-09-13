@@ -50,7 +50,15 @@ public class SpectrumLostGdx extends ApplicationAdapter {
         renderer.render(batch, new Vector2(10, 10), 64);
 		batch.end();
 	}
-	
+
+	@Override
+	public void resize(int width, int height) {
+		Gdx.gl.glViewport(0, 0, width, height);
+		batch.getProjectionMatrix()
+				.setToOrtho2D(0, 0, width, height);
+		batch.setProjectionMatrix(batch.getProjectionMatrix());
+	}
+
 	@Override
 	public void dispose () {
 		batch.dispose();
