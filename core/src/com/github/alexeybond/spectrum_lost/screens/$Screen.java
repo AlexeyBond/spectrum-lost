@@ -58,7 +58,9 @@ public abstract class $Screen {
 
         @Override
         public boolean scrolled(int amount) {
-            return decorated.scrolled(amount);
+            $Screen.this.onScroll(amount);
+            decorated.scrolled(amount);
+            return true;
         }
     }
 
@@ -70,8 +72,8 @@ public abstract class $Screen {
 
         @Override
         public boolean tap(float x, float y, int count, int button) {
-            if (count == 1) {
-                $Screen.this.onClick(x, y);
+            if (count != 0) {
+                $Screen.this.onClick(x, Gdx.graphics.getHeight() - y);
                 return true;
             }
             return false;
@@ -171,4 +173,5 @@ public abstract class $Screen {
     protected void onDrag(final float x, final float y, final float dx, final float dy) {}
     protected void onKeyPress(final int code) {}
     protected void onCharTyped(final char chr) {}
+    protected void onScroll(final int amount) {}
 }

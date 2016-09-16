@@ -1,5 +1,6 @@
 package com.github.alexeybond.spectrum_lost.views.sprite_2d_views;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
@@ -30,7 +31,9 @@ public abstract class $Sprite2DView implements CellView2D {
     }
 
     protected Texture loadTexture(final String name) {
-        return new Texture(name);
+        Texture tx = new Texture(Gdx.files.internal(name), true);
+        tx.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.MipMapLinearLinear);
+        return tx;
     }
 
     protected void drawSprite(

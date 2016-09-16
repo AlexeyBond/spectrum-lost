@@ -16,6 +16,7 @@ public class GridPositioner2D {
     private final Vector2 maxPos = new Vector2();
     private float cellSize;
 
+    private final static float MAX_CELL_SIZE = 128;
 
     public GridPositioner2D(final IGrid grid) {
         reset(grid);
@@ -33,6 +34,15 @@ public class GridPositioner2D {
 
         maxPos.x = dw;
         maxPos.y = dh;
+
+        drag(0, 0);
+    }
+
+    private void setCellSize(final float sz) {
+        float minSize = Math.max(
+                ((float) prevVPWidth) * .4f / (float) grid.width(),
+                ((float) prevVPHeight) * .4f / (float) grid.height());
+        cellSize = Math.min(MAX_CELL_SIZE, Math.max(minSize, sz));
     }
 
     public ICell cellAt(final int x, final int y) {
@@ -54,7 +64,12 @@ public class GridPositioner2D {
     }
 
     public void scale(final float ds) {
-        cellSize *= ds;
+        float pcs = cellSize;
+        setCellSize(cellSize * ds);
+        pos
+                .scl(2.f).sub(prevVPWidth, prevVPHeight)
+                .scl(cellSize / pcs)
+                .add(prevVPWidth, prevVPHeight).scl(.5f);
         refreshMinMaxPos();
     }
 
@@ -66,7 +81,7 @@ public class GridPositioner2D {
         float gw = (float) grid.width() + 2;
         float gh = (float) grid.height() + 2;
 
-        cellSize = Math.min(((float) prevVPWidth) / gw, ((float) prevVPHeight) / gh);
+        setCellSize(Math.min(((float) prevVPWidth) / gw, ((float) prevVPHeight) / gh));
 
         pos.x = (((float) prevVPWidth) - gw * cellSize) * .5f + cellSize;
         pos.y = (((float) prevVPHeight) - gh * cellSize) * .5f + cellSize;
