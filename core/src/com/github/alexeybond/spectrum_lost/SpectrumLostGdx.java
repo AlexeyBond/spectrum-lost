@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
 import com.github.alexeybond.spectrum_lost.levels.hardcoded.Chapter0;
+import com.github.alexeybond.spectrum_lost.levels.hardcoded.Chapter1;
 import com.github.alexeybond.spectrum_lost.screens.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.GameScreen;
 import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
@@ -18,7 +19,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 		$CellTypes.register();
 		$Sprite2DViews.register();
 
-		currentScreen = new GameScreen(new Chapter0());
+		currentScreen = new GameScreen(/*new Chapter0()*/new Chapter1());
 		currentScreen.show(null);
 		currentScreen.unpause();
 

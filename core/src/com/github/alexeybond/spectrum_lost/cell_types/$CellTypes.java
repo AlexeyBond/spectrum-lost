@@ -18,5 +18,7 @@ public class $CellTypes {
         reg(new MirrorCell());
         reg(new ExpectorCell());
         reg(new WallCell());
+        reg(new MixerCell());
+        reg(new SwitchCell());
     }
 }
