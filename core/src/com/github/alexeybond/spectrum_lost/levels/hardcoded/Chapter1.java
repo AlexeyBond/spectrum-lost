@@ -36,6 +36,37 @@ public class Chapter1 extends Source {
                 W(0,1), W(0,2), W(0,3), W(0,4), W(0,5), W(0,6),
                 W(8,1), W(8,2), W(8,3), W(8,4), W(8,5), W(8,6)
                 );
+        L(9,6,// C1L1.1
+                O(1,2, "mirror", UP_RT),
+                O(1,4, "mirror", DN_RT),
+                O(2,1, "mirror", UP_RT),
+                O(2,2, "mirror", DN_RT),
+                O(2,3, "prism", DN),
+                O(2,4, "mirror", DN_LF),
+                O(3,1, "emitter", LF),
+                O(3,2, "prism", RT),
+                O(3,5, "expector"),
+
+                O(4,2, "mixer", UP),
+                O(4,4, "prism", UP),
+
+                O(7,2, "mirror", UP_LF),
+                O(7,4, "mirror", DN_LF),
+                O(6,1, "mirror", UP_LF),
+                O(6,2, "mirror", DN_LF),
+                O(6,3, "prism", DN),
+                O(6,4, "mirror", DN_RT),
+                O(5,1, "emitter", RT),
+                O(5,2, "prism", LF),
+                O(5,5, "expector"),
+
+                W(4,1), W(3,4), W(5,4),
+                W(4,5), W(0,5), W(1,5), W(2,5), W(6,5), W(7,5), W(8,5),
+                W(1,0), W(2,0), W(3,0), W(4,0), W(5,0), W(6,0), W(7,0),
+                W(0,1), W(1,1), W(7,1), W(8,1),
+                W(0,2), W(0,3), W(0,4),
+                W(8,2), W(8,3), W(8,4)
+                );
         L(5,5,// C1L1.2
                 O(1,3, "expector"),
                 O(1,2, "mirror", UP_RT),
