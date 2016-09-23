@@ -3,6 +3,7 @@ package com.github.alexeybond.spectrum_lost.views.sprite_2d_views;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.github.alexeybond.spectrum_lost.cell_types.SwitchCell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 
@@ -27,8 +28,9 @@ public class SwitchView extends $Sprite2DView {
 
         drawSprite(batch, pos, size, mgTexture, angleFromDirection(cell.direction()));
 
-        Boolean state = (Boolean) cell.state();
-        Direction n = state ? cell.direction().prev() : cell.direction().next();
+        SwitchCell.State state = (SwitchCell.State) cell.state();
+
+        Direction n = state.isTurned ? cell.direction().prev() : cell.direction().next();
 
         drawSprite(batch, pos, size, fgTexture, angleFromDirection(n));
     }
