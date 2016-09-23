@@ -16,8 +16,8 @@ public class Chapter1 extends Source {
                 O(2,4, "emitter", UP),
                 O(6,4, "emitter", UP),
                 O(2,2, "mirror", DN_RT),
-                O(3,2, "mirror", DN_LF),
-                O(5,2, "mirror", DN_RT),
+                O(3,2, "mirror", UP_LF),
+                O(5,2, "mirror", UP_RT),
                 O(6,2, "mirror", DN_LF),
                 O(1,1, "mirror", UP_RT),
                 O(2,1, "mirror", UP_LF),
@@ -26,9 +26,15 @@ public class Chapter1 extends Source {
                 O(5,1, "mirror", UP_LF),
                 O(6,1, "mirror", UP_RT),
                 O(7,1, "mirror", UP_LF),
-                O(4,6, "expector")
-                // TODO: Walls
-                // TODO: Not solved initial state
+                O(4,6, "expector"),
+                W(3,6), W(3,7), W(3,5), W(3,4), W(3,3),
+                W(2,3),
+                W(5,6), W(5,7), W(5,5), W(5,4), W(5,3),
+                W(6,3),
+                W(0,0), W(1,0), W(2,0), W(3,0), W(4,0), W(5,0), W(6,0), W(7,0), W(8,0),
+                W(0,7), W(1,7), W(2,7), W(6,7), W(7,7), W(8,7),
+                W(0,1), W(0,2), W(0,3), W(0,4), W(0,5), W(0,6),
+                W(8,1), W(8,2), W(8,3), W(8,4), W(8,5), W(8,6)
                 );
         L(8,6,
                 O(4,4, "mixer"),
