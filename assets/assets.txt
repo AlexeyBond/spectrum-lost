@@ -1,6 +1,7 @@
 d:assets:0:application/unknown
 d:ui:0:application/unknown
 i:ui/button-next.png:4698:image/png
+i:ui/spinner-segment.png:639:image/png
 i:ui/arrows-target.png:2131:image/png
 i:ui/arrows-turn.png:6704:image/png
 d:fx:0:application/unknown
@@ -18,6 +19,7 @@ i:cells/wall/bg-00.png:1778:image/png
 d:cells/expector:0:application/unknown
 i:cells/expector/fg-gear.png:5007:image/png
 i:cells/expector/fg.png:11441:image/png
+i:cells/expector/symbol-wait.png:1950:image/png
 i:cells/expector/symbol-success.png:2273:image/png
 i:cells/expector/symbol-fail.png:2371:image/png
 d:cells/mirror:0:application/unknown
