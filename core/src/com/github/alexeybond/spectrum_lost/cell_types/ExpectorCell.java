@@ -4,21 +4,55 @@ import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICellType;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IExpectation;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
+import com.github.alexeybond.spectrum_lost.model.util.Ray;
 
 /**
  *
  */
 public class ExpectorCell implements ICellType {
+    public static class State {
+        private static final int nChargeTicks = 2 * Ray.MAX_BRIGHTNESS / Ray.FADE_STEP;
+        public final IExpectation expectation;
+
+        private int nFramesCharging;
+
+        State(IExpectation expectation) {
+            this.expectation = expectation;
+            nFramesCharging = 0;
+        }
+
+        public float getCharge() {
+            if (0 >= nFramesCharging) return 0;
+            return ((float) nFramesCharging) / ((float) nChargeTicks);
+        }
+
+        void update(boolean solved) {
+            if (!solved) nFramesCharging = 0;
+            if (expectation.isDone() && !solved) {
+                expectation.setDone(false);
+                nFramesCharging = 0;
+            } else if (solved && !expectation.isDone()) {
+                if (nChargeTicks <= ++nFramesCharging) {
+                    expectation.setDone(true);
+                }
+            }
+        }
+
+        void dispose() {
+            expectation.remove();
+        }
+    }
+
     @Override
     public void init(ICell cell) {
         IExpectation expectation = cell.grid().getGameState().addExpectation();
-        cell.setState(expectation);
+        cell.setState(new State(expectation));
     }
 
     @Override
     public void leave(ICell cell) {
-        IExpectation expectation = (IExpectation)cell.state();
-        expectation.remove();
+        State state = (State) cell.state();
+        state.dispose();
         cell.setState(null);
     }
 
@@ -33,8 +67,8 @@ public class ExpectorCell implements ICellType {
 
     @Override
     public void update(ICell cell) {
-        IExpectation expectation = (IExpectation)cell.state();
-        expectation.setDone(isExpectationDone(cell));
+        State state = (State)cell.state();
+        state.update(isExpectationDone(cell));
     }
 
     @Override

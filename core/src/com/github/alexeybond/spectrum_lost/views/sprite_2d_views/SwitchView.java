@@ -33,6 +33,10 @@ public class SwitchView extends $Sprite2DView {
         Direction n = state.isTurned ? cell.direction().prev() : cell.direction().next();
 
         drawSprite(batch, pos, size, fgTexture, angleFromDirection(n));
+
+        if (state.fChanged() != 0) {
+            drawSpinner(batch, pos, state.fChanged(), size, state.isTurned ? -1 : 1);
+        }
     }
 
     @Override

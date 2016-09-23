@@ -16,6 +16,8 @@ public abstract class $Sprite2DView implements CellView2D {
     protected Texture bgTexture = null;
     protected Texture fgTexture = null;
 
+    private static Texture spinnerTexture;
+
     private static final Matrix4 transformMatrix = new Matrix4();
 
     @Override
@@ -63,6 +65,16 @@ public abstract class $Sprite2DView implements CellView2D {
 
     protected float angleFromDirection(final Direction dir) {
         return -45.f * (float)dir.n;
+    }
+
+    protected void drawSpinner(final SpriteBatch batch, final Vector2 pos, final float fill, final float size, final int d) {
+        if (null == spinnerTexture) {spinnerTexture = new Texture("ui/spinner-segment.png");}
+
+        for (int i = 0; i < 8; i++) {
+            if (fill < ((float)i) * .125) break;
+
+            drawSprite(batch, pos, size, spinnerTexture, (float)(d * i * 45));
+        }
     }
 
     @Override

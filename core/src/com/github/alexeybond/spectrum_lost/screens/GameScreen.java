@@ -27,6 +27,9 @@ public class GameScreen extends $Screen {
     private Rectangle nextBtnRect = new Rectangle();
     private ILevelsSource levelsSource;
     private Iterator<ILevel> levelIterator;
+    private float timeSinceLastUpdate = 0;
+
+    private final static float simulationRate = 1.f/32.f;
 
     private static Texture nextButtonTexture;
 
@@ -103,7 +106,11 @@ public class GameScreen extends $Screen {
     }
 
     private void updateGame() {
-        grid.update();
+        timeSinceLastUpdate += Gdx.graphics.getDeltaTime();
+        if (timeSinceLastUpdate >= simulationRate) {
+            grid.update();
+            timeSinceLastUpdate -= simulationRate;
+        }
 
         if (grid.getGameState().isCompleted()) {
             if (!showNextButton) {

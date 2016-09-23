@@ -1,6 +1,5 @@
 package com.github.alexeybond.spectrum_lost.cell_types;
 
-import com.badlogic.gdx.utils.TimeUtils;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
@@ -10,7 +9,7 @@ import com.github.alexeybond.spectrum_lost.model.util.Ray;
  */
 public class SwitchCell extends MirrorCell {
     public static class State {
-        private final static long framesToTurn = 16 * Ray.MAX_BRIGHTNESS / Ray.FADE_STEP;
+        private final static long framesToTurn = Ray.MAX_BRIGHTNESS / Ray.FADE_STEP;
 
         public boolean isTurned = false;
 
@@ -24,11 +23,6 @@ public class SwitchCell extends MirrorCell {
         void turnTo(boolean turn) {
             if (turn == isTurned) {
                 nTurning = -1;
-                return;
-            }
-
-            if (nTurning == -1) {
-                nTurning = TimeUtils.millis();
                 return;
             }
 

@@ -105,7 +105,7 @@ public class Chapter1 extends Source {
 
                 O(1,3, "mirror", UP_RT),
                 O(2,2, "prism", DN_LF),
-                O(2,1, "mirror", UP_RT),
+                O(2,1, "mirror", UP_LF),
                 O(3,3, "prism", LF),
                 O(4,1, "mixer", UP),
                 O(4,3, "switch", UP),
