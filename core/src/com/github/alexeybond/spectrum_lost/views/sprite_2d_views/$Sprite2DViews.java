@@ -20,5 +20,6 @@ public class $Sprite2DViews {
         reg("mixer", new MixerView());
         reg("switch", new SwitchView());
         reg("shifter", new ShifterView());
+        reg("fader", new FaderView());
     }
 }

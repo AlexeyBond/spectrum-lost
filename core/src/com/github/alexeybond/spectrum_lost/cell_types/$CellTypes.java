@@ -21,5 +21,6 @@ public class $CellTypes {
         reg(new MixerCell());
         reg(new SwitchCell());
         reg(new ShifterCell());
+        reg(new FaderCell());
     }
 }
