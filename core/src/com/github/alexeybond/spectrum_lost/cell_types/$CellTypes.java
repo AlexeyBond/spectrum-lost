@@ -20,5 +20,6 @@ public class $CellTypes {
         reg(new WallCell());
         reg(new MixerCell());
         reg(new SwitchCell());
+        reg(new ShifterCell());
     }
 }

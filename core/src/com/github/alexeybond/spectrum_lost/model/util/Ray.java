@@ -67,6 +67,14 @@ public final class Ray {
     }
 
     /**
+     * Shift the colors.
+     */
+    public void shift() {
+        int r_ = r;
+        r = g; g = b; b = r_;
+    }
+
+    /**
      * Check if this ray represents darkness i.e. all brightness components are 0's.
      */
     public boolean isDark() {
