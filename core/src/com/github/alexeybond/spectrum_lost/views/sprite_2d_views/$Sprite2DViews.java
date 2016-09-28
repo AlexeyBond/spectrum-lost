@@ -14,12 +14,14 @@ public class $Sprite2DViews {
         reg("empty", new EmptyCellView());
         reg("wall", new WallView());
         reg("emitter", new EmitterView());
-        reg("expector", new ExpectorView());
+        reg("expector", new ExpectorView.AnyExpectorView());
+        reg("expector:none", new ExpectorView.NoneExpectorView());
         reg("prism", new PrismView());
         reg("mirror", new MirrorView());
         reg("mixer", new MixerView());
         reg("switch", new SwitchView());
         reg("shifter", new ShifterView());
         reg("fader", new FaderView());
+        reg("multiplier", new MultiplierView());
     }
 }

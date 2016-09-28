@@ -52,6 +52,13 @@ public final class Ray {
     }
 
     /**
+     * "Multiply" this ray by another one.
+     */
+    public void mult(final Ray v) {
+        set(Math.min(v.r, r), Math.min(v.g, g), Math.min(v.b, b));
+    }
+
+    /**
      * Reset all brightness components to 0.
      */
     public void clear() {

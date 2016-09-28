@@ -16,11 +16,13 @@ public class $CellTypes {
         reg(new EmitterCell());
         reg(new PrismCell());
         reg(new MirrorCell());
-        reg(new ExpectorCell());
+        reg(ExpectorCell.ANY);
+        reg(ExpectorCell.NONE);
         reg(new WallCell());
         reg(new MixerCell());
         reg(new SwitchCell());
         reg(new ShifterCell());
         reg(new FaderCell());
+        reg(new MultiplierCell());
     }
 }

@@ -17,10 +17,10 @@ public class ExpectorView extends $Sprite2DView {
     private Texture successTexture;
     private Texture waitTexture;
 
-    {
+    protected ExpectorView(final String fgImg) {
         // TODO: Do not use mirror's background
         bgTexture = loadTexture("cells/mirror/bg.png");
-        fgTexture = loadTexture("cells/expector/fg.png");
+        fgTexture = loadTexture(fgImg);
         gearTexture = loadTexture("cells/expector/fg-gear.png");
         failTexture = loadTexture("cells/expector/symbol-fail.png");
         successTexture = loadTexture("cells/expector/symbol-success.png");
@@ -54,6 +54,18 @@ public class ExpectorView extends $Sprite2DView {
 
         if (!state.expectation.isDone() && state.getCharge() != 0) {
             drawSpinner(batch, pos, state.getCharge(), size, -1);
+        }
+    }
+
+    public static class AnyExpectorView extends ExpectorView {
+        public AnyExpectorView() {
+            super("cells/expector/fg.png");
+        }
+    }
+
+    public static class NoneExpectorView extends ExpectorView {
+        public NoneExpectorView() {
+            super("cells/expector/fg-type-none.png");
         }
     }
 }

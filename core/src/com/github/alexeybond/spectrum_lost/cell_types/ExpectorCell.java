@@ -43,6 +43,17 @@ public class ExpectorCell implements ICellType {
         }
     }
 
+    private final int kr, kg, kb, kz;
+    private final String id;
+
+    private ExpectorCell(final String id, final int kr, final int kg, final int kb, final int kz) {
+        this.id = id;
+        this.kr = kr;
+        this.kg = kg;
+        this.kb = kb;
+        this.kz = kz;
+    }
+
     @Override
     public void init(ICell cell) {
         IExpectation expectation = cell.grid().getGameState().addExpectation();
@@ -57,12 +68,15 @@ public class ExpectorCell implements ICellType {
     }
 
     private boolean isExpectationDone(final ICell cell) {
+        int r = 0, g = 0, b = 0;
         for (int n = 0; n < Direction.NUM; n++) {
-            if (!cell.receive(Direction.get(n)).isDark())
-                return true;
+            Ray ray = cell.receive(Direction.get(n));
+            r += ray.getR();
+            g += ray.getG();
+            b += ray.getB();
         }
 
-        return false;
+        return ((r==0?0:kr) + (g==0?0:kg) + (b==0?0:kb) + kz) > 0;
     }
 
     @Override
@@ -73,7 +87,7 @@ public class ExpectorCell implements ICellType {
 
     @Override
     public String id() {
-        return "expector";
+        return id;
     }
 
     @Override
@@ -83,4 +97,7 @@ public class ExpectorCell implements ICellType {
 
         return null;
     }
+
+    public static ICellType ANY = new ExpectorCell("expector", 1, 1, 1, 0);
+    public static ICellType NONE = new ExpectorCell("expector:none", -1, -1, -1, 1);
 }
