@@ -9,6 +9,9 @@ import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.views.CellView2D;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  */
@@ -19,6 +22,8 @@ public abstract class $Sprite2DView implements CellView2D {
     private static Texture spinnerTexture;
 
     private static final Matrix4 transformMatrix = new Matrix4();
+
+    private static Map<String, Texture> textures = new HashMap<String, Texture>();
 
     @Override
     public boolean ignoreBackground() {
@@ -33,8 +38,12 @@ public abstract class $Sprite2DView implements CellView2D {
     }
 
     protected Texture loadTexture(final String name) {
+        if (textures.containsKey(name)) {
+            return textures.get(name);
+        }
         Texture tx = new Texture(Gdx.files.internal(name), true);
         tx.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.MipMapLinearLinear);
+        textures.put(name, tx);
         return tx;
     }
 
