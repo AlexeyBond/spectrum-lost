@@ -19,6 +19,27 @@ public class Chapter3 extends Source {
                 W(0,3), W(1,3), W(2,3), W(3,3), W(4,3),
                 W(4,2), W(4,1)
                 );
+        L(7,7,
+                O(3,5, "emitter", LF),
+                O(0,5, "expector:none"),
+                O(4,5, "mirror", DN_LF),
+                O(3,4, "mirror", UP_RT),
+                O(2,1, "expector"),
+                O(3,2, "prism", LF),
+                O(4,2, "mirror", UP_LF),
+                O(5,4, "mirror", DN_LF),
+                O(4,1, "mirror", UP_RT),
+                O(5,1, "mirror", UP_LF),
+                O(5,3, "fader"),
+                O(1,5, "fader"),
+                O(2,5, "fader"),
+
+                W(0,6), W(1,6), W(2,6), W(3,6), W(4,6), W(5,6), W(5,5),
+                W(0,4), W(1,3), W(2,2),
+                W(3,1), W(3,0),
+                W(4,0), W(5,0), W(6,0),
+                W(6,1), W(6,2), W(6,3), W(6,4), W(6,5)
+        );
         L(6,6, // C3L010
                 O(3,1, "emitter", UP),
                 O(3,2, "prism", UP),
@@ -71,6 +92,50 @@ public class Chapter3 extends Source {
                 W(2,0), W(3,0), W(4,0), W(5,0), W(6,0),
                 W(0,0)
                 );
+        L(10,9,
+                O(3,4, "emitter", DN),
+                O(5,5, "emitter", DN),
+                O(3,6, "prism", UP),
+                O(3,7, "mixer", LF),
+                O(1,7, "mirror", DN_RT),
+                O(1,1, "mirror", UP_RT),
+                O(8,1, "mirror", UP_LF),
+                O(6,1, "mixer", UP),
+                O(6,2, "mixer", LF),
+                O(6,3, "mirror", DN_LF),
+                O(6,5, "prism", RT),
+                O(7,5, "shifter", UP),
+                O(8,5, "mirror", UP_LF),
+                O(7,4, "prism", DN_RT),
+                O(7,3, "shifter", RT),
+                O(7,2, "mirror", UP_LF),
+                O(7,6, "mirror", LF),
+                O(6,7, "prism", UP_LF),
+                O(5,7, "shifter", UP),
+                O(4,7, "shifter", UP),
+                O(1,4, "shifter", RT),
+                O(3,5, "fader"),
+                O(7,1, "fader"),
+                O(8,7, "mirror", DN_LF),
+
+                O(3,3, "prism", DN),
+                O(4,3, "shifter", UP),
+                O(5,3, "prism", DN),
+
+                O(2,2, "expector"),
+                O(3,2, "expector:none"),
+                O(2,0, "expector"),
+                O(5,2, "expector:none"),
+
+                W(2,3), W(2,4), W(2,5), W(2,6),
+                W(4,4), W(4,5), W(4,6), W(5,6), W(6,6), W(6,4),
+
+                W(0,0), W(1,0), W(3,0), W(4,0), W(5,0), W(6,0), W(7,0), W(8,0), W(9,0),
+                W(0,8), W(1,8), W(2,8), W(3,8), W(4,8), W(5,8), W(6,8), W(7,8), W(8,8), W(9,8),
+
+                W(0,1), W(0,2), W(0,3), W(0,4), W(0,5), W(0,6), W(0,7),
+                W(9,1), W(9,2), W(9,3), W(9,4), W(9,5), W(9,6), W(9,7)
+        );
         L(9,12,
                 // Part I
                 O(4,1, "mixer", UP),
