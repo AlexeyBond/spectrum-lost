@@ -71,5 +71,73 @@ public class Chapter3 extends Source {
                 W(2,0), W(3,0), W(4,0), W(5,0), W(6,0),
                 W(0,0)
                 );
+        L(9,12,
+                // Part I
+                O(4,1, "mixer", UP),
+                O(4,2, "prism", UP),
+                O(4,4, "shifter", RT),
+                O(4,5, "multiplier", UP),
+                O(4,7, "switch", DN),
+
+                O(1,2, "mirror", UP_RT),
+                O(1,3, "shifter", RT),
+                O(1,4, "mirror", UP_RT),
+                O(1,5, "shifter", RT),
+                O(1,6, "mirror", DN_RT),
+
+                O(2,2, "shifter", UP),
+                W(2,3),
+                O(2,4, "prism", UP_LF),
+                W(2,5),
+                O(2,6, "shifter", UP),
+
+                O(3,2, "mirror", UP_LF),
+                O(3,4, "shifter", RT),
+                O(3,5, "mirror", UP_RT),
+                O(3,6, "mirror", DN_LF),
+
+                O(5,2, "mirror", UP_RT),
+                O(5,4, "shifter", RT),
+                O(5,5, "mirror", DN_LF),
+                O(5,6, "mirror", DN_RT),
+
+                O(6,2, "shifter", UP),
+                W(6,3),
+                O(6,4, "prism", UP_RT),
+                W(6,5),
+                O(6,6, "shifter", UP),
+
+                O(7,2, "mirror", UP_LF),
+                O(7,3, "shifter", RT),
+                O(7,4, "mirror", DN_LF),
+                O(7,5, "shifter", RT),
+                O(7,6, "mirror", DN_LF),
+
+                O(1,1, "emitter", RT),
+                O(7,1, "emitter", LF),
+
+                O(2,7, "expector:none"),
+                O(6,7, "expector"),
+
+                // Part II
+                O(1,7, "emitter", RT),
+                O(1,10, "mirror", DN_RT),
+                O(2,9, "mirror", UP_RT),
+                O(2,10, "switch", LF),
+                O(3,9, "prism", RT),
+                O(4,8, "prism", DN_RT),
+                O(5,10, "mixer", LF),
+                O(7,9, "mirror", DN_LF),
+                O(7,10, "mirror", DN_LF),
+
+                // Walls
+                W(2,8), W(6,8),
+
+                W(0,0), W(1,0), W(2,0), W(3,0), W(4,0), W(5,0), W(6,0), W(7,0), W(8,0),
+                W(0,11), W(1,11), W(2,11), W(3,11), W(4,11), W(5,11), W(6,11), W(7,11), W(8,11),
+
+                W(0,1), W(0,2), W(0,3), W(0,4), W(0,5), W(0,6), W(0,7), W(0,8), W(0,9), W(0,10),
+                W(8,1), W(8,2), W(8,3), W(8,4), W(8,5), W(8,6), W(8,7), W(8,8), W(8,9), W(8,10)
+        );
     }
 }
