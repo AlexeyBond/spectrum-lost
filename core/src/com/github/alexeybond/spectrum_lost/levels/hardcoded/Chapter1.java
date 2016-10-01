@@ -99,7 +99,7 @@ public class Chapter1 extends Source {
                 W(0,2), W(0,3),
                 W(5,2), W(4,2), W(4,3)
                 );
-        L(8,6,// C1L2
+        L(8,7,// C1L2
                 O(1,1, "expector"),
                 O(2,4, "expector"),
 
@@ -109,13 +109,14 @@ public class Chapter1 extends Source {
                 O(3,3, "prism", LF),
                 O(4,1, "mixer", UP),
                 O(4,3, "switch", UP),
-                O(4,4, "emitter", DN),
+                O(4,5, "emitter", DN),
                 O(5,1, "mirror", UP),
                 O(5,2, "mirror", RT),
                 O(6,2, "mirror", UP_LF),
                 O(6,3, "mirror", DN_LF),
 
-                W(1,5), W(2,5), W(3,5), W(4,5), W(5,5),
+                W(3,6), W(4,6), W(5,6),
+                W(1,5), W(2,5), W(3,5), W(5,5),
                 W(0,4), W(1,4), W(5,4), W(6,4), W(7,4),
                 W(0,0), W(1,0), W(2,0), W(3,0), W(4,0), W(5,0), W(6,0),
                 W(6,1), W(7,1),
