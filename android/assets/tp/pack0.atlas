@@ -1,0 +1,199 @@
+
+pack0.png
+size: 1024,256
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+ui/arrows-target
+  rotate: false
+  xy: 514, 104
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/arrows-turn
+  rotate: false
+  xy: 2, 2
+  size: 252, 230
+  orig: 252, 230
+  offset: 0, 0
+  index: -1
+ui/button-next
+  rotate: false
+  xy: 256, 104
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+ui/spinner-segment
+  rotate: false
+  xy: 644, 104
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+pack02.png
+size: 256,256
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+fx/flare-00
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+pack03.png
+size: 256,256
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+background/stones-00-00
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+pack04.png
+size: 1024,512
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+cells/emitter/fg
+  rotate: false
+  xy: 392, 196
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/expector/fg
+  rotate: false
+  xy: 650, 326
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/expector/fg-gear
+  rotate: false
+  xy: 652, 196
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/expector/fg-type-none
+  rotate: false
+  xy: 262, 66
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/expector/symbol-fail
+  rotate: false
+  xy: 522, 66
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/expector/symbol-success
+  rotate: false
+  xy: 652, 66
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/expector/symbol-wait
+  rotate: false
+  xy: 782, 196
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/fader/fg
+  rotate: false
+  xy: 132, 68
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/mirror/bg
+  rotate: false
+  xy: 2, 68
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/mirror/fg
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cells/switch/fg
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+cells/mixer/fg
+  rotate: false
+  xy: 780, 326
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/multiplier/fg
+  rotate: false
+  xy: 520, 326
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/prism/fg
+  rotate: false
+  xy: 262, 196
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/shifter/fg
+  rotate: false
+  xy: 2, 198
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+cells/switch/bg
+  rotate: false
+  xy: 260, 326
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/switch/mg
+  rotate: false
+  xy: 392, 66
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/wall/bg-00
+  rotate: false
+  xy: 390, 326
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/wall/fg-00
+  rotate: false
+  xy: 522, 196
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
