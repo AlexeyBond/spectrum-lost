@@ -60,6 +60,46 @@ public class Chapter3 extends Source {
                 W(3,0), W(4,0), W(4,1), W(4,2),
                 W(5,1), W(5,3), W(5,4)
                 );
+        L(8,8,
+                O(3,7, "expector"),
+                O(4,7, "expector:none"),
+                O(5,7, "expector"),
+
+                O(4,4, "emitter", UP),
+                O(4,5, "mixer", UP),
+                O(4,6, "prism", UP),
+                O(4,3, "prism", DN),
+
+                O(1,2, "prism", UP_LF),
+                O(1,3, "prism", DN_LF),
+                O(1,4, "mirror", DN_RT),
+                O(1,5, "mirror", DN_RT),
+
+                O(2,1, "mirror", UP),
+                O(2,4, "prism", LF),
+                O(2,5, "shifter", UP),
+
+                O(3,2, "shifter", UP_LF),
+
+                O(5,2, "prism", DN_RT),
+                O(5,3, "shifter", UP),
+                O(5,4, "prism", RT),
+                O(5,5, "shifter", UP),
+
+                O(6,1, "mirror", UP),
+                O(6,2, "mirror", UP_LF),
+                O(6,3, "mirror", DN_LF),
+                O(6,4, "shifter", RT),
+                O(6,5, "mirror", LF),
+
+                W(1,6), W(2,6), W(2,7), W(6,7), W(6,6), W(7,6),
+
+                W(1,0), W(2,0), W(3,0), W(5,0), W(6,0), W(7,0),
+                W(0,1), W(1,1), W(3,1), W(4,1), W(5,1), W(7,1), W(8,1),
+
+                W(0,2), W(0,3), W(0,4), W(0,5),
+                W(7,2), W(7,3), W(7,4), W(7,5)
+        );
         L(7,7, // C3L020
                 O(1,0, "expector"),
                 O(0,3, "fader"),
