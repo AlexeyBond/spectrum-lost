@@ -40,6 +40,61 @@ public class Chapter3 extends Source {
                 W(4,0), W(5,0), W(6,0),
                 W(6,1), W(6,2), W(6,3), W(6,4), W(6,5)
         );
+        L(13,8,
+                O(6,7, "expector"),
+                O(6,5, "fader"),
+                O(6,4, "fader"),
+                O(6,3, "mixer", UP),
+                O(6,2, "fader"),
+                O(6,1, "mirror", UP_RT),
+
+                O(5,4, "mirror", DN_LF),
+                O(5,3, "mixer", RT),
+                O(5,2, "mirror", UP_LF),
+
+                O(4,2, "fader"),
+                O(4,4, "fader"),
+
+                O(3,2, "fader"),
+                O(3,4, "fader"),
+
+                O(2,2, "prism", RT),
+                O(2,4, "prism", UP_RT),
+
+                O(1,5, "emitter", DN_RT),
+                O(1,3, "emitter", UP_RT),
+                O(1,2, "emitter", RT),
+
+                O(7,2, "mirror", UP_RT),
+                O(7,3, "mixer", LF),
+                O(7,4, "mirror", DN_RT),
+
+                O(8,2, "fader"),
+                O(8,4, "fader"),
+
+                O(9,2, "fader"),
+                O(9,4, "fader"),
+
+                O(10,2, "prism", DN_LF),
+                O(10,4, "prism", LF),
+                O(10,1, "emitter", UP),
+
+                O(11,1, "emitter", UP_LF),
+                O(11,3, "emitter", DN_LF),
+                O(11,4, "emitter", LF),
+
+                W(2,3), W(3,3), W(4,3), W(8,3), W(9,3), W(10,3),
+
+                W(5,0), W(6,0), W(7,0), W(8,0), W(9,0), W(10,0), W(11,0), W(12,0),
+                W(0,1), W(1,1), W(2,1), W(3,1), W(4,1), W(5,1),
+
+                W(0,6), W(1,6), W(2,6),  W(5,6), W(7,6),
+
+                W(2,5), W(3,5), W(4,5), W(5,5), W(7,5), W(8,5), W(9,5), W(10,5), W(11,5), W(12,5),
+
+                W(0,2), W(0,3), W(0,4), W(0,5),
+                W(12,1), W(12,2), W(12,3), W(12,4)
+        );
         L(6,6, // C3L010
                 O(3,1, "emitter", UP),
                 O(3,2, "prism", UP),
