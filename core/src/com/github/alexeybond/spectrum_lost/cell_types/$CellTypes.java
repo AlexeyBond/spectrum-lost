@@ -24,5 +24,6 @@ public class $CellTypes {
         reg(new ShifterCell());
         reg(new FaderCell());
         reg(new MultiplierCell());
+        reg(new HMirrorCell());
     }
 }

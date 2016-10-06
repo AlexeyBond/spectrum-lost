@@ -124,5 +124,104 @@ public class Chapter1 extends Source {
                 W(7,2), W(7,3),
                 W(3,2)
                 );
+        L(5,3,
+                O(1,1, "emitter", DN_RT),
+                O(2,1, "hmirror", LF),
+                O(2,0, "expector"),
+                O(2,2, "expector"),
+                O(3,0, "mirror", UP_LF),
+                O(3,1, "mirror", UP_LF),
+                O(3,2, "mirror", DN_LF),
+
+                W(0,0), W(1,0), W(0,2), W(1,2), W(0,1),
+                W(4,0), W(4,1), W(4,2)
+        );
+        L(5,3,
+                O(1,1, "emitter", DN_RT),
+                O(2,1, "hmirror", LF),
+                O(2,0, "expector"),
+                O(2,2, "expector"),
+                O(3,1, "mirror", UP_LF),
+
+                W(0,0), W(1,0), W(0,2), W(1,2), W(0,1),
+                W(4,0), W(4,1), W(4,2), W(3,0), W(3,2)
+        );
+        L(5,3,
+                O(1,1, "emitter", DN_RT),
+                O(2,1, "hmirror", LF),
+                O(2,0, "expector"),
+                O(2,2, "expector"),
+                O(4,1, "expector"),
+                O(3,1, "hmirror", UP_LF),
+
+                W(0,0), W(1,0), W(0,2), W(1,2), W(0,1),
+                W(3,0), W(3,2)
+        );
+        L(9,5,
+                O(1,2, "emitter", RT),
+                O(2,2, "hmirror", LF),
+                O(3,2, "hmirror", LF),
+                O(4,2, "hmirror", LF),
+                O(5,2, "hmirror", LF),
+                O(6,2, "hmirror", LF),
+                O(7,2, "hmirror", LF),
+                O(8,2, "expector"),
+
+                O(1,1, "emitter", RT),
+                O(2,1, "hmirror", LF),
+                O(3,1, "hmirror", LF),
+                O(4,1, "hmirror", LF),
+                O(5,1, "hmirror", LF),
+                O(6,1, "hmirror", LF),
+                O(7,1, "hmirror", LF),
+                O(8,1, "expector"),
+
+                O(1,3, "emitter", RT),
+                O(2,3, "hmirror", LF),
+                O(3,3, "hmirror", LF),
+                O(4,3, "hmirror", LF),
+                O(5,3, "hmirror", LF),
+                O(6,3, "hmirror", LF),
+                O(7,3, "hmirror", LF),
+                O(8,3, "expector"),
+
+                W(0,0), W(1,0), W(2,0), W(3,0), W(4,0), W(5,0), W(6,0), W(7,0), W(8,0), W(9,0),
+                W(0,4), W(1,4), W(2,4), W(3,4), W(4,4), W(5,4), W(6,4), W(7,4), W(8,4), W(9,4),
+
+                W(0,1), W(0,2), W(0,3)
+        );
+        L(9,5,
+                O(1,2, "emitter", RT),
+                O(2,2, "hmirror", LF),
+                O(3,2, "prism", RT),
+                O(4,2, "hmirror", RT),
+                O(5,2, "hmirror", LF),
+                O(6,2, "hmirror", LF),
+                O(7,2, "hmirror", LF),
+                O(8,2, "expector"),
+
+                O(1,1, "emitter", RT),
+                O(2,1, "hmirror", LF),
+                O(3,1, "prism", RT),
+                O(4,1, "hmirror", LF),
+                O(5,1, "hmirror", LF),
+                O(6,1, "hmirror", LF),
+                O(7,1, "hmirror", LF),
+                O(8,1, "expector"),
+
+                O(1,3, "emitter", RT),
+                O(2,3, "hmirror", LF),
+                O(3,3, "prism", RT),
+                O(4,3, "hmirror", LF),
+                O(5,3, "hmirror", LF),
+                O(6,3, "hmirror", LF),
+                O(7,3, "hmirror", LF),
+                O(8,3, "expector"),
+
+                W(0,0), W(1,0), W(2,0), W(3,0), W(4,0), W(5,0), W(6,0), W(7,0), W(8,0), W(9,0),
+                W(0,4), W(1,4), W(2,4), W(3,4), W(4,4), W(5,4), W(6,4), W(7,4), W(8,4), W(9,4),
+
+                W(0,1), W(0,2), W(0,3)
+        );
     }
 }

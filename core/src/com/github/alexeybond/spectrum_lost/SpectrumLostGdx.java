@@ -20,7 +20,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 		$CellTypes.register();
 		$Sprite2DViews.register();
 
-		currentScreen = new GameScreen(/*new Chapter0()*//*new Chapter1()*/new Chapter3());
+		currentScreen = new GameScreen(/*new Chapter0()*/new Chapter1()/*new Chapter3()*/);
 		currentScreen.show(null);
 		currentScreen.unpause();
 

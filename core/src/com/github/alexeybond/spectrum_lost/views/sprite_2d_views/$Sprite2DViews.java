@@ -23,5 +23,6 @@ public class $Sprite2DViews {
         reg("shifter", new ShifterView());
         reg("fader", new FaderView());
         reg("multiplier", new MultiplierView());
+        reg("hmirror", new HMirrorView());
     }
 }
