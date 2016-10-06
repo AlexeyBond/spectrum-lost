@@ -19,6 +19,41 @@ public class Chapter3 extends Source {
                 W(0,3), W(1,3), W(2,3), W(3,3), W(4,3),
                 W(4,2), W(4,1)
                 );
+        L(6,4,
+                O(1,2, "emitter", RT),
+                O(2,2, "fader"),
+                O(3,2, "fader"),
+                O(4,2, "fader"),
+                O(5,2, "expector"),
+                O(1,1, "mirror", UP_RT),
+                O(5,1, "mirror", LF),
+
+                W(0,0), W(1,0), W(2,0), W(3,0), W(4,0), W(5,0),
+                W(0,3), W(1,3), W(2,3), W(3,3), W(4,3), W(5,3),
+                W(0,1), W(0,2)
+        );
+        L(8,5,
+                O(1,3, "emitter", RT),
+                O(1,2, "emitter", RT),
+                O(1,1, "emitter", RT),
+                O(2,3, "fader"),
+                O(3,3, "fader"),
+                O(2,2, "fader"),
+                O(3,2, "fader"),
+                O(2,1, "fader"),
+                O(3,1, "fader"),
+                O(4,1, "mirror", LF),
+                O(4,2, "mixer", RT),
+                O(4,3, "mirror", LF),
+                O(6,2, "fader"),
+                O(7,2, "expector"),
+
+                W(0,0), W(1,0), W(2,0), W(3,0), W(4,0), W(5,0),
+                W(0,4), W(1,4), W(2,4), W(3,4), W(4,4), W(5,4),
+
+                W(0,1), W(0,2), W(0,3),
+                W(5,1), W(5,3)
+        );
         L(7,7,
                 O(3,5, "emitter", LF),
                 O(0,5, "expector:none"),
