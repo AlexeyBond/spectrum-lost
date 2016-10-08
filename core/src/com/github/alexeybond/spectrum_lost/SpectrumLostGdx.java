@@ -8,6 +8,7 @@ import com.github.alexeybond.spectrum_lost.levels.hardcoded.Chapter0;
 import com.github.alexeybond.spectrum_lost.levels.hardcoded.Chapter1;
 import com.github.alexeybond.spectrum_lost.levels.hardcoded.Chapter3;
 import com.github.alexeybond.spectrum_lost.levels.hardcoded.Chapter4;
+import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
 import com.github.alexeybond.spectrum_lost.screens.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.GameScreen;
 import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
@@ -21,7 +22,10 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 		$CellTypes.register();
 		$Sprite2DViews.register();
 
-		currentScreen = new GameScreen(/*new Chapter0()*//*new Chapter1()*//*new Chapter3()*/new Chapter4());
+		currentScreen = new GameScreen(
+//				new Chapter0()/*new Chapter1()*//*new Chapter3()*//*new Chapter4()*/
+				new JsonSource("levels/chapter0.json")
+				);
 		currentScreen.show(null);
 		currentScreen.unpause();
 

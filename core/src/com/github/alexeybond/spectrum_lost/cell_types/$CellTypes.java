@@ -28,5 +28,6 @@ public class $CellTypes {
         reg(new FaderCell());
         reg(new MultiplierCell());
         reg(new HMirrorCell());
+        reg(new ClearCell());
     }
 }

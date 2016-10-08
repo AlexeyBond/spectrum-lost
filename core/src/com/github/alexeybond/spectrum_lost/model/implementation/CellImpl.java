@@ -131,6 +131,11 @@ final class CellImpl implements ICell {
     }
 
     @Override
+    public Map<String, Object> getOwnAttributes() {
+        return attributes;
+    }
+
+    @Override
     public IGrid grid() {
         return grid;
     }

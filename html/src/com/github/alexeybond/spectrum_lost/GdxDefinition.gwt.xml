@@ -7,4 +7,9 @@
 	<entry-point class='com.github.alexeybond.spectrum_lost.client.HtmlLauncher' />
 	
 	<set-configuration-property name="gdx.assetpath" value="../android/assets" />
+
+	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.levels.json.ChapterDesc" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.levels.json.GridDesc" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.levels.json.CellDesc" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.model.util.Direction" />
 </module>

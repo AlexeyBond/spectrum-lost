@@ -1,12 +1,13 @@
 package com.github.alexeybond.spectrum_lost.views.sprite_2d_views;
 
 import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
+import com.github.alexeybond.spectrum_lost.views.CellView2D;
 
 /**
  *
  */
 public class $Sprite2DViews {
-    private static void reg(final String type, final $Sprite2DView view) {
+    private static void reg(final String type, final CellView2D view) {
         Locator.CELL_VIEWS.set(type, view);
     }
 
@@ -27,5 +28,6 @@ public class $Sprite2DViews {
         reg("fader", new FaderView());
         reg("multiplier", new MultiplierView());
         reg("hmirror", new HMirrorView());
+        reg("clear", new ClearView());
     }
 }

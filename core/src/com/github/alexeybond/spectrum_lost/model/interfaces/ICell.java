@@ -3,6 +3,8 @@ package com.github.alexeybond.spectrum_lost.model.interfaces;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
 
+import java.util.Map;
+
 /**
  *
  */
@@ -66,6 +68,11 @@ public interface ICell {
      * attribute.
      */
     Object getAttribute(final String name);
+
+    /**
+     * Get own attributes of this cell.
+     */
+    Map<String, Object> getOwnAttributes();
 
     /**
      * Get the grid this cell belongs to.

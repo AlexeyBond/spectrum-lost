@@ -1,19 +1,25 @@
 package com.github.alexeybond.spectrum_lost.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonWriter;
 import com.github.alexeybond.spectrum_lost.levels.ILevel;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
+import com.github.alexeybond.spectrum_lost.levels.json.GridDesc;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
+import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.GridPositioner2D;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.Renderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.FboRayRenderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.LineRayRenderer;
 
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -136,5 +142,68 @@ public class GameScreen extends $Screen {
         }
 
         spriteBatch.end();
+    }
+
+    // --- DEV.MODE METHODS ---
+
+    private void dumpLevel() {
+        Json json = new Json(JsonWriter.OutputType.json);
+        Gdx.files.local(new Date().toString().concat(".json")).writeString(json.prettyPrint(GridDesc.dump(grid)), false);
+    }
+
+    private void setCell(final String type) {
+        ICell cell = positioner.cellAt(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+
+        if (cell != null) {
+            cell.setType(Locator.CELL_TYPES.get(type));
+        }
+    }
+
+    @Override
+    protected void onKeyPress(int code) {
+        switch (code) {
+            case Input.Keys.S:
+                dumpLevel();
+                break;
+            case Input.Keys.W:
+                setCell("wall");
+                break;
+            case Input.Keys.SPACE:
+                setCell("empty");
+                break;
+            case Input.Keys.Q:
+                setCell("expector");
+                break;
+            case Input.Keys.E:
+                setCell("emitter");
+                break;
+            case Input.Keys.X:
+                setCell("shifter");
+                break;
+            case Input.Keys.F:
+                setCell("fader");
+                break;
+            case Input.Keys.H:
+                setCell("hmirror");
+                break;
+            case Input.Keys.M:
+                setCell("mirror");
+                break;
+            case Input.Keys.N:
+                setCell("mixer");
+                break;
+            case Input.Keys.K:
+                setCell("multiplier");
+                break;
+            case Input.Keys.P:
+                setCell("prism");
+                break;
+            case Input.Keys.I:
+                setCell("switch");
+                break;
+            case Input.Keys.C:
+                setCell("clear");
+                break;
+        }
     }
 }
