@@ -100,4 +100,7 @@ public class ExpectorCell implements ICellType {
 
     public static ICellType ANY = new ExpectorCell("expector", 1, 1, 1, 0);
     public static ICellType NONE = new ExpectorCell("expector:none", -1, -1, -1, 1);
+    public static ICellType R = new ExpectorCell("expector:r", 1, -1, -1, 0);
+    public static ICellType G = new ExpectorCell("expector:g", -1, 1, -1, 0);
+    public static ICellType B = new ExpectorCell("expector:b", -1, -1, 1, 0);
 }

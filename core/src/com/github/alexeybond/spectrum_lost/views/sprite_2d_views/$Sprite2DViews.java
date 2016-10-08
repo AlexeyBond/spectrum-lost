@@ -16,6 +16,9 @@ public class $Sprite2DViews {
         reg("emitter", new EmitterView());
         reg("expector", new ExpectorView.AnyExpectorView());
         reg("expector:none", new ExpectorView.NoneExpectorView());
+        reg("expector:r", new ExpectorView.RExpectorView());
+        reg("expector:g", new ExpectorView.GExpectorView());
+        reg("expector:b", new ExpectorView.BExpectorView());
         reg("prism", new PrismView());
         reg("mirror", new MirrorView());
         reg("mixer", new MixerView());

@@ -68,4 +68,22 @@ public class ExpectorView extends $Sprite2DView {
             super("cells/expector/fg-type-none.png");
         }
     }
+
+    public static class RExpectorView extends ExpectorView {
+        public RExpectorView() {
+            super("cells/expector/fg-type-r.png");
+        }
+    }
+
+    public static class GExpectorView extends ExpectorView {
+        public GExpectorView() {
+            super("cells/expector/fg-type-g.png");
+        }
+    }
+
+    public static class BExpectorView extends ExpectorView {
+        public BExpectorView() {
+            super("cells/expector/fg-type-b.png");
+        }
+    }
 }

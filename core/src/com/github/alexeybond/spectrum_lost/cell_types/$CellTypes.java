@@ -18,6 +18,9 @@ public class $CellTypes {
         reg(new MirrorCell());
         reg(ExpectorCell.ANY);
         reg(ExpectorCell.NONE);
+        reg(ExpectorCell.R);
+        reg(ExpectorCell.G);
+        reg(ExpectorCell.B);
         reg(new WallCell());
         reg(new MixerCell());
         reg(new SwitchCell());
