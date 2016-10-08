@@ -7,6 +7,32 @@ import static com.github.alexeybond.spectrum_lost.model.util.Direction.*;
  */
 public class Chapter4 extends Source {
     {
+        L(9,8,
+                O(3,6, "expector:b"),
+                O(3,4, "multiplier", UP),
+                O(3,2, "switch", UP),
+                O(3,1, "mirror", UP_RT),
+
+                O(4,4, "hmirror", UP_LF),
+                O(4,3, "hmirror", UP_RT),
+                O(4,2, "shifter", UP),
+                O(4,1, "mirror", UP),
+
+                O(5,3, "prism", DN_LF),
+                O(5,2, "mirror", UP_LF),
+
+                O(6,6, "emitter", LF),
+                O(6,4, "prism", LF),
+
+                O(7,5, "mirror", LF),
+                O(7,4, "emitter", LF),
+
+                O(2,4, "hmirror", LF),
+                O(2,3, "mirror", UP_RT),
+
+                O(1,4, "emitter", RT),
+                O(1,2, "emitter", RT)
+                );
         L(7,5,
                 O(1,4, "expector:r"),
                 O(3,4, "expector:g"),
