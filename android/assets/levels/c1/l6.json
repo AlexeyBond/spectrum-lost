@@ -1,0 +1,104 @@
+{
+"cells": [
+	{
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 1,
+		"type": "emitter",
+		"direction": "DN_RT",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"type": "expector",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 1,
+		"type": "hmirror",
+		"direction": "LF",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 2,
+		"type": "expector",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"type": "mirror",
+		"direction": "UP_LF",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 1,
+		"type": "mirror",
+		"direction": "UP_LF",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 2,
+		"type": "mirror",
+		"direction": "DN_LF",
+		"attrs": {}
+	},
+	{
+		"x": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 4,
+		"y": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 4,
+		"y": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	}
+],
+"width": 5,
+"height": 3,
+"attrs": {}
+}

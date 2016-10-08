@@ -1,0 +1,205 @@
+{
+"cells": [
+	{
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 2,
+		"type": "expector",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 3,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 5,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 6,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 7,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 1,
+		"type": "mirror",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 2,
+		"type": "hmirror",
+		"direction": "UP_LF",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 5,
+		"type": "mirror",
+		"direction": "UP_RT",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 6,
+		"type": "mirror",
+		"direction": "DN_RT",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 7,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 1,
+		"type": "mirror",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 2,
+		"type": "switch",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 3,
+		"type": "emitter",
+		"direction": "DN",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 5,
+		"type": "emitter",
+		"direction": "LF",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 6,
+		"type": "expector",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 7,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 3,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 5,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 6,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 7,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	}
+],
+"width": 4,
+"height": 8,
+"attrs": {}
+}

@@ -1,0 +1,172 @@
+{
+"cells": [
+	{
+		"type": "clear",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 3,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"y": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 2,
+		"type": "mirror",
+		"direction": "UP_RT",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 3,
+		"type": "expector",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 1,
+		"y": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 1,
+		"type": "mirror",
+		"direction": "RT",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 2,
+		"type": "switch",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 3,
+		"type": "mirror",
+		"direction": "DN_RT",
+		"attrs": {}
+	},
+	{
+		"x": 2,
+		"y": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 1,
+		"type": "emitter",
+		"direction": "LF",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 3,
+		"type": "emitter",
+		"direction": "LF",
+		"attrs": {}
+	},
+	{
+		"x": 3,
+		"y": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 4,
+		"y": 1,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 4,
+		"y": 2,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 4,
+		"y": 3,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	},
+	{
+		"x": 4,
+		"y": 4,
+		"type": "wall",
+		"direction": "UP",
+		"attrs": {}
+	}
+],
+"width": 5,
+"height": 5,
+"attrs": {}
+}
