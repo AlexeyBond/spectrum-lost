@@ -11,6 +11,7 @@ import com.github.alexeybond.spectrum_lost.model.implementation.GridImpl;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
 import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
+import com.github.alexeybond.spectrum_lost.model.util.Direction;
 
 import java.util.Date;
 
@@ -74,6 +75,15 @@ public class GameDevScreen extends GameScreen {
         goToGrid(ng);
     }
 
+    private void clearGrid() {
+        for (int x = 0; x < grid.width(); x++) {
+            for (int y = 0; y < grid.height(); y++) {
+                grid.getCell(x,y).setType(Locator.CELL_TYPES.get("empty"));
+                grid.getCell(x,y).setDirection(Direction.UP);
+            }
+        }
+    }
+
     @Override
     protected void onKeyPress(int code) {
         switch (code) {
@@ -85,9 +95,6 @@ public class GameDevScreen extends GameScreen {
                 break;
             case Input.Keys.SPACE:
                 setCell("empty");
-                break;
-            case Input.Keys.Q:
-                setCell("expector");
                 break;
             case Input.Keys.E:
                 setCell("emitter");
@@ -119,6 +126,21 @@ public class GameDevScreen extends GameScreen {
             case Input.Keys.C:
                 setCell("clear");
                 break;
+            case Input.Keys.GRAVE:
+                setCell("expector");
+                break;
+            case Input.Keys.NUM_1:
+                setCell("expector:r");
+                break;
+            case Input.Keys.NUM_2:
+                setCell("expector:g");
+                break;
+            case Input.Keys.NUM_3:
+                setCell("expector:b");
+                break;
+            case Input.Keys.NUM_0:
+                setCell("expector:none");
+                break;
             case Input.Keys.ENTER:
                 nextLevel();
                 break;
@@ -149,6 +171,10 @@ public class GameDevScreen extends GameScreen {
                 break;
             case Input.Keys.NUMPAD_5:
                 createGrid(0,0);
+                break;
+
+            case Input.Keys.NUMPAD_0:
+                clearGrid();
                 break;
         }
     }
