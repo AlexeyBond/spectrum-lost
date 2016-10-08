@@ -4,23 +4,32 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
+import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
 import com.github.alexeybond.spectrum_lost.screens.$Screen;
+import com.github.alexeybond.spectrum_lost.screens.GameDevScreen;
 import com.github.alexeybond.spectrum_lost.screens.GameScreen;
 import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
 
 public class SpectrumLostGdx extends ApplicationAdapter {
 	private $Screen currentScreen;
 	private Music music;
+
+	private ILevelsSource getLevelSource() {
+		return new JsonSource("levels/chapter3.json");
+	}
 	
 	@Override
 	public void create () {
 		$CellTypes.register();
 		$Sprite2DViews.register();
 
-		currentScreen = new GameScreen(
-				new JsonSource("levels/chapter3.json")
-				);
+		if (System.getProperty("sl.devmode") != null) {
+			currentScreen = new GameDevScreen(getLevelSource());
+		} else {
+			currentScreen = new GameScreen(getLevelSource());
+		}
+
 		currentScreen.show(null);
 		currentScreen.unpause();
 

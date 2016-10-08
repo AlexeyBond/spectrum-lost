@@ -26,11 +26,11 @@ import java.util.Iterator;
  *
  */
 public class GameScreen extends $Screen {
-    private IGrid grid;
-    private Renderer renderer;
-    private GridPositioner2D positioner;
-    private boolean showNextButton;
-    private Rectangle nextBtnRect = new Rectangle();
+    protected IGrid grid;
+    protected Renderer renderer;
+    protected GridPositioner2D positioner;
+    protected boolean showNextButton;
+    protected Rectangle nextBtnRect = new Rectangle();
     private ILevelsSource levelsSource;
     private Iterator<ILevel> levelIterator;
     private float timeSinceLastUpdate = 0;
@@ -59,13 +59,17 @@ public class GameScreen extends $Screen {
         nextLevel();
     }
 
-    private void nextLevel() {
+    protected void nextLevel() {
         if (levelIterator == null || !levelIterator.hasNext())
             levelIterator = levelsSource.iterator();
 
         ILevel level = levelIterator.next();
 
-        grid = level.init();
+        goToGrid(level.init());
+    }
+
+    protected void goToGrid(IGrid grid) {
+        this.grid = grid;
 
         if (positioner == null) {
             positioner = new GridPositioner2D(grid);
@@ -142,68 +146,5 @@ public class GameScreen extends $Screen {
         }
 
         spriteBatch.end();
-    }
-
-    // --- DEV.MODE METHODS ---
-
-    private void dumpLevel() {
-        Json json = new Json(JsonWriter.OutputType.json);
-        Gdx.files.local(new Date().toString().concat(".json")).writeString(json.prettyPrint(GridDesc.dump(grid)), false);
-    }
-
-    private void setCell(final String type) {
-        ICell cell = positioner.cellAt(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
-
-        if (cell != null) {
-            cell.setType(Locator.CELL_TYPES.get(type));
-        }
-    }
-
-    @Override
-    protected void onKeyPress(int code) {
-        switch (code) {
-            case Input.Keys.S:
-                dumpLevel();
-                break;
-            case Input.Keys.W:
-                setCell("wall");
-                break;
-            case Input.Keys.SPACE:
-                setCell("empty");
-                break;
-            case Input.Keys.Q:
-                setCell("expector");
-                break;
-            case Input.Keys.E:
-                setCell("emitter");
-                break;
-            case Input.Keys.X:
-                setCell("shifter");
-                break;
-            case Input.Keys.F:
-                setCell("fader");
-                break;
-            case Input.Keys.H:
-                setCell("hmirror");
-                break;
-            case Input.Keys.M:
-                setCell("mirror");
-                break;
-            case Input.Keys.N:
-                setCell("mixer");
-                break;
-            case Input.Keys.K:
-                setCell("multiplier");
-                break;
-            case Input.Keys.P:
-                setCell("prism");
-                break;
-            case Input.Keys.I:
-                setCell("switch");
-                break;
-            case Input.Keys.C:
-                setCell("clear");
-                break;
-        }
     }
 }
