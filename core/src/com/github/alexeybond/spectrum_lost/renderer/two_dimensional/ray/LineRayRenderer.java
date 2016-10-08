@@ -24,6 +24,7 @@ public class LineRayRenderer implements IRayRenderer {
     public void beginRays(final SpriteBatch batch) {
         batch.end();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_ONE, GL20.GL_ONE);
         Gdx.gl.glBlendEquation(GL20.GL_FUNC_ADD);
