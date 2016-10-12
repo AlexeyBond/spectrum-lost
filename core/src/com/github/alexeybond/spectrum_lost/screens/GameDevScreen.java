@@ -19,9 +19,6 @@ import java.util.Date;
  * Game screen with developer features.
  */
 public class GameDevScreen extends GameScreen {
-    private int createx = 3;
-    private int createy = 3;
-
     public GameDevScreen(ILevelsSource levelsSource) {
         super(levelsSource);
     }
@@ -54,11 +51,11 @@ public class GameDevScreen extends GameScreen {
     }
 
     private void createGrid(int dx, int dy) {
-        createx = Math.max(3, createx + dx);
-        createy = Math.max(3, createy + dy);
+        int createx = Math.max(3, grid.width() + dx);
+        int createy = Math.max(3, grid.height() + dy);
 
-        int cx = Math.min(createx, createx - dx);
-        int cy = Math.min(createy, createy - dy);
+        int cx = Math.min(createx, grid.width());
+        int cy = Math.min(createy, grid.height());
 
         IGrid ng = new GridImpl(createx, createy, "empty", new GameStateImpl());
 
