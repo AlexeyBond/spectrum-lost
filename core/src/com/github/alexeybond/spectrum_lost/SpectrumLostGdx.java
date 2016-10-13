@@ -16,7 +16,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 	private Music music;
 
 	private ILevelsSource getLevelSource() {
-		return new JsonSource("levels/chapter3.json");
+		return new JsonSource("levels/chapter4.json");
 	}
 	
 	@Override

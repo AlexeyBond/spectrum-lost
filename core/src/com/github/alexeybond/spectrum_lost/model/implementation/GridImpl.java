@@ -1,13 +1,9 @@
 package com.github.alexeybond.spectrum_lost.model.implementation;
 
-import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
-import com.github.alexeybond.spectrum_lost.model.interfaces.IGameState;
-import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
+import com.github.alexeybond.spectrum_lost.model.interfaces.*;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 /**
  *
@@ -21,12 +17,18 @@ public class GridImpl implements IGrid {
     private final ArrayList<CellImpl> cells;
     private final CellImpl noCell;
 
+    private final Map<String, Object> attributes;
+
+    private final ICellType defaultCT;
+
     public GridImpl(final int width, final int height, final String defaultCellType, final IGameState gameState) {
         this.width = width;
         this.height = height;
         this.gameState = gameState;
+        this.attributes = new HashMap<String, Object>();
         cells = new ArrayList<CellImpl>(Collections.<CellImpl>nCopies(this.width * this.height, null));
 
+        defaultCT = Locator.CELL_TYPES.get(defaultCellType);
         noCell = new CellImpl(this, -1, -1, Direction.DEFAULT, defaultCellType);
 
         for (int x = 0; x < width; x++) {
@@ -83,5 +85,15 @@ public class GridImpl implements IGrid {
     @Override
     public int height() {
         return height;
+    }
+
+    @Override
+    public Map<String, Object> attributes() {
+        return attributes;
+    }
+
+    @Override
+    public ICellType defaultCellType() {
+        return defaultCT;
     }
 }

@@ -80,56 +80,56 @@ cells/expector/fg
   index: -1
 cells/expector/fg-gear
   rotate: false
-  xy: 132, 458
+  xy: 132, 198
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 cells/expector/fg-type-b
   rotate: false
-  xy: 132, 328
+  xy: 262, 716
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 cells/expector/fg-type-g
   rotate: false
-  xy: 132, 198
+  xy: 262, 586
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 cells/expector/fg-type-none
   rotate: false
-  xy: 132, 68
+  xy: 392, 716
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 cells/expector/fg-type-r
   rotate: false
-  xy: 262, 716
+  xy: 262, 456
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 cells/expector/symbol-fail
   rotate: false
-  xy: 392, 716
+  xy: 262, 326
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 cells/expector/symbol-success
   rotate: false
-  xy: 262, 456
+  xy: 392, 456
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 cells/expector/symbol-wait
   rotate: false
-  xy: 392, 586
+  xy: 522, 586
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -183,6 +183,34 @@ cells/multiplier/fg
   orig: 128, 128
   offset: 0, 0
   index: -1
+cells/portal/fg-b
+  rotate: false
+  xy: 132, 458
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/portal/fg-g
+  rotate: false
+  xy: 132, 328
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/portal/fg-o
+  rotate: false
+  xy: 132, 68
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+cells/portal/fg-v
+  rotate: false
+  xy: 392, 586
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
 cells/prism/fg
   rotate: false
   xy: 2, 68
@@ -206,7 +234,7 @@ cells/switch/bg
   index: -1
 cells/switch/mg
   rotate: false
-  xy: 262, 586
+  xy: 522, 716
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

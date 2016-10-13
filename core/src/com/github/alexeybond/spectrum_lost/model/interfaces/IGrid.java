@@ -1,6 +1,7 @@
 package com.github.alexeybond.spectrum_lost.model.interfaces;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  *
@@ -35,4 +36,14 @@ public interface IGrid {
      * Get height of this grid (in cells).
      */
     int height();
+
+    /**
+     * Attributes of the grid. May include references to the cells that should be available by name.
+     */
+    Map<String, Object> attributes();
+
+    /**
+     * Default cell type.
+     */
+    ICellType defaultCellType();
 }

@@ -29,5 +29,9 @@ public class $CellTypes {
         reg(new MultiplierCell());
         reg(new HMirrorCell());
         reg(new ClearCell());
+        reg(PortalCell.TYPE_A);
+        reg(PortalCell.TYPE_B);
+        reg(PortalCell.TYPE_X);
+        reg(PortalCell.TYPE_Y);
     }
 }
