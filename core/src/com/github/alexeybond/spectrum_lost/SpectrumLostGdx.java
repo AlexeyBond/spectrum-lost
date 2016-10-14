@@ -1,5 +1,6 @@
 package com.github.alexeybond.spectrum_lost;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -27,7 +28,8 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 		$CellTypes.register();
 		$Sprite2DViews.register();
 
-		if (System.getProperty("sl.devmode") != null) {
+		if (Gdx.app.getType() == Application.ApplicationType.Desktop
+			&& System.getProperty("sl.devmode") != null) {
 			currentScreen = new GameDevScreen(getLevelSource());
 		} else {
 			currentScreen = new GameScreen(getLevelSource());
