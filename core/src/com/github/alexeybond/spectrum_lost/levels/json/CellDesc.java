@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class CellDesc {
     public int x, y;
     public String type;
-    public Direction direction;
+    public Direction direction = Direction.DEFAULT;
     public HashMap<String, Object> attrs;
 
     public static CellDesc dump(final ICell cell) {
@@ -20,9 +20,16 @@ public class CellDesc {
         cd.x = cell.x();
         cd.y = cell.y();
         cd.type = cell.type().id();
-        cd.direction = cell.direction();
-        cd.attrs = new HashMap<String, Object>();
-        cd.attrs.putAll(cell.getOwnAttributes());
+
+        if (cell.type().getAttribute("noTurn") == null
+                || cell.type().getAttribute("editorTurn") != null) {
+            cd.direction = cell.direction();
+        }
+
+        if (cell.getOwnAttributes().size() != 0) {
+            cd.attrs = new HashMap<String, Object>();
+            cd.attrs.putAll(cell.getOwnAttributes());
+        }
 
         return cd;
     }

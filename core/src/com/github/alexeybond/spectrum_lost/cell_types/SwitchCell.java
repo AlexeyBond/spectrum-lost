@@ -65,7 +65,7 @@ public class SwitchCell extends MirrorCell {
 
     @Override
     public Object getAttribute(String name) {
-        if ("noTurn".equals(name))
+        if ("noTurn".equals(name) || "editorTurn".equals(name))
             return true;
 
         return null;

@@ -35,7 +35,11 @@ public class JsonSource implements ILevelsSource {
                 ICell cell = grid.getCell(cd.x, cd.y);
 
                 cell.getOwnAttributes().clear();
-                cell.getOwnAttributes().putAll(cd.attrs);
+
+                if (cd.attrs != null) {
+                    cell.getOwnAttributes().putAll(cd.attrs);
+                }
+
                 cell.setDirection(cd.direction);
                 cell.setType(Locator.CELL_TYPES.get(cd.type));
             }
