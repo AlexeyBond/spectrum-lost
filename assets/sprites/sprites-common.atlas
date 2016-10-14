@@ -1,0 +1,229 @@
+
+sprites-common.png
+size: 512,256
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+ui/button-next
+  rotate: false
+  xy: 2, 2
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+
+sprites-common2.png
+size: 1024,1024
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+game/cells/background/bg-common
+  rotate: false
+  xy: 2, 458
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/background/stones-00-00
+  rotate: false
+  xy: 522, 586
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/emitter/fg
+  rotate: false
+  xy: 780, 846
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/fg
+  rotate: false
+  xy: 2, 328
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/fg-gear
+  rotate: false
+  xy: 132, 198
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/fg-type-b
+  rotate: false
+  xy: 262, 716
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/fg-type-g
+  rotate: false
+  xy: 262, 586
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/fg-type-none
+  rotate: false
+  xy: 392, 716
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/fg-type-r
+  rotate: false
+  xy: 262, 456
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/symbol-fail
+  rotate: false
+  xy: 652, 716
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/symbol-success
+  rotate: false
+  xy: 262, 196
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/symbol-wait
+  rotate: false
+  xy: 392, 326
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/fader/fg
+  rotate: false
+  xy: 650, 846
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/hmirror/fg
+  rotate: false
+  xy: 520, 846
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/mirror/fg
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+game/cells/switch/fg
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+game/cells/mixer/fg
+  rotate: false
+  xy: 2, 198
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/multiplier/fg
+  rotate: false
+  xy: 390, 846
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/portal/fg-b
+  rotate: false
+  xy: 132, 458
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/portal/fg-g
+  rotate: false
+  xy: 132, 328
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/portal/fg-o
+  rotate: false
+  xy: 132, 68
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/portal/fg-v
+  rotate: false
+  xy: 392, 586
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/prism/fg
+  rotate: false
+  xy: 2, 68
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/shifter/fg
+  rotate: false
+  xy: 2, 718
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+game/cells/switch/bg
+  rotate: false
+  xy: 2, 588
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/switch/mg
+  rotate: false
+  xy: 262, 326
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/wall/bg-00
+  rotate: false
+  xy: 260, 846
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/wall/fg-00
+  rotate: false
+  xy: 132, 588
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/fx/flare-00
+  rotate: false
+  xy: 522, 716
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/fx/spinner-segment
+  rotate: false
+  xy: 392, 456
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
