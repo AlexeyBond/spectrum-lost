@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 import com.github.alexeybond.spectrum_lost.levels.ILevel;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
+import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc;
 import com.github.alexeybond.spectrum_lost.model.implementation.GameStateImpl;
 import com.github.alexeybond.spectrum_lost.model.implementation.GridImpl;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
@@ -51,13 +52,11 @@ public class JsonSource implements ILevelsSource {
     public JsonSource(final FileHandle handle) {
         String str = handle.readString();
         Json json = new Json();
-        ChapterDesc cd = json.fromJson(ChapterDesc.class, str);
-        levels = new ArrayList<ILevel>(cd.levelNames.size());
-        FileHandle ph = handle.parent();
+        ChapterLevelsDesc cd = json.fromJson(ChapterLevelsDesc.class, str);
+        levels = new ArrayList<ILevel>(cd.levels.size());
 
-        for (String lLoc : cd.levelNames) {
-            String strL = ph.child(lLoc.concat(".json")).readString();
-            levels.add(new JSLevel(json.fromJson(GridDesc.class, strL)));
+        for (GridDesc gd : cd.levels) {
+            levels.add(new JSLevel(gd));
         }
     }
 

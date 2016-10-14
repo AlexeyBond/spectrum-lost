@@ -8,5 +8,5 @@ import java.util.HashMap;
  */
 public class ChapterDesc {
     public ArrayList<String> levelNames;
-    public HashMap<String, String> attrs;
+    public HashMap<String, Object> attrs;
 }
