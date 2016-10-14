@@ -26,18 +26,18 @@ public class $Sprite2DViews {
         reg("switch", new SwitchView());
 
         // Simple views
-        reg("emitter", new $SimpleSpriteView("cells/mirror/bg.png", "cells/emitter/fg.png", false));
-        reg("mirror", new $SimpleSpriteView("cells/mirror/bg.png", "cells/mirror/fg.png", true));
-        reg("prism", new $SimpleSpriteView("cells/mirror/bg.png", "cells/prism/fg.png", true));
-        reg("mixer", new $SimpleSpriteView("cells/mirror/bg.png", "cells/mixer/fg.png", true));
-        reg("shifter", new $SimpleSpriteView("cells/mirror/bg.png", "cells/shifter/fg.png", true));
-        reg("fader", new $SimpleSpriteView("cells/mirror/bg.png", "cells/fader/fg.png", true));
-        reg("multiplier", new $SimpleSpriteView("cells/mirror/bg.png", "cells/multiplier/fg.png", true));
-        reg("hmirror", new $SimpleSpriteView("cells/mirror/bg.png", "cells/hmirror/fg.png", true));
+        reg("emitter", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/emitter/fg", false));
+        reg("mirror", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/mirror/fg", true));
+        reg("prism", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/prism/fg", true));
+        reg("mixer", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/mixer/fg", true));
+        reg("shifter", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/shifter/fg", true));
+        reg("fader", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/fader/fg", true));
+        reg("multiplier", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/multiplier/fg", true));
+        reg("hmirror", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/hmirror/fg", true));
 
-        reg("portal:a", new $SimpleSpriteView("cells/mirror/bg.png", "cells/portal/fg-o.png", true));
-        reg("portal:b", new $SimpleSpriteView("cells/mirror/bg.png", "cells/portal/fg-b.png", true));
-        reg("portal:x", new $SimpleSpriteView("cells/mirror/bg.png", "cells/portal/fg-v.png", true));
-        reg("portal:y", new $SimpleSpriteView("cells/mirror/bg.png", "cells/portal/fg-g.png", true));
+        reg("portal:a", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/portal/fg-o", true));
+        reg("portal:b", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/portal/fg-b", true));
+        reg("portal:x", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/portal/fg-v", true));
+        reg("portal:y", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/portal/fg-g", true));
     }
 }

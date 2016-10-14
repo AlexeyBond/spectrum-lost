@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer;
+import com.github.alexeybond.spectrum_lost.resources.Resources;
 
 import static java.lang.Math.min;
 import static java.lang.Math.sin;
@@ -25,7 +26,7 @@ public class FboRayRenderer implements IRayRenderer {
     private static int FBO_SIZE_Y = 64;
 
     private static FrameBuffer frameBuffer;
-    private static Texture flareTexture;
+    private static TextureRegion flareTexture;
     private static ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     private static float[] animation = new float[FBO_SIZE_X];
@@ -53,7 +54,7 @@ public class FboRayRenderer implements IRayRenderer {
 
     public FboRayRenderer() {
         if (null == frameBuffer) frameBuffer = initFBO();
-        if (null == flareTexture) flareTexture = new Texture("fx/flare-00.png");
+        if (null == flareTexture) flareTexture = Resources.getSprite("game/fx/flare-00");
     }
 
     private void animate() {

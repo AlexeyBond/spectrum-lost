@@ -18,8 +18,8 @@ public class MyPacker {
     private static Path rawAssetsPath = Paths.get("_raw-assets");
     private static Path assetsPath = Paths.get("android/assets");
 
-    private static Path rawTexturesPath = assetsPath;
-    private static Path texturesPath = assetsPath.resolve("tp");
+    private static Path rawSpritesPath = rawAssetsPath.resolve("sprites");
+    private static Path spritesPath = assetsPath.resolve("sprites");
 
     private static Path rawLevelsPath = rawAssetsPath.resolve("levels");
     private static Path levelsPath = assetsPath.resolve("levels");
@@ -33,9 +33,9 @@ public class MyPacker {
 
     private static void packTextures() {
         TexturePacker.process(
-                rawTexturesPath.toString(),
-                texturesPath.toString(),
-                "pack0");
+                rawSpritesPath.toString(),
+                spritesPath.toString(),
+                "sprites-common");
     }
 
     private static void packLevels() {

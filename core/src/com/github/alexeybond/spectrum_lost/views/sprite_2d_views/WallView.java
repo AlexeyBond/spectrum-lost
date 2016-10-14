@@ -5,8 +5,8 @@ package com.github.alexeybond.spectrum_lost.views.sprite_2d_views;
  */
 public class WallView extends $Sprite2DView {
     {
-        bgTexture = loadTexture("cells/wall/bg-00.png");
-        fgTexture = loadTexture("cells/wall/fg-00.png");
+        bgTexture = loadTexture("game/cells/wall/bg-00");
+        fgTexture = loadTexture("game/cells/wall/fg-00");
     }
 
     @Override

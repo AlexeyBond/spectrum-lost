@@ -1,25 +1,20 @@
 package com.github.alexeybond.spectrum_lost.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonWriter;
 import com.github.alexeybond.spectrum_lost.levels.ILevel;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
-import com.github.alexeybond.spectrum_lost.levels.json.GridDesc;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
-import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.GridPositioner2D;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.Renderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.FboRayRenderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.LineRayRenderer;
+import com.github.alexeybond.spectrum_lost.resources.Resources;
 
-import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -37,7 +32,7 @@ public class GameScreen extends $Screen {
 
     private final static float simulationRate = 1.f/32.f;
 
-    private static Texture nextButtonTexture;
+    private static TextureRegion nextButtonTexture;
 
     private static IRayRenderer rayRenderer;
 
@@ -52,7 +47,7 @@ public class GameScreen extends $Screen {
             }
         }
 
-        if (nextButtonTexture == null) nextButtonTexture = new Texture("ui/button-next.png");
+        if (nextButtonTexture == null) nextButtonTexture = Resources.getSprite("ui/button-next");
 
         this.levelsSource = levelsSource;
 
@@ -111,8 +106,8 @@ public class GameScreen extends $Screen {
     public void resize(int width, int height) {
         super.resize(width, height);
         positioner.reset(grid);
-        nextBtnRect.set(width - 20 - nextButtonTexture.getWidth(), 20,
-                nextButtonTexture.getWidth(), nextButtonTexture.getHeight());
+        nextBtnRect.set(width - 20 - nextButtonTexture.getRegionWidth(), 20,
+                nextButtonTexture.getRegionWidth(), nextButtonTexture.getRegionHeight());
     }
 
     private void updateGame() {

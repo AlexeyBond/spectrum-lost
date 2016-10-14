@@ -3,9 +3,11 @@ package com.github.alexeybond.spectrum_lost;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
+import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.screens.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.GameDevScreen;
 import com.github.alexeybond.spectrum_lost.screens.GameScreen;
@@ -21,6 +23,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		Resources.use(new TextureAtlas("sprites/sprites-common.atlas"));
 		$CellTypes.register();
 		$Sprite2DViews.register();
 

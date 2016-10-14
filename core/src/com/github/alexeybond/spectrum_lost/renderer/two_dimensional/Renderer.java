@@ -1,12 +1,13 @@
 package com.github.alexeybond.spectrum_lost.renderer.two_dimensional;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
+import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.views.CellView2D;
 
 /**
@@ -15,7 +16,7 @@ import com.github.alexeybond.spectrum_lost.views.CellView2D;
 public class Renderer {
     private final IGrid grid;
     private final IRayRenderer rayRenderer;
-    private static Texture commonBgTexture;
+    private static TextureRegion commonBgTexture;
 
     private static Vector2 tv0 = new Vector2();
     private static Ray tr0 = new Ray();
@@ -25,7 +26,7 @@ public class Renderer {
         this.rayRenderer = rayRenderer;
 
         if (null == commonBgTexture) {
-            commonBgTexture = new Texture("background/stones-00-00.png");
+            commonBgTexture = Resources.getSprite("game/cells/background/stones-00-00");
         }
     }
 

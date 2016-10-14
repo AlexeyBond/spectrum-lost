@@ -1,12 +1,13 @@
 package com.github.alexeybond.spectrum_lost.views.sprite_2d_views;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
+import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.views.CellView2D;
 
 import java.util.HashMap;
@@ -16,10 +17,10 @@ import java.util.Map;
  *
  */
 public abstract class $Sprite2DView implements CellView2D {
-    protected Texture bgTexture = null;
-    protected Texture fgTexture = null;
+    protected TextureRegion bgTexture = null;
+    protected TextureRegion fgTexture = null;
 
-    private static Texture spinnerTexture;
+    private static TextureRegion spinnerTexture;
 
     private static final Matrix4 transformMatrix = new Matrix4();
 
@@ -37,21 +38,15 @@ public abstract class $Sprite2DView implements CellView2D {
         return false;
     }
 
-    protected Texture loadTexture(final String name) {
-        if (textures.containsKey(name)) {
-            return textures.get(name);
-        }
-        Texture tx = new Texture(Gdx.files.internal(name), true);
-        tx.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.MipMapLinearLinear);
-        textures.put(name, tx);
-        return tx;
+    protected TextureRegion loadTexture(final String name) {
+        return Resources.getSprite(name);
     }
 
     protected void drawSprite(
             final SpriteBatch batch,
             final Vector2 pos,
             final float size,
-            final Texture tx,
+            final TextureRegion tx,
             final float rotation) {
         float hSize = size * .5f;
 
@@ -77,7 +72,7 @@ public abstract class $Sprite2DView implements CellView2D {
     }
 
     protected void drawSpinner(final SpriteBatch batch, final Vector2 pos, final float fill, final float size, final int d) {
-        if (null == spinnerTexture) {spinnerTexture = new Texture("ui/spinner-segment.png");}
+        if (null == spinnerTexture) {spinnerTexture = Resources.getSprite("game/fx/spinner-segment");}
 
         for (int i = 0; i < 8; i++) {
             if (fill < ((float)i) * .125) break;
@@ -88,7 +83,7 @@ public abstract class $Sprite2DView implements CellView2D {
 
     @Override
     public void draw(final SpriteBatch batch, final ICell cell, final Vector2 pos, final float size, final int layer) {
-        Texture tx = (layer==0)?bgTexture:fgTexture;
+        TextureRegion tx = (layer==0)?bgTexture:fgTexture;
 
         if (tx == null) {
             return;
