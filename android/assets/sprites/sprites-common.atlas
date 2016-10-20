@@ -31,6 +31,13 @@ game/cells/background/stones-00-00
   orig: 128, 128
   offset: 0, 0
   index: -1
+game/cells/background/stones-00-01
+  rotate: false
+  xy: 652, 716
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
 game/cells/emitter/fg
   rotate: false
   xy: 780, 846
@@ -82,21 +89,21 @@ game/cells/expector/fg-type-r
   index: -1
 game/cells/expector/symbol-fail
   rotate: false
-  xy: 652, 716
+  xy: 262, 196
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/symbol-success
   rotate: false
-  xy: 262, 196
+  xy: 392, 326
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/symbol-wait
   rotate: false
-  xy: 392, 326
+  xy: 522, 456
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

@@ -16,7 +16,7 @@ import com.github.alexeybond.spectrum_lost.views.CellView2D;
 public class Renderer {
     private final IGrid grid;
     private final IRayRenderer rayRenderer;
-    private static TextureRegion commonBgTexture;
+    private static TextureRegion[] commonBgTextures;
 
     private static Vector2 tv0 = new Vector2();
     private static Ray tr0 = new Ray();
@@ -25,9 +25,20 @@ public class Renderer {
         this.grid = grid;
         this.rayRenderer = rayRenderer;
 
-        if (null == commonBgTexture) {
-            commonBgTexture = Resources.getSprite("game/cells/background/stones-00-00");
+        if (null == commonBgTextures) {
+            commonBgTextures = new TextureRegion[] {
+                    Resources.getSprite("game/cells/background/stones-00-00"),
+                    Resources.getSprite("game/cells/background/stones-00-01")
+            };
         }
+    }
+
+    private int bgTileId(int w, int h, int x, int y) {
+        int i = (w * 13 + h * 7 - x * 3 - y * 5) % 17;
+
+        i ^= (i>>2) ^ (i>>4);
+
+        return i & 1;
     }
 
     private void renderCommonBackground(final SpriteBatch batch, final Vector2 pos0, final float cellSize) {
@@ -39,7 +50,7 @@ public class Renderer {
                     continue;
                 }
 
-                batch.draw(commonBgTexture,
+                batch.draw(commonBgTextures[bgTileId(grid.width(), grid.height(), x, y)],
                         pos0.x + cellSize * (float) x,
                         pos0.y + cellSize * (float) y,
                         cellSize, cellSize);

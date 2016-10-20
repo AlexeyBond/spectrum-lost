@@ -15,67 +15,67 @@ import com.github.alexeybond.spectrum_lost.screens.GameScreen;
 import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
 
 public class SpectrumLostGdx extends ApplicationAdapter {
-	private $Screen currentScreen;
-	private Music music;
+    private $Screen currentScreen;
+    private Music music;
 
-	private ILevelsSource getLevelSource() {
-		return new JsonSource("levels/levels-chapter4.json");
-	}
-	
-	@Override
-	public void create () {
-		Resources.use(new TextureAtlas("sprites/sprites-common.atlas"));
-		$CellTypes.register();
-		$Sprite2DViews.register();
+    private ILevelsSource getLevelSource() {
+        return new JsonSource("levels/levels-chapter4.json");
+    }
 
-		if (Gdx.app.getType() == Application.ApplicationType.Desktop
-			&& System.getProperty("sl.devmode") != null) {
-			currentScreen = new GameDevScreen(getLevelSource());
-		} else {
-			currentScreen = new GameScreen(getLevelSource());
-		}
+    @Override
+    public void create() {
+        Resources.use(new TextureAtlas("sprites/sprites-common.atlas"));
+        $CellTypes.register();
+        $Sprite2DViews.register();
 
-		currentScreen.show(null);
-		currentScreen.unpause();
+        if (Gdx.app.getType() == Application.ApplicationType.Desktop
+                && System.getProperty("sl.devmode") != null) {
+            currentScreen = new GameDevScreen(getLevelSource());
+        } else {
+            currentScreen = new GameScreen(getLevelSource());
+        }
 
-		music = Gdx.audio.newMusic(Gdx.files.internal("sound/music/0xB-00.mp3"));
-		music.setLooping(true);
-//		music.play();
-	}
+        currentScreen.show(null);
+        currentScreen.unpause();
 
-	@Override
-	public void render () {
-		currentScreen.draw();
+        music = Gdx.audio.newMusic(Gdx.files.internal("sound/music/0xB-00.mp3"));
+        music.setLooping(true);
+//        music.play();
+    }
 
-		while (null != currentScreen.next()) {
-			$Screen next = currentScreen.next();
+    @Override
+    public void render() {
+        currentScreen.draw();
 
-			currentScreen.pause();
-			currentScreen.leave(next);
-			next.show(currentScreen);
-			next.unpause();
-			currentScreen = next;
-		}
-	}
+        while (null != currentScreen.next()) {
+            $Screen next = currentScreen.next();
 
-	@Override
-	public void pause() {
-		currentScreen.pause();
-	}
+            currentScreen.pause();
+            currentScreen.leave(next);
+            next.show(currentScreen);
+            next.unpause();
+            currentScreen = next;
+        }
+    }
 
-	@Override
-	public void resume() {
-		currentScreen.unpause();
-	}
+    @Override
+    public void pause() {
+        currentScreen.pause();
+    }
 
-	@Override
-	public void resize(int width, int height) {
-		currentScreen.resize(width, height);
-	}
+    @Override
+    public void resume() {
+        currentScreen.unpause();
+    }
 
-	@Override
-	public void dispose () {
-		music.dispose();
-		music = null;
-	}
+    @Override
+    public void resize(int width, int height) {
+        currentScreen.resize(width, height);
+    }
+
+    @Override
+    public void dispose() {
+        music.dispose();
+        music = null;
+    }
 }
