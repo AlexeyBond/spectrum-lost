@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
 import com.github.alexeybond.spectrum_lost.achievements.Achievements;
+import com.github.alexeybond.spectrum_lost.cell_types.RecursiveCell;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.levels.json.GridDesc;
 import com.github.alexeybond.spectrum_lost.model.implementation.GameStateImpl;
@@ -13,6 +14,8 @@ import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
 import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
+import com.github.alexeybond.spectrum_lost.screens.base.Button;
+import com.github.alexeybond.spectrum_lost.screens.base.ButtonListener;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +26,18 @@ import java.util.List;
 public class GameDevScreen extends GameScreen {
     public GameDevScreen(ILevelsSource levelsSource, String levelId) {
         super(levelsSource, levelId);
+
+        addButton(-1, -1, new ButtonListener() {
+            @Override
+            public String getSprite(Button button) {
+                return "ui/button-save";
+            }
+
+            @Override
+            public void press(Button button) {
+                dumpLevel();
+            }
+        });
     }
 
     @Override
@@ -32,18 +47,18 @@ public class GameDevScreen extends GameScreen {
             return;
         }
 
-        if (showNextButton && nextBtnRect.contains(x, y)) {
-//            nextLevel();
-            return;
-        }
-
         ICell cell = positioner.cellAt((int) x, (int) y);
 
         if (cell == null) {
+            super.onClick(x,y);
             return;
         }
 
-        if (cell.type().id().equals("recursive") && Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
+        if (cell.type().id().equals("recursive") && !Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
+            if (((RecursiveCell.State) cell.state()).isError()) {
+                return;
+            }
+
             callLevel((String) cell.getAttribute("levelId"));
         } else {
             cell.setDirection(cell.direction().next());
@@ -52,7 +67,9 @@ public class GameDevScreen extends GameScreen {
 
     private void dumpLevel() {
         Json json = new Json(JsonWriter.OutputType.json);
-        Gdx.files.local(new Date().toString().concat(".json")).writeString(json.prettyPrint(GridDesc.dump(grid)), false);
+        Gdx.files
+                .local("../../_raw-assets/levels/_save/")
+                .child(new Date().toString().concat(".json")).writeString(json.prettyPrint(GridDesc.dump(grid)), false);
     }
 
     private void setCell(final String type) {

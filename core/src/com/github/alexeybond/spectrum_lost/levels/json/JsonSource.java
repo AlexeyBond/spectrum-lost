@@ -43,6 +43,8 @@ public class JsonSource implements ILevelsSource {
             cell.setType(Locator.CELL_TYPES.get(cd.type));
         }
 
+        grid.attributes().putAll(desc.attrs);
+
         return grid;
     }
 

@@ -122,13 +122,7 @@ public abstract class $Screen {
     private $Screen prev;
     private boolean freezePrev = false;
     private $Screen next;
-    private boolean buttonsValid = true;
-    private List[] buttons = new List[] {
-            new ArrayList(),
-            new ArrayList(),
-            new ArrayList(),
-            new ArrayList()
-    };
+    private List<Button> buttons = new ArrayList<Button>();
 
     protected final InputProcessor inputProcessor;
 
@@ -143,6 +137,10 @@ public abstract class $Screen {
         spriteBatch.getProjectionMatrix()
                 .setToOrtho2D(0, 0, width, height);
         spriteBatch.setProjectionMatrix(spriteBatch.getProjectionMatrix());
+
+        for (Button button : buttons) {
+            button.recalc();
+        }
     }
 
     public abstract void draw();
@@ -167,11 +165,16 @@ public abstract class $Screen {
         freezePrev = true;
     }
 
-    protected Button addButton(int position, ButtonListener listener) {
-        Button button = new Button(listener);
-        buttons[position].add(button);
-        buttonsValid = false;
+    protected Button addButton(int x, int y, ButtonListener listener) {
+        Button button = new Button(listener, x, y);
+        buttons.add(button);
         return button;
+    }
+
+    protected void drawButtons() {
+        for (Button button : buttons) {
+            button.draw(spriteBatch);
+        }
     }
 
     public void pause() {
@@ -194,7 +197,14 @@ public abstract class $Screen {
         Gdx.input.setInputProcessor(null);
     }
 
-    protected void onClick(final float x, final float y) {}
+    protected void onClick(final float x, final float y) {
+        for (Button button : buttons) {
+            if (button.onClick((int)x, (int)y)) {
+                break;
+            }
+        }
+    }
+
     protected void onDrag(final float x, final float y, final float dx, final float dy) {}
     protected void onKeyPress(final int code) {}
     protected void onCharTyped(final char chr) {}

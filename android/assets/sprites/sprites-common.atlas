@@ -1,12 +1,26 @@
 
 sprites-common.png
-size: 256,256
+size: 512,256
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
-ui/button-next
+ui/button-back
   rotate: false
   xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-next
+  rotate: false
+  xy: 132, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-save
+  rotate: false
+  xy: 262, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

@@ -2,8 +2,6 @@ package com.github.alexeybond.spectrum_lost.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.github.alexeybond.spectrum_lost.achievements.AchievementStatus;
 import com.github.alexeybond.spectrum_lost.achievements.Achievements;
 import com.github.alexeybond.spectrum_lost.cell_types.RecursiveCell;
@@ -15,7 +13,8 @@ import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.Renderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.FboRayRenderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.LineRayRenderer;
-import com.github.alexeybond.spectrum_lost.resources.Resources;
+import com.github.alexeybond.spectrum_lost.screens.base.Button;
+import com.github.alexeybond.spectrum_lost.screens.base.ButtonListener;
 
 /**
  *
@@ -24,17 +23,15 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
     protected IGrid grid;
     protected Renderer renderer;
     protected GridPositioner2D positioner;
-    protected boolean showNextButton;
-    protected Rectangle nextBtnRect = new Rectangle();
     protected ILevelsSource levelsSource;
     protected AchievementStatus achievementStatus;
     private float timeSinceLastUpdate = 0;
 
     private final static float simulationRate = 1.f/32.f;
 
-    private static TextureRegion nextButtonTexture;
-
     private static IRayRenderer rayRenderer;
+
+    private Button nextButton;
 
     public GameScreen(final ILevelsSource levelsSource, final String levelId) {
         super();
@@ -50,9 +47,35 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
             }
         }
 
-        if (nextButtonTexture == null) nextButtonTexture = Resources.getSprite("ui/button-next");
-
         this.levelsSource = levelsSource;
+
+        nextButton = addButton(-1, 0, new ButtonListener() {
+            @Override
+            public String getSprite(Button button) {
+                return "ui/button-next";
+            }
+
+            @Override
+            public void press(Button button) {
+                recordAchievement();
+                // TODO: Go to achievement screen (?)
+                goBack();
+            }
+        });
+
+        nextButton.show(false);
+
+        addButton(0, 0, new ButtonListener() {
+            @Override
+            public String getSprite(Button button) {
+                return "ui/button-back";
+            }
+
+            @Override
+            public void press(Button button) {
+                goBack();
+            }
+        });
 
         initLevel(levelId);
     }
@@ -71,8 +94,12 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         }
 
         renderer = new Renderer(grid, rayRenderer);
+    }
 
-        this.showNextButton = false;
+    private void recordAchievement() {
+        // TODO: Calculate actual points (?)
+        achievementStatus.set(achievementStatus.getMaximumPoints(), achievementStatus.getMaximumPoints());
+        Achievements.save();
     }
 
     @Override
@@ -82,11 +109,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
     @Override
     protected void onClick(float x, float y) {
-        if (showNextButton && nextBtnRect.contains(x, y)) {
-            // TODO: Go to win screen.
-//            nextLevel();
-            return;
-        }
+        super.onClick(x,y);
 
         ICell cell = positioner.cellAt((int) x, (int) y);
 
@@ -123,8 +146,6 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
     public void resize(int width, int height) {
         super.resize(width, height);
         positioner.reset(grid);
-        nextBtnRect.set(width - 20 - nextButtonTexture.getRegionWidth(), 20,
-                nextButtonTexture.getRegionWidth(), nextButtonTexture.getRegionHeight());
     }
 
     private void updateGame() {
@@ -134,13 +155,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
             timeSinceLastUpdate -= simulationRate;
         }
 
-        if (grid.getGameState().isCompleted()) {
-            if (!showNextButton) {
-                showNextButton = true;
-            }
-        } else {
-            showNextButton = false;
-        }
+        nextButton.show(grid.getGameState().isCompleted());
     }
 
     @Override
@@ -153,9 +168,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         spriteBatch.begin();
         renderer.render(spriteBatch, positioner.position(), positioner.size());
 
-        if (showNextButton) {
-            spriteBatch.draw(nextButtonTexture, nextBtnRect.x, nextBtnRect.y, nextBtnRect.width, nextBtnRect.height);
-        }
+        drawButtons();
 
         spriteBatch.end();
     }

@@ -16,6 +16,8 @@ public class RecursiveCellView extends $Sprite2DView {
     private TextureRegion fgYellowRegion = Resources.getSprite("game/cells/recursive/fg-yellow");
     private TextureRegion fgErrorRegion = Resources.getSprite("game/cells/recursive/fg-error");
 
+    {bgTexture = Resources.getSprite("game/cells/background/bg-common");}
+
     @Override
     public void draw(SpriteBatch batch, ICell cell, Vector2 pos, float size, int layer) {
         if (layer == 1) {
