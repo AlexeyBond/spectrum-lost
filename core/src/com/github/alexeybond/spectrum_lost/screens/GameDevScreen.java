@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
+import com.github.alexeybond.spectrum_lost.achievements.Achievements;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.levels.json.GridDesc;
 import com.github.alexeybond.spectrum_lost.model.implementation.GameStateImpl;
@@ -14,25 +15,37 @@ import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Game screen with developer features.
  */
 public class GameDevScreen extends GameScreen {
-    public GameDevScreen(ILevelsSource levelsSource) {
-        super(levelsSource);
+    public GameDevScreen(ILevelsSource levelsSource, String levelId) {
+        super(levelsSource, levelId);
     }
 
     @Override
     protected void onClick(float x, float y) {
+        if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+            super.onClick(x, y);
+            return;
+        }
+
         if (showNextButton && nextBtnRect.contains(x, y)) {
-            nextLevel();
+//            nextLevel();
             return;
         }
 
         ICell cell = positioner.cellAt((int) x, (int) y);
 
-        if (cell != null) {
+        if (cell == null) {
+            return;
+        }
+
+        if (cell.type().id().equals("recursive") && Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
+            callLevel((String) cell.getAttribute("levelId"));
+        } else {
             cell.setDirection(cell.direction().next());
         }
     }
@@ -46,6 +59,7 @@ public class GameDevScreen extends GameScreen {
         ICell cell = positioner.cellAt(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
 
         if (cell != null) {
+            cell.getOwnAttributes().clear();
             cell.setType(Locator.CELL_TYPES.get(type));
         }
     }
@@ -79,6 +93,36 @@ public class GameDevScreen extends GameScreen {
                 grid.getCell(x,y).setDirection(Direction.UP);
             }
         }
+    }
+
+    @Override
+    protected com.github.alexeybond.spectrum_lost.screens.base.$Screen newLevelScreen(String levelId) {
+        return new GameDevScreen(levelsSource, levelId);
+    }
+
+    private void setRecursive() {
+        ICell cell = positioner.cellAt(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+
+        List<String> levels = levelsSource.enumLevels();
+
+        String cid = (String) cell.getAttribute("levelId");
+
+        cid = levels.get((levels.indexOf(cid)+1)%levels.size());
+
+        cell.getOwnAttributes().put("levelId", cid);
+
+        cell.setType(cell.grid().defaultCellType());
+        cell.setType(Locator.CELL_TYPES.get("recursive"));
+    }
+
+    private void toggleAchievement() {
+        if (achievementStatus.getAchievedPoints() == 0) {
+            achievementStatus.set(achievementStatus.getMaximumPoints(), achievementStatus.getMaximumPoints());
+        } else {
+            achievementStatus.set(0, achievementStatus.getMaximumPoints());
+        }
+
+        Achievements.save();
     }
 
     @Override
@@ -151,9 +195,21 @@ public class GameDevScreen extends GameScreen {
             case Input.Keys.NUM_7:
                 setCell("portal:y");
                 break;
+            case Input.Keys.R:
+                setRecursive();
+                break;
+
+            case Input.Keys.A:
+                toggleAchievement();
+                break;
 
             case Input.Keys.ENTER:
-                nextLevel();
+                // TODO: Go somewhere ...
+//                nextLevel();
+                break;
+
+            case Input.Keys.BACKSPACE:
+                goBack();
                 break;
 
             case Input.Keys.NUMPAD_9:

@@ -58,8 +58,10 @@ public class MyPacker {
 
             for (String ln : cd.levelNames) {
                 FileHandle fh = f.parent().child(ln.concat(".json"));
-                levels.levels.add(json.fromJson(GridDesc.class, fh));
+                levels.levels.put(ln, json.fromJson(GridDesc.class, fh));
             }
+
+            levels.rootLevelName = cd.rootLevel;
 
             files
                     .local(levelsPath.resolve("levels-".concat(ccd.id).concat(".json")).toString())

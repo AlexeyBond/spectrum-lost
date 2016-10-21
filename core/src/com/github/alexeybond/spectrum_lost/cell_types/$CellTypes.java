@@ -33,5 +33,6 @@ public class $CellTypes {
         reg(PortalCell.TYPE_B);
         reg(PortalCell.TYPE_X);
         reg(PortalCell.TYPE_Y);
+        reg(new RecursiveCell());
     }
 }

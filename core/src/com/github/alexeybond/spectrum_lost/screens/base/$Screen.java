@@ -1,10 +1,13 @@
-package com.github.alexeybond.spectrum_lost.screens;
+package com.github.alexeybond.spectrum_lost.screens.base;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -117,7 +120,15 @@ public abstract class $Screen {
 
     protected static SpriteBatch spriteBatch;
     private $Screen prev;
+    private boolean freezePrev = false;
     private $Screen next;
+    private boolean buttonsValid = true;
+    private List[] buttons = new List[] {
+            new ArrayList(),
+            new ArrayList(),
+            new ArrayList(),
+            new ArrayList()
+    };
 
     protected final InputProcessor inputProcessor;
 
@@ -152,6 +163,17 @@ public abstract class $Screen {
         return false;
     }
 
+    protected final void rememberWayBack() {
+        freezePrev = true;
+    }
+
+    protected Button addButton(int position, ButtonListener listener) {
+        Button button = new Button(listener);
+        buttons[position].add(button);
+        buttonsValid = false;
+        return button;
+    }
+
     public void pause() {
 
     }
@@ -161,7 +183,10 @@ public abstract class $Screen {
     }
 
     public void show(final $Screen prev) {
-        this.prev = prev;
+        if (this.prev == null || !freezePrev) {
+            this.prev = prev;
+        }
+
         Gdx.input.setInputProcessor(inputProcessor);
     }
 

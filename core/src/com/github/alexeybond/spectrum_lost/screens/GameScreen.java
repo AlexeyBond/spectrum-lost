@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.github.alexeybond.spectrum_lost.levels.ILevel;
+import com.github.alexeybond.spectrum_lost.achievements.AchievementStatus;
+import com.github.alexeybond.spectrum_lost.achievements.Achievements;
+import com.github.alexeybond.spectrum_lost.cell_types.RecursiveCell;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
@@ -15,19 +17,17 @@ import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.FboRayRe
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.LineRayRenderer;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
 
-import java.util.Iterator;
-
 /**
  *
  */
-public class GameScreen extends $Screen {
+public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base.$Screen {
     protected IGrid grid;
     protected Renderer renderer;
     protected GridPositioner2D positioner;
     protected boolean showNextButton;
     protected Rectangle nextBtnRect = new Rectangle();
-    private ILevelsSource levelsSource;
-    private Iterator<ILevel> levelIterator;
+    protected ILevelsSource levelsSource;
+    protected AchievementStatus achievementStatus;
     private float timeSinceLastUpdate = 0;
 
     private final static float simulationRate = 1.f/32.f;
@@ -36,8 +36,11 @@ public class GameScreen extends $Screen {
 
     private static IRayRenderer rayRenderer;
 
-    public GameScreen(final ILevelsSource levelsSource) {
+    public GameScreen(final ILevelsSource levelsSource, final String levelId) {
         super();
+        rememberWayBack();
+
+        achievementStatus = Achievements.get("level:".concat(levelId));
 
         if (rayRenderer == null) {
             try {
@@ -51,16 +54,11 @@ public class GameScreen extends $Screen {
 
         this.levelsSource = levelsSource;
 
-        nextLevel();
+        initLevel(levelId);
     }
 
-    protected void nextLevel() {
-        if (levelIterator == null || !levelIterator.hasNext())
-            levelIterator = levelsSource.iterator();
-
-        ILevel level = levelIterator.next();
-
-        goToGrid(level.init());
+    protected void initLevel(final String id) {
+        goToGrid(levelsSource.initLevel(id));
     }
 
     protected void goToGrid(IGrid grid) {
@@ -85,15 +83,34 @@ public class GameScreen extends $Screen {
     @Override
     protected void onClick(float x, float y) {
         if (showNextButton && nextBtnRect.contains(x, y)) {
-            nextLevel();
+            // TODO: Go to win screen.
+//            nextLevel();
             return;
         }
 
         ICell cell = positioner.cellAt((int) x, (int) y);
 
-        if (cell != null && cell.getAttribute("noTurn") == null) {
+        if (cell == null) {
+            return;
+        }
+
+        if (cell.type().id().equals("recursive")) {
+            RecursiveCell.State state = (RecursiveCell.State) cell.state();
+
+            if (!state.isError() && state.isOpen()) {
+                callLevel((String) cell.getAttribute("levelId"));
+            }
+        } else if (cell.getAttribute("noTurn") == null) {
             cell.setDirection(cell.direction().next());
         }
+    }
+
+    protected void callLevel(final String levelId) {
+        next(newLevelScreen(levelId));
+    }
+
+    protected com.github.alexeybond.spectrum_lost.screens.base.$Screen newLevelScreen(final String levelId) {
+        return new GameScreen(levelsSource, levelId);
     }
 
     @Override

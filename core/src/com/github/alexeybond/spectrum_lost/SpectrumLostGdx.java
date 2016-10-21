@@ -4,12 +4,17 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.github.alexeybond.spectrum_lost.achievements.Achievements;
 import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
+import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc;
+import com.github.alexeybond.spectrum_lost.levels.json.compact.ChaptersList;
+import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDesc;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
-import com.github.alexeybond.spectrum_lost.screens.$Screen;
+import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.GameDevScreen;
 import com.github.alexeybond.spectrum_lost.screens.GameScreen;
 import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
@@ -19,20 +24,35 @@ public class SpectrumLostGdx extends ApplicationAdapter {
     private Music music;
 
     private ILevelsSource getLevelSource() {
-        return new JsonSource("levels/levels-chapter4.json");
+        FileHandle levelsDir = Gdx.files.internal("levels");
+        ChaptersList chaptersList = ChaptersList.readFrom(levelsDir);
+
+        CompactChapterDesc chapterDesc = null;
+
+        for (CompactChapterDesc desc : chaptersList.chapters) {
+            if (desc.id.equals("chapter0")) {
+                chapterDesc = desc;
+            }
+        }
+
+        ChapterLevelsDesc levelsDesc = chapterDesc.readLevels(levelsDir);
+        return new JsonSource(levelsDesc, chapterDesc.attrs);
     }
 
     @Override
     public void create() {
+        Achievements.init();
         Resources.use(new TextureAtlas("sprites/sprites-common.atlas"));
         $CellTypes.register();
         $Sprite2DViews.register();
 
+        ILevelsSource levelsSource = getLevelSource();
+
         if (Gdx.app.getType() == Application.ApplicationType.Desktop
                 && System.getProperty("sl.devmode") != null) {
-            currentScreen = new GameDevScreen(getLevelSource());
+            currentScreen = new GameDevScreen(levelsSource, levelsSource.rootLevelName());
         } else {
-            currentScreen = new GameScreen(getLevelSource());
+            currentScreen = new GameScreen(levelsSource, levelsSource.rootLevelName());
         }
 
         currentScreen.show(null);
@@ -49,6 +69,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
         while (null != currentScreen.next()) {
             $Screen next = currentScreen.next();
+            currentScreen.next(null);
 
             currentScreen.pause();
             currentScreen.leave(next);
