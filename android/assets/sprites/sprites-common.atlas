@@ -1,5 +1,39 @@
 
 sprites-common.png
+size: 1024,512
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+chapter-icons/chapter0
+  rotate: false
+  xy: 0, 212
+  size: 320, 210
+  orig: 320, 210
+  offset: 0, 0
+  index: -1
+chapter-icons/chapter1
+  rotate: false
+  xy: 0, 0
+  size: 320, 210
+  orig: 320, 210
+  offset: 0, 0
+  index: -1
+chapter-icons/chapter2
+  rotate: false
+  xy: 322, 212
+  size: 320, 210
+  orig: 320, 210
+  offset: 0, 0
+  index: -1
+chapter-icons/chapter3
+  rotate: false
+  xy: 322, 0
+  size: 320, 210
+  orig: 320, 210
+  offset: 0, 0
+  index: -1
+
+sprites-common2.png
 size: 512,256
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
@@ -26,7 +60,7 @@ ui/button-save
   offset: 0, 0
   index: -1
 
-sprites-common2.png
+sprites-common3.png
 size: 1024,1024
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
