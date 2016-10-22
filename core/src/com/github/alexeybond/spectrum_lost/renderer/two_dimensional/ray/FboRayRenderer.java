@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -23,7 +24,7 @@ import static java.lang.Math.sin;
  */
 public class FboRayRenderer implements IRayRenderer {
     private static int FBO_SIZE_X = 128;
-    private static int FBO_SIZE_Y = 64;
+    private static int FBO_SIZE_Y = 128;
 
     private static FrameBuffer frameBuffer;
     private static TextureRegion flareTexture;
@@ -49,7 +50,13 @@ public class FboRayRenderer implements IRayRenderer {
             frameBuffer = null;
         }
 
-        return new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_X, FBO_SIZE_Y, false, false);
+        frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_X, FBO_SIZE_Y, false, false);
+
+        frameBuffer.getColorBufferTexture().setFilter(
+                Texture.TextureFilter.MipMapLinearLinear,
+                Texture.TextureFilter.MipMapLinearLinear);
+
+        return frameBuffer;
     }
 
     public FboRayRenderer() {
@@ -76,9 +83,13 @@ public class FboRayRenderer implements IRayRenderer {
         Gdx.gl.glLineWidth(width);
         float hySz = .5f * (float) FBO_SIZE_Y;
 
+        shapeRenderer.line(-1, hySz, 0, animation[0] * ky + hySz);
+
         for (int x = 1; x < FBO_SIZE_X; x++) {
             shapeRenderer.line(x-1, animation[x-1] * ky + hySz, x, animation[x] * ky + hySz);
         }
+
+        shapeRenderer.line(FBO_SIZE_X, hySz, FBO_SIZE_X - 1, animation[FBO_SIZE_X-1] * ky + hySz);
 
         shapeRenderer.flush();
     }
@@ -93,11 +104,16 @@ public class FboRayRenderer implements IRayRenderer {
         shapeRenderer.getProjectionMatrix().idt().setToOrtho2D(0, 0, FBO_SIZE_X, FBO_SIZE_Y);
         shapeRenderer.updateMatrices();
         shapeRenderer.setColor(1f, 1f, 1f, 1f);
-        drawLine(5, .3f, 1f);
-        drawLine(2, .8f, .3f);
-        drawLine(2, 1f, -.8f);
+        drawLine(5, .4f, .2f);
+        drawLine(3, .6f, .3f);
+        drawLine(2, .95f, -.8f);
         shapeRenderer.end();
         frameBuffer.end();
+
+        Texture cbt = frameBuffer.getColorBufferTexture();
+
+        cbt.bind();
+        Gdx.gl.glGenerateMipmap(cbt.glTarget);
     }
 
     @Override
@@ -131,8 +147,14 @@ public class FboRayRenderer implements IRayRenderer {
                 (float) ray.getG() / (float) Ray.MAX_BRIGHTNESS,
                 (float) ray.getB() / (float) Ray.MAX_BRIGHTNESS,
                 1.f);
+        float colorF = Color.toFloatBits(
+                (float) Ray.clamp(ray.getR() - 1) / (float) Ray.MAX_BRIGHTNESS,
+                (float) Ray.clamp(ray.getG() - 1) / (float) Ray.MAX_BRIGHTNESS,
+                (float) Ray.clamp(ray.getB() - 1) / (float) Ray.MAX_BRIGHTNESS,
+                1.f);
 
-        sv[2] = sv[7] = sv[12] = sv[17] = color;
+        sv[2] = sv[17] = color;
+        sv[12] = sv[7] = colorF;
         sv[0] = srcX - dX; sv[1] = srcY - dY;
         sv[5] = dstX - dX; sv[6] = dstY - dY;
         sv[10] = dstX + dX; sv[11] = dstY + dY;

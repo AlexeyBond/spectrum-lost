@@ -30,7 +30,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
         CompactChapterDesc chapterDesc = null;
 
         for (CompactChapterDesc desc : chaptersList.chapters) {
-            if (desc.id.equals("chapter4")) {
+            if (desc.id.equals("chapter1")) {
                 chapterDesc = desc;
             }
         }
@@ -66,6 +66,8 @@ public class SpectrumLostGdx extends ApplicationAdapter {
     @Override
     public void render() {
         currentScreen.draw();
+
+//        Gdx.graphics.setTitle(String.valueOf(Gdx.graphics.getFramesPerSecond()));
 
         while (null != currentScreen.next()) {
             $Screen next = currentScreen.next();
