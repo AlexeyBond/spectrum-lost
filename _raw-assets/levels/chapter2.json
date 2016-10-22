@@ -1,5 +1,6 @@
 {
   "levelNames": [
+    "c2/l$",
     "c2/l1",
     "c2/l2",
     "c2/l3",
@@ -14,5 +15,6 @@
     "c2/l12",
     "c2/l13"
   ],
+  "rootLevel": "c2/l$",
   "attrs": {}
 }

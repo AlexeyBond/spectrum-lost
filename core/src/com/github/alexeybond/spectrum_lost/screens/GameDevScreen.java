@@ -24,8 +24,12 @@ import java.util.List;
  * Game screen with developer features.
  */
 public class GameDevScreen extends GameScreen {
+    private String currentRecursiveLevelId;
+
     public GameDevScreen(ILevelsSource levelsSource, String levelId) {
         super(levelsSource, levelId);
+
+        Gdx.graphics.setTitle(levelId);
 
         addButton(-1, -1, new ButtonListener() {
             @Override
@@ -95,6 +99,7 @@ public class GameDevScreen extends GameScreen {
                 ICell o = grid.getCell(x, y);
                 ICell n = ng.getCell(x, y);
 
+                n.getOwnAttributes().putAll(o.getOwnAttributes());
                 n.setDirection(o.direction());
                 n.setType(o.type());
             }
@@ -108,6 +113,7 @@ public class GameDevScreen extends GameScreen {
             for (int y = 0; y < grid.height(); y++) {
                 grid.getCell(x,y).setType(Locator.CELL_TYPES.get("empty"));
                 grid.getCell(x,y).setDirection(Direction.UP);
+                grid.getCell(x,y).getOwnAttributes().clear();
             }
         }
     }
@@ -122,11 +128,16 @@ public class GameDevScreen extends GameScreen {
 
         List<String> levels = levelsSource.enumLevels();
 
-        String cid = (String) cell.getAttribute("levelId");
+//        String cid = (String) cell.getAttribute("levelId");
 
-        cid = levels.get((levels.indexOf(cid)+1)%levels.size());
+        int delta = Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)?-1:1;
 
-        cell.getOwnAttributes().put("levelId", cid);
+        currentRecursiveLevelId = levels.get(
+                (levels.indexOf(currentRecursiveLevelId)+levels.size()+delta)%levels.size());
+
+        Gdx.graphics.setTitle("Recursive: ".concat(currentRecursiveLevelId));
+
+        cell.getOwnAttributes().put("levelId", currentRecursiveLevelId);
 
         cell.setType(cell.grid().defaultCellType());
         cell.setType(Locator.CELL_TYPES.get("recursive"));

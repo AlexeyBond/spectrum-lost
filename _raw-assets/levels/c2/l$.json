@@ -1,0 +1,520 @@
+{
+  "cells": [
+    {
+      "type": "wall"
+    },
+    {
+      "y": 1,
+      "type": "wall"
+    },
+    {
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "y": 3,
+      "type": "clear"
+    },
+    {
+      "y": 4,
+      "type": "clear"
+    },
+    {
+      "y": 5,
+      "type": "clear"
+    },
+    {
+      "y": 6,
+      "type": "clear"
+    },
+    {
+      "y": 7,
+      "type": "clear"
+    },
+    {
+      "x": 1,
+      "type": "wall"
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "type": "emitter",
+      "direction": "RT",
+      "attrs": {
+        "noTurn": {
+          "class": "java.lang.String",
+          "value": "1"
+        }
+      }
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "type": "clear"
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "type": "clear"
+    },
+    {
+      "x": 1,
+      "y": 5,
+      "type": "clear"
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "type": "clear"
+    },
+    {
+      "x": 1,
+      "y": 7,
+      "type": "clear"
+    },
+    {
+      "x": 2,
+      "type": "wall"
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "type": "recursive",
+      "direction": "RT",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l1"
+        }
+      }
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "type": "clear"
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "type": "clear"
+    },
+    {
+      "x": 2,
+      "y": 5,
+      "type": "clear"
+    },
+    {
+      "x": 2,
+      "y": 6,
+      "type": "clear"
+    },
+    {
+      "x": 2,
+      "y": 7,
+      "type": "clear"
+    },
+    {
+      "x": 3,
+      "type": "wall"
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "type": "recursive",
+      "direction": "RT",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l2"
+        }
+      }
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "type": "wall"
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "type": "wall"
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "type": "wall"
+    },
+    {
+      "x": 3,
+      "y": 6,
+      "type": "clear"
+    },
+    {
+      "x": 3,
+      "y": 7,
+      "type": "clear"
+    },
+    {
+      "x": 4,
+      "type": "wall"
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "type": "recursive",
+      "direction": "RT",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l3"
+        }
+      }
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "type": "emitter",
+      "direction": "RT",
+      "attrs": {
+        "noTurn": {
+          "class": "java.lang.String",
+          "value": "1"
+        }
+      }
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "type": "wall"
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "type": "expector"
+    },
+    {
+      "x": 4,
+      "y": 5,
+      "type": "wall"
+    },
+    {
+      "x": 4,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 4,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 5,
+      "type": "wall"
+    },
+    {
+      "x": 5,
+      "y": 1,
+      "type": "recursive",
+      "direction": "RT",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l4"
+        }
+      }
+    },
+    {
+      "x": 5,
+      "y": 2,
+      "type": "recursive",
+      "direction": "RT",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l6"
+        }
+      }
+    },
+    {
+      "x": 5,
+      "y": 3,
+      "type": "wall"
+    },
+    {
+      "x": 5,
+      "y": 4,
+      "type": "recursive",
+      "direction": "LF",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l13"
+        }
+      }
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "type": "mirror",
+      "direction": "UP_LF",
+      "attrs": {
+        "noTurn": {
+          "class": "java.lang.String",
+          "value": "1"
+        }
+      }
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "type": "emitter",
+      "direction": "RT",
+      "attrs": {
+        "noTurn": {
+          "class": "java.lang.String",
+          "value": "1"
+        }
+      }
+    },
+    {
+      "x": 5,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 6,
+      "type": "wall"
+    },
+    {
+      "x": 6,
+      "y": 1,
+      "type": "recursive",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l5"
+        }
+      }
+    },
+    {
+      "x": 6,
+      "y": 2,
+      "type": "multiplier",
+      "direction": "RT"
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "type": "emitter",
+      "direction": "DN",
+      "attrs": {
+        "noTurn": {
+          "class": "java.lang.String",
+          "value": "1"
+        }
+      }
+    },
+    {
+      "x": 6,
+      "y": 4,
+      "type": "wall"
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "type": "recursive",
+      "direction": "LF",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l12"
+        }
+      }
+    },
+    {
+      "x": 6,
+      "y": 6,
+      "type": "recursive",
+      "direction": "RT",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l10"
+        }
+      }
+    },
+    {
+      "x": 6,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 7,
+      "type": "wall"
+    },
+    {
+      "x": 7,
+      "y": 1,
+      "type": "wall"
+    },
+    {
+      "x": 7,
+      "y": 2,
+      "type": "recursive",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l7"
+        }
+      }
+    },
+    {
+      "x": 7,
+      "y": 3,
+      "type": "recursive",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l8"
+        }
+      }
+    },
+    {
+      "x": 7,
+      "y": 4,
+      "type": "recursive",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l9"
+        }
+      }
+    },
+    {
+      "x": 7,
+      "y": 5,
+      "type": "multiplier",
+      "direction": "LF"
+    },
+    {
+      "x": 7,
+      "y": 6,
+      "type": "recursive",
+      "direction": "DN",
+      "attrs": {
+        "levelId": {
+          "class": "java.lang.String",
+          "value": "c2/l11"
+        }
+      }
+    },
+    {
+      "x": 7,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "type": "clear"
+    },
+    {
+      "x": 8,
+      "y": 1,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "y": 2,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "y": 3,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "y": 4,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "y": 5,
+      "type": "emitter",
+      "direction": "LF",
+      "attrs": {
+        "noTurn": {
+          "class": "java.lang.String",
+          "value": "1"
+        }
+      }
+    },
+    {
+      "x": 8,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 8,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 9,
+      "type": "clear"
+    },
+    {
+      "x": 9,
+      "y": 1,
+      "type": "clear"
+    },
+    {
+      "x": 9,
+      "y": 2,
+      "type": "clear"
+    },
+    {
+      "x": 9,
+      "y": 3,
+      "type": "clear"
+    },
+    {
+      "x": 9,
+      "y": 4,
+      "type": "wall"
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "type": "wall"
+    },
+    {
+      "x": 9,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 9,
+      "y": 7,
+      "type": "clear"
+    }
+  ],
+  "width": 10,
+  "height": 8,
+  "attrs": {}
+}

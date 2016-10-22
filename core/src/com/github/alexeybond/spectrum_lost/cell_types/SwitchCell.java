@@ -9,7 +9,7 @@ import com.github.alexeybond.spectrum_lost.model.util.Ray;
  */
 public class SwitchCell extends MirrorCell {
     public static class State {
-        private final static long framesToTurn = Ray.MAX_BRIGHTNESS / Ray.FADE_STEP;
+        private final static long framesToTurn = Ray.MAX_BRIGHTNESS / (Ray.FADE_STEP * 2);
 
         public boolean isTurned = false;
 

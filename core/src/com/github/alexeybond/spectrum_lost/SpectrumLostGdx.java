@@ -30,7 +30,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
         CompactChapterDesc chapterDesc = null;
 
         for (CompactChapterDesc desc : chaptersList.chapters) {
-            if (desc.id.equals("chapter0")) {
+            if (desc.id.equals("chapter4")) {
                 chapterDesc = desc;
             }
         }
