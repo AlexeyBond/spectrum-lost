@@ -1,33 +1,54 @@
 
 sprites-common.png
-size: 1024,512
+size: 1024,1024
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
 chapter-icons/chapter0
   rotate: false
-  xy: 0, 212
+  xy: 0, 636
   size: 320, 210
   orig: 320, 210
   offset: 0, 0
   index: -1
 chapter-icons/chapter1
   rotate: false
-  xy: 0, 0
+  xy: 0, 424
   size: 320, 210
   orig: 320, 210
   offset: 0, 0
   index: -1
 chapter-icons/chapter2
   rotate: false
-  xy: 322, 212
+  xy: 322, 636
   size: 320, 210
   orig: 320, 210
   offset: 0, 0
   index: -1
 chapter-icons/chapter3
   rotate: false
-  xy: 322, 0
+  xy: 0, 212
+  size: 320, 210
+  orig: 320, 210
+  offset: 0, 0
+  index: -1
+chapter-icons/chapter4
+  rotate: false
+  xy: 322, 424
+  size: 320, 210
+  orig: 320, 210
+  offset: 0, 0
+  index: -1
+chapter-icons/closed
+  rotate: false
+  xy: 644, 636
+  size: 320, 210
+  orig: 320, 210
+  offset: 0, 0
+  index: -1
+chapter-icons/open
+  rotate: false
+  xy: 0, 0
   size: 320, 210
   orig: 320, 210
   offset: 0, 0
