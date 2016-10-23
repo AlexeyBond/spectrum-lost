@@ -12,7 +12,7 @@ public class CellDesc {
     public int x, y;
     public String type;
     public Direction direction = Direction.DEFAULT;
-    public HashMap<String, Object> attrs;
+    public HashMap<String, Object> attrs = new HashMap<String, Object>();
 
     public static CellDesc dump(final ICell cell) {
         CellDesc cd = new CellDesc();
@@ -27,7 +27,6 @@ public class CellDesc {
         }
 
         if (cell.getOwnAttributes().size() != 0) {
-            cd.attrs = new HashMap<String, Object>();
             cd.attrs.putAll(cell.getOwnAttributes());
         }
 

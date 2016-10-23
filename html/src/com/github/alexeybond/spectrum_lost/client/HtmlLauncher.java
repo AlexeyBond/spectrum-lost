@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 import com.github.alexeybond.spectrum_lost.SpectrumLostGdx;
+import com.github.alexeybond.spectrum_lost.achievements.Achievements;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 
@@ -12,6 +13,7 @@ public class HtmlLauncher extends GwtApplication {
     @Override
     public void onModuleLoad() {
         super.onModuleLoad();
+        Achievements.use(new LocalStorageAchievementsStorage());
         com.google.gwt.user.client.Window.addResizeHandler(new ResizeHandler() {
             public void onResize(ResizeEvent ev) {
                 Gdx.graphics.setWindowedMode(ev.getWidth(), ev.getHeight());

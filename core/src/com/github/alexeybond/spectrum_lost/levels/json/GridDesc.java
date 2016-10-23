@@ -13,7 +13,7 @@ public class GridDesc {
     public ArrayList<CellDesc> cells;
     public int width, height;
 
-    public HashMap<String, String> attrs;
+    public HashMap<String, Object> attrs = new HashMap<String, Object>();
 
     public static GridDesc dump(final IGrid grid) {
         GridDesc gd = new GridDesc();
@@ -21,7 +21,7 @@ public class GridDesc {
         gd.width = grid.width();
         gd.height = grid.height();
         gd.cells = new ArrayList<CellDesc>();
-        gd.attrs = new HashMap<String, String>();
+        gd.attrs = new HashMap<String, Object>(grid.attributes());
 
         for (int x = 0; x < gd.width; x++) {
             for (int y = 0; y < gd.height; y++) {

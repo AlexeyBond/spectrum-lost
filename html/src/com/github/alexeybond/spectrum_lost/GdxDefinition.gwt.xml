@@ -14,4 +14,7 @@
 	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.levels.json.compact.ChaptersList" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDesc" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.achievements.impl.StatusesList" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.github.alexeybond.spectrum_lost.achievements.AchievementStatus" />
+	<extend-configuration-property name="gdx.reflect.include" value="java.util.LinkedHashMap" />
 </module>
