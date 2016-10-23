@@ -3,6 +3,7 @@ package com.github.alexeybond.spectrum_lost.levels.json.compact;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -11,6 +12,7 @@ import java.util.HashMap;
 public class CompactChapterDesc {
     public String id;
     public HashMap<String, Object> attrs;
+    public ArrayList<String> after;
 
     public ChapterLevelsDesc readLevels(FileHandle baseDir) {
         Json json = new Json();

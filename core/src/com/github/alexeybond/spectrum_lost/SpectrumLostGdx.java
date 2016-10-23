@@ -15,6 +15,7 @@ import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChaptersList;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDesc;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
+import com.github.alexeybond.spectrum_lost.screens.ChapterSelectScreen;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.GameDevScreen;
 import com.github.alexeybond.spectrum_lost.screens.GameScreen;
@@ -53,7 +54,8 @@ public class SpectrumLostGdx extends ApplicationAdapter {
                 && System.getProperty("sl.devmode") != null) {
             currentScreen = new GameDevScreen(levelsSource, levelsSource.rootLevelName());
         } else {
-            currentScreen = new GameScreen(levelsSource, levelsSource.rootLevelName());
+//            currentScreen = new GameScreen(levelsSource, levelsSource.rootLevelName());
+            currentScreen = new ChapterSelectScreen();
         }
 
         currentScreen.show(null);

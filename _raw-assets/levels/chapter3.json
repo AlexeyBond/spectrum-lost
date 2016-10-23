@@ -11,5 +11,6 @@
     "c3/l8"
   ],
   "rootLevel": "c3/l$",
+  "afterChapters": ["chapter2"],
   "attrs": {}
 }

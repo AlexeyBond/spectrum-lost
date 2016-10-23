@@ -33,9 +33,17 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
     private Button nextButton;
 
+    private String finalAchievementName;
+
     public GameScreen(final ILevelsSource levelsSource, final String levelId) {
+        this(levelsSource, levelId, null);
+    }
+
+    public GameScreen(final ILevelsSource levelsSource, final String levelId, final String finalAchievementName) {
         super();
         rememberWayBack();
+
+        this.finalAchievementName = finalAchievementName;
 
         achievementStatus = Achievements.get("level:".concat(levelId));
 
@@ -99,6 +107,12 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
     private void recordAchievement() {
         // TODO: Calculate actual points (?)
         achievementStatus.set(achievementStatus.getMaximumPoints(), achievementStatus.getMaximumPoints());
+
+        if (finalAchievementName != null) {
+            AchievementStatus achievementStatus = Achievements.get(finalAchievementName);
+            achievementStatus.set(achievementStatus.getMaximumPoints(), achievementStatus.getMaximumPoints());
+        }
+
         Achievements.save();
     }
 

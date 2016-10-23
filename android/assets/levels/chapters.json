@@ -1,1 +1,1 @@
-{chapters:[{id:chapter4,attrs:{}},{id:chapter1,attrs:{}},{id:chapter0,attrs:{}},{id:chapter2,attrs:{}},{id:chapter3,attrs:{}}]}
+{chapters:[{id:chapter4,attrs:{},after:[chapter1]},{id:chapter1,attrs:{},after:[chapter0]},{id:chapter0,attrs:{},after:[]},{id:chapter2,attrs:{},after:[chapter1]},{id:chapter3,attrs:{},after:[chapter2]}]}

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="640"
+   height="420"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="ch-icon-closed.svg"
+   inkscape:export-filename="/home/a_bond/Projects/spectrum-lost-gdx/_raw-assets/sprites/chapter-icons/closed.png"
+   inkscape:export-xdpi="45"
+   inkscape:export-ydpi="45">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="307.00697"
+     inkscape:cy="309.28794"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showborder="true"
+     borderlayer="false"
+     inkscape:showpageshadow="false"
+     width="640px"
+     inkscape:window-width="1362"
+     inkscape:window-height="715"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="80,420"
+       id="guide3776" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="560,440"
+       id="guide3778" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="50,370"
+       id="guide3780" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="50,50"
+       id="guide3782" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="50,210"
+       id="guide3784" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="440,370"
+       id="guide3000" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-632.36222)">
+    <rect
+       style="fill:#646464;fill-opacity:0.20648971;fill-rule:nonzero;stroke:#646464;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2987"
+       width="620"
+       height="400"
+       x="10"
+       y="10"
+       ry="30"
+       transform="translate(0,632.36222)" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="-231.32494"
+       y="-5.2742229"
+       id="text3873"
+       sodipodi:linespacing="125%"
+       transform="translate(0,632.36222)"><tspan
+         sodipodi:role="line"
+         id="tspan3875"
+         x="-231.32494"
+         y="-5.2742229">858585ff - sym</tspan><tspan
+         sodipodi:role="line"
+         x="-231.32494"
+         y="17.225777"
+         id="tspan3877">bfbfbfff - ray</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff005b;fill-opacity:0;fill-rule:nonzero;stroke:#858500;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3002"
+       sodipodi:cx="440"
+       sodipodi:cy="210"
+       sodipodi:rx="40"
+       sodipodi:ry="40"
+       d="m 480,210 c 0,22.09139 -17.90861,40 -40,40 -22.09139,0 -40,-17.90861 -40,-40 0,-22.09139 17.90861,-40 40,-40 22.09139,0 40,17.90861 40,40 z"
+       transform="translate(0,632.36222)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff005b;fill-opacity:0;fill-rule:nonzero;stroke:#858500;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3004"
+       sodipodi:cx="440"
+       sodipodi:cy="110"
+       sodipodi:rx="40"
+       sodipodi:ry="40"
+       d="m 480,110 c 0,22.09139 -17.90861,40 -40,40 -22.09139,0 -40,-17.90861 -40,-40 0,-22.09139 17.90861,-40 40,-40 22.09139,0 40,17.90861 40,40 z"
+       transform="translate(0,632.36222)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff005b;fill-opacity:0;fill-rule:nonzero;stroke:#858500;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3006"
+       sodipodi:cx="440"
+       sodipodi:cy="310"
+       sodipodi:rx="40"
+       sodipodi:ry="40"
+       d="m 480,310 c 0,22.09139 -17.90861,40 -40,40 -22.09139,0 -40,-17.90861 -40,-40 0,-22.09139 17.90861,-40 40,-40 22.09139,0 40,17.90861 40,40 z"
+       transform="translate(0,632.36222)" />
+    <text
+       xml:space="preserve"
+       style="font-size:265.87020874000000958px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#646464;fill-opacity:1;stroke:none;font-family:Winks;-inkscape-font-specification:Winks"
+       x="84.949234"
+       y="928.32159"
+       id="text4054"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4056"
+         x="84.949234"
+         y="928.32159"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#646464;fill-opacity:1;font-family:Liberation Mono;-inkscape-font-specification:Liberation Mono">???</tspan></text>
+  </g>
+</svg>

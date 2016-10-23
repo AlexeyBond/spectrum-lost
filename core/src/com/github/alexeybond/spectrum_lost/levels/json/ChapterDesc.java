@@ -10,4 +10,5 @@ public class ChapterDesc {
     public ArrayList<String> levelNames;
     public String rootLevel;
     public HashMap<String, Object> attrs;
+    public ArrayList<String> afterChapters = new ArrayList<String>();
 }

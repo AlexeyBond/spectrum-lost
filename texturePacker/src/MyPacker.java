@@ -54,6 +54,7 @@ public class MyPacker {
             ChapterLevelsDesc levels = new ChapterLevelsDesc();
 
             ccd.attrs = cd.attrs;
+            ccd.after = cd.afterChapters;
             ccd.id = f.nameWithoutExtension();
 
             for (String ln : cd.levelNames) {
