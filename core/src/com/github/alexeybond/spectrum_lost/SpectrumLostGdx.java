@@ -18,21 +18,20 @@ import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.screens.ChapterSelectScreen;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.GameDevScreen;
-import com.github.alexeybond.spectrum_lost.screens.GameScreen;
 import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
 
 public class SpectrumLostGdx extends ApplicationAdapter {
     private $Screen currentScreen;
     private Music music;
 
-    private ILevelsSource getLevelSource() {
+    private ILevelsSource getDevLevelSource(String chapterId) {
         FileHandle levelsDir = Gdx.files.internal("levels");
         ChaptersList chaptersList = ChaptersList.readFrom(levelsDir);
 
         CompactChapterDesc chapterDesc = null;
 
         for (CompactChapterDesc desc : chaptersList.chapters) {
-            if (desc.id.equals("chapter1")) {
+            if (desc.id.equals(chapterId)) {
                 chapterDesc = desc;
             }
         }
@@ -48,13 +47,11 @@ public class SpectrumLostGdx extends ApplicationAdapter {
         $CellTypes.register();
         $Sprite2DViews.register();
 
-        ILevelsSource levelsSource = getLevelSource();
-
         if (Gdx.app.getType() == Application.ApplicationType.Desktop
                 && System.getProperty("sl.devmode") != null) {
+            ILevelsSource levelsSource = getDevLevelSource(System.getProperty("sl.devch"));
             currentScreen = new GameDevScreen(levelsSource, levelsSource.rootLevelName());
         } else {
-//            currentScreen = new GameScreen(levelsSource, levelsSource.rootLevelName());
             currentScreen = new ChapterSelectScreen();
         }
 

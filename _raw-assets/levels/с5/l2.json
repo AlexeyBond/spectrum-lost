@@ -1,0 +1,206 @@
+{
+"cells": [
+	{
+		"type": "wall"
+	},
+	{
+		"y": 1,
+		"type": "wall"
+	},
+	{
+		"y": 2,
+		"type": "wall"
+	},
+	{
+		"y": 3,
+		"type": "wall"
+	},
+	{
+		"y": 4,
+		"type": "wall"
+	},
+	{
+		"y": 5,
+		"type": "wall"
+	},
+	{
+		"y": 6,
+		"type": "clear"
+	},
+	{
+		"x": 1,
+		"type": "wall"
+	},
+	{
+		"x": 1,
+		"y": 1,
+		"type": "expector"
+	},
+	{
+		"x": 1,
+		"y": 2,
+		"type": "emitter",
+		"direction": "DN"
+	},
+	{
+		"x": 1,
+		"y": 3,
+		"type": "switch",
+		"direction": "DN"
+	},
+	{
+		"x": 1,
+		"y": 4,
+		"type": "mirror",
+		"direction": "LF"
+	},
+	{
+		"x": 1,
+		"y": 5,
+		"type": "wall"
+	},
+	{
+		"x": 1,
+		"y": 6,
+		"type": "wall"
+	},
+	{
+		"x": 2,
+		"type": "wall"
+	},
+	{
+		"x": 2,
+		"y": 1,
+		"type": "emitter",
+		"direction": "LF"
+	},
+	{
+		"x": 2,
+		"y": 2,
+		"type": "wall"
+	},
+	{
+		"x": 2,
+		"y": 3,
+		"type": "mirror"
+	},
+	{
+		"x": 2,
+		"y": 4,
+		"type": "hmirror",
+		"direction": "DN_LF"
+	},
+	{
+		"x": 2,
+		"y": 5,
+		"type": "expector"
+	},
+	{
+		"x": 2,
+		"y": 6,
+		"type": "wall"
+	},
+	{
+		"x": 3,
+		"type": "wall"
+	},
+	{
+		"x": 3,
+		"y": 1,
+		"type": "mirror",
+		"direction": "DN_RT"
+	},
+	{
+		"x": 3,
+		"y": 3,
+		"type": "pulsar"
+	},
+	{
+		"x": 3,
+		"y": 4,
+		"type": "switch"
+	},
+	{
+		"x": 3,
+		"y": 5,
+		"type": "mirror",
+		"direction": "DN_RT"
+	},
+	{
+		"x": 3,
+		"y": 6,
+		"type": "wall"
+	},
+	{
+		"x": 4,
+		"type": "wall"
+	},
+	{
+		"x": 4,
+		"y": 1,
+		"type": "wall"
+	},
+	{
+		"x": 4,
+		"y": 2,
+		"type": "wall"
+	},
+	{
+		"x": 4,
+		"y": 3,
+		"type": "wall"
+	},
+	{
+		"x": 4,
+		"y": 4,
+		"type": "wall"
+	},
+	{
+		"x": 4,
+		"y": 5,
+		"type": "emitter",
+		"direction": "LF"
+	},
+	{
+		"x": 4,
+		"y": 6,
+		"type": "wall"
+	},
+	{
+		"x": 5,
+		"type": "clear"
+	},
+	{
+		"x": 5,
+		"y": 1,
+		"type": "clear"
+	},
+	{
+		"x": 5,
+		"y": 2,
+		"type": "clear"
+	},
+	{
+		"x": 5,
+		"y": 3,
+		"type": "clear"
+	},
+	{
+		"x": 5,
+		"y": 4,
+		"type": "wall"
+	},
+	{
+		"x": 5,
+		"y": 5,
+		"type": "wall"
+	},
+	{
+		"x": 5,
+		"y": 6,
+		"type": "wall"
+	}
+],
+"width": 6,
+"height": 7
+}

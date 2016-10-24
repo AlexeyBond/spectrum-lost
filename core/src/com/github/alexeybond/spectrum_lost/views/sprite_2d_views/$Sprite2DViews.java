@@ -41,5 +41,8 @@ public class $Sprite2DViews {
         reg("portal:y", new $SimpleSpriteView("game/cells/background/bg-common", "game/cells/portal/fg-g", true));
 
         reg("recursive", new RecursiveCellView());
+
+        reg("pulsar", new PulsarView("game/cells/pulsar/fg"));
+        reg("pulsar-b", new PulsarView("game/cells/pulsar/fg-b"));
     }
 }

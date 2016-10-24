@@ -210,6 +210,12 @@ public class GameDevScreen extends GameScreen {
             case Input.Keys.NUM_0:
                 setCell("expector:none");
                 break;
+            case Input.Keys.Y:
+                setCell("pulsar");
+                break;
+            case Input.Keys.U:
+                setCell("pulsar-b");
+                break;
 
             case Input.Keys.NUM_4:
                 setCell("portal:a");
