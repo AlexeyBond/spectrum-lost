@@ -39,16 +39,23 @@ chapter-icons/chapter4
   orig: 320, 210
   offset: 0, 0
   index: -1
-chapter-icons/closed
+chapter-icons/chapter5
   rotate: false
   xy: 644, 636
   size: 320, 210
   orig: 320, 210
   offset: 0, 0
   index: -1
-chapter-icons/open
+chapter-icons/closed
   rotate: false
   xy: 0, 0
+  size: 320, 210
+  orig: 320, 210
+  offset: 0, 0
+  index: -1
+chapter-icons/open
+  rotate: false
+  xy: 322, 212
   size: 320, 210
   orig: 320, 210
   offset: 0, 0

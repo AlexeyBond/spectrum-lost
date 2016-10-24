@@ -1,0 +1,13 @@
+{
+  "levelNames": [
+    "c5/l$",
+    "c5/l1",
+    "c5/l2",
+    "c5/l3",
+    "c5/l4",
+    "c5/l5"
+  ],
+  "rootLevel": "c5/l$",
+  "afterChapters": ["chapter1", "chapter2"],
+  "attrs": {}
+}
