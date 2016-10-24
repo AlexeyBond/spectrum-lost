@@ -36,5 +36,6 @@ public class $CellTypes {
         reg(new RecursiveCell());
         reg(PulsarCell.TYPE_A);
         reg(PulsarCell.TYPE_B);
+        reg(PulsarCell.TYPE_C);
     }
 }

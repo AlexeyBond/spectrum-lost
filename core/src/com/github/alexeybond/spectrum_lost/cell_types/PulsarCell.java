@@ -11,8 +11,10 @@ import com.github.alexeybond.spectrum_lost.model.util.Ray;
 public class PulsarCell implements ICellType {
     private static int CAPASITY = Ray.MAX_BRIGHTNESS * 3 * 20;
     private static int DISCHARGE = Ray.MAX_BRIGHTNESS * 3 * 2;
+    private static int SELF_DISCHARGE = Ray.MAX_BRIGHTNESS * 2;
 
     private final boolean keepCharge;
+    private final boolean selfDischarge;
     private final String id;
 
     public static class State {
@@ -29,8 +31,9 @@ public class PulsarCell implements ICellType {
         public final SubState reverse = new SubState();
     }
 
-    private PulsarCell(boolean keepCharge, String id) {
+    private PulsarCell(boolean keepCharge, boolean selfDischarge, String id) {
         this.keepCharge = keepCharge;
+        this.selfDischarge = selfDischarge;
         this.id = id;
     }
 
@@ -53,6 +56,10 @@ public class PulsarCell implements ICellType {
         }
 
         subState.charge += receive.getR() + receive.getG() + receive.getB();
+
+        if (selfDischarge && subState.charge >= SELF_DISCHARGE) {
+            subState.charge -= SELF_DISCHARGE;
+        }
 
         if (subState.charge >= CAPASITY) {
             subState.emitting = true;
@@ -90,6 +97,7 @@ public class PulsarCell implements ICellType {
         return null;
     }
 
-    public final static ICellType TYPE_A = new PulsarCell(false, "pulsar");
-    public final static ICellType TYPE_B = new PulsarCell(true, "pulsar-b");
+    public final static ICellType TYPE_A = new PulsarCell(false, false, "pulsar");
+    public final static ICellType TYPE_B = new PulsarCell(true, false, "pulsar-b");
+    public final static ICellType TYPE_C = new PulsarCell(true, true, "pulsar-c");
 }

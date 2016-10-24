@@ -95,14 +95,14 @@ game/cells/background/bg-common
   index: -1
 game/cells/background/stones-00-00
   rotate: false
-  xy: 392, 62
+  xy: 522, 62
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/background/stones-00-01
   rotate: false
-  xy: 522, 62
+  xy: 652, 62
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -123,47 +123,40 @@ game/cells/expector/fg
   index: -1
 game/cells/expector/fg-gear
   rotate: false
-  xy: 780, 452
+  xy: 520, 322
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-type-b
   rotate: false
-  xy: 650, 322
+  xy: 780, 322
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-type-g
   rotate: false
-  xy: 780, 322
+  xy: 262, 196
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-type-none
   rotate: false
-  xy: 262, 196
+  xy: 262, 66
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-type-r
   rotate: false
-  xy: 262, 66
+  xy: 392, 192
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/symbol-fail
-  rotate: false
-  xy: 652, 62
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-game/cells/expector/symbol-success
   rotate: false
   xy: 782, 62
   size: 128, 128
@@ -221,21 +214,21 @@ game/cells/portal/fg-b
   index: -1
 game/cells/portal/fg-g
   rotate: false
-  xy: 650, 452
+  xy: 780, 452
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/portal/fg-o
   rotate: false
-  xy: 520, 322
+  xy: 650, 322
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/portal/fg-v
   rotate: false
-  xy: 392, 192
+  xy: 522, 192
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -257,6 +250,13 @@ game/cells/pulsar/fg
 game/cells/pulsar/fg-b
   rotate: false
   xy: 390, 326
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/pulsar/fg-c
+  rotate: false
+  xy: 650, 452
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -305,7 +305,7 @@ game/cells/switch/bg
   index: -1
 game/cells/switch/mg
   rotate: false
-  xy: 652, 192
+  xy: 782, 192
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -326,27 +326,34 @@ game/cells/wall/fg-00
   index: -1
 game/fx/flare-00
   rotate: false
-  xy: 522, 192
+  xy: 652, 192
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/fx/spinner-segment
   rotate: false
-  xy: 782, 192
+  xy: 392, 62
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 
 sprites-common4.png
-size: 256,256
+size: 512,256
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
-game/cells/expector/symbol-wait
+game/cells/expector/symbol-success
   rotate: false
   xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/symbol-wait
+  rotate: false
+  xy: 132, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

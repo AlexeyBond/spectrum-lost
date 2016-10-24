@@ -44,5 +44,6 @@ public class $Sprite2DViews {
 
         reg("pulsar", new PulsarView("game/cells/pulsar/fg"));
         reg("pulsar-b", new PulsarView("game/cells/pulsar/fg-b"));
+        reg("pulsar-c", new PulsarView("game/cells/pulsar/fg-c"));
     }
 }
