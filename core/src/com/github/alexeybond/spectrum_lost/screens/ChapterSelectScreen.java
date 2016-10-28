@@ -259,6 +259,13 @@ public class ChapterSelectScreen extends $Screen {
     }
 
     @Override
+    protected void onZoom(int x, int y, float zoom) {
+        scale *= zoom;
+        scale = Math.max(scale, 0.5f);
+        scale = Math.min(scale, 1.0f);
+    }
+
+    @Override
     protected void onClick(float x, float y) {
         tv.set(x, y);
         toIconCoordinates(tv);

@@ -157,6 +157,11 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
     }
 
     @Override
+    protected void onZoom(int x, int y, float zoom) {
+        positioner.scale(zoom);
+    }
+
+    @Override
     public void resize(int width, int height) {
         super.resize(width, height);
         positioner.reset(grid);

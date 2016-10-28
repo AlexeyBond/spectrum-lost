@@ -5,7 +5,6 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.github.alexeybond.spectrum_lost.achievements.Achievements;
 import com.github.alexeybond.spectrum_lost.achievements.impl.LocalFilesStorage;
 import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
@@ -23,6 +22,7 @@ import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
 public class SpectrumLostGdx extends ApplicationAdapter {
     private $Screen currentScreen;
     private Music music;
+    private boolean paused = false;
 
     private ILevelsSource getDevLevelSource(String chapterId) {
         FileHandle levelsDir = Gdx.files.internal("levels");
@@ -43,7 +43,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
     @Override
     public void create() {
         Achievements.use(new LocalFilesStorage());
-        Resources.use(new TextureAtlas("sprites/sprites-common.atlas"));
+        Resources.useAtlas("sprites/sprites-common.atlas");
         $CellTypes.register();
         $Sprite2DViews.register();
 
@@ -65,6 +65,10 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
     @Override
     public void render() {
+        if (paused) {
+            resume();
+        }
+
         currentScreen.draw();
 
 //        Gdx.graphics.setTitle(String.valueOf(Gdx.graphics.getFramesPerSecond()));
@@ -84,11 +88,14 @@ public class SpectrumLostGdx extends ApplicationAdapter {
     @Override
     public void pause() {
         currentScreen.pause();
+        paused = true;
     }
 
     @Override
     public void resume() {
+        Resources.awaitAll();
         currentScreen.unpause();
+        paused = false;
     }
 
     @Override

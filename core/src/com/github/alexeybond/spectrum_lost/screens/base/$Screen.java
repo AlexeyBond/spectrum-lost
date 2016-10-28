@@ -68,6 +68,9 @@ public abstract class $Screen {
     }
 
     private class GestureListener implements GestureDetector.GestureListener {
+        private boolean pinch = false;
+        private float prevZoom;
+
         @Override
         public boolean touchDown(float x, float y, int pointer, int button) {
             return false;
@@ -110,11 +113,26 @@ public abstract class $Screen {
 
         @Override
         public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
-            return false;
+            float curZoom = (float) Math.sqrt((double)(pointer1.dst2(pointer2) / initialPointer1.dst2(initialPointer2)));
+
+            int x = (int)(.5f * (pointer1.x + pointer2.x));
+            int y = (int)(.5f * (pointer1.y + pointer2.y));
+
+            if (pinch) {
+                $Screen.this.onZoom(x, y, curZoom / prevZoom);
+            } else {
+                $Screen.this.onZoom(x, y, curZoom);
+                pinch = true;
+            }
+
+            prevZoom = curZoom;
+
+            return true;
         }
 
         @Override
         public void pinchStop() {
+            pinch = false;
         }
     }
 
@@ -209,4 +227,5 @@ public abstract class $Screen {
     protected void onKeyPress(final int code) {}
     protected void onCharTyped(final char chr) {}
     protected void onScroll(final int amount) {}
+    protected void onZoom(final int x, final int y, final float zoom) {}
 }
