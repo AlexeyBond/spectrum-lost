@@ -88,6 +88,15 @@ public final class Ray {
         return (r == 0) && (g == 0) && (b == 0);
     }
 
+    public int maxComponentBrightness() {
+        int mcb = r;
+
+        if (g > mcb) mcb = g;
+        if (b > mcb) mcb = b;
+
+        return mcb;
+    }
+
     /** The maximal value of a brightness component */
     public static final int MAX_BRIGHTNESS = 16;
 

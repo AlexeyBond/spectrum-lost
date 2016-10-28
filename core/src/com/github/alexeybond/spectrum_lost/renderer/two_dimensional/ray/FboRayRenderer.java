@@ -19,6 +19,7 @@ import com.github.alexeybond.spectrum_lost.resources.Resources;
 
 import java.util.NoSuchElementException;
 
+import static com.badlogic.gdx.math.MathUtils.floor;
 import static java.lang.Math.min;
 import static java.lang.Math.sin;
 
@@ -82,7 +83,9 @@ public class FboRayRenderer implements IRayRenderer {
         }
     }
 
-    private void drawLine(final float width, final float brightness, final float ky) {
+    private void drawLine(float width, float brightness, float ky) {
+        width *= 2f;
+        ky *= 2f;
         shapeRenderer.setColor(brightness, brightness, brightness, brightness);
         Gdx.gl.glLineWidth(width);
         float hySz = .5f * (float) FBO_SIZE_Y;
@@ -112,6 +115,8 @@ public class FboRayRenderer implements IRayRenderer {
         drawLine(5, .4f, .2f);
         drawLine(3, .6f, .3f);
         drawLine(2, .95f, -.8f);
+//        Gdx.gl.glClearColor(1,1,1,1);
+//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         shapeRenderer.end();
         frameBuffer.end();
 
@@ -141,31 +146,53 @@ public class FboRayRenderer implements IRayRenderer {
         Direction pd = dir.perpendicular();
         final float hw = cellSize * .5f;
 
+        int mcb = ray.maxComponentBrightness();
+        int mcbF = Ray.clamp(mcb - Ray.FADE_STEP);
+        float srcSize = rayWidth(cellSize, mcb);
+        float dstSize = rayWidth(cellSize, mcbF);
+
         float srcX = fromPos.x;
         float srcY = fromPos.y;
         float dstX = srcX + (cellSize + .5f) * (float) dir.h;
         float dstY = srcY + (cellSize + .5f) * (float) dir.v;
-        float dX = hw * (float) pd.h;
-        float dY = hw * (float) pd.v;
-        float color = Color.toFloatBits(
-                (float) ray.getR() / (float) Ray.MAX_BRIGHTNESS,
-                (float) ray.getG() / (float) Ray.MAX_BRIGHTNESS,
-                (float) ray.getB() / (float) Ray.MAX_BRIGHTNESS,
-                1.f);
-        float colorF = Color.toFloatBits(
-                (float) Ray.clamp(ray.getR() - 1) / (float) Ray.MAX_BRIGHTNESS,
-                (float) Ray.clamp(ray.getG() - 1) / (float) Ray.MAX_BRIGHTNESS,
-                (float) Ray.clamp(ray.getB() - 1) / (float) Ray.MAX_BRIGHTNESS,
-                1.f);
+        float dX = srcSize * (float) pd.h;
+        float dXF = dstSize * (float) pd.h;
+        float dY = srcSize * (float) pd.v;
+        float dYF = dstSize * (float) pd.v;
+        float color = color(ray, 0, mcb);
+        float colorF = color(ray, Ray.FADE_STEP, mcbF);
 
         sv[2] = sv[17] = color;
         sv[12] = sv[7] = colorF;
-        sv[0] = srcX - dX; sv[1] = srcY - dY;
-        sv[5] = dstX - dX; sv[6] = dstY - dY;
-        sv[10] = dstX + dX; sv[11] = dstY + dY;
-        sv[15] = srcX + dX; sv[16] = srcY + dY;
+        sv[0] = floor(srcX - dX); sv[1] = floor(srcY - dY);
+        sv[5] = floor(dstX - dXF); sv[6] = floor(dstY - dYF);
+        sv[10] = floor(dstX + dXF); sv[11] = floor(dstY + dYF);
+        sv[15] = floor(srcX + dX); sv[16] = floor(srcY + dY);
 
         batch.draw(frameBuffer.getColorBufferTexture(), sv, 0, sv.length);
+    }
+
+    private float rayWidth(float cellSize, int mcb) {
+        float brFix = 1f + ((float) (Ray.MAX_BRIGHTNESS - mcb)) / ((float) Ray.MAX_BRIGHTNESS);
+        brFix *= .5f;
+        return .5f * cellSize * brFix;
+    }
+
+    private float colorBrightness(int rayBrightness, int maxBrightness) {
+        rayBrightness = Ray.clamp(rayBrightness);
+        return (float) rayBrightness / (float) (/*maxBrightness==0?1:maxBrightness*/Ray.MAX_BRIGHTNESS);
+    }
+
+    private float color(Ray ray, int fade, int mcb) {
+        float r = colorBrightness(ray.getR() - fade, mcb);
+        float g = colorBrightness(ray.getG() - fade, mcb);
+        float b = colorBrightness(ray.getB() - fade, mcb);
+
+        return Color.toFloatBits(
+                min(1f, r + .1f * b),
+                min(1f, g + .1f * b),
+                min(1f, b * 1.4f),
+                1.f);
     }
 
     @Override

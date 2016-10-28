@@ -71,7 +71,9 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/music/0xB-00.mp3"));
         music.setLooping(true);
-        music.play();
+        if (!"1".equals(System.getProperty("sl.devmode.nomusic"))) {
+            music.play();
+        }
     }
 
     @Override

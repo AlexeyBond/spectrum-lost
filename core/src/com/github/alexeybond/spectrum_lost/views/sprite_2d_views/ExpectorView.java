@@ -19,7 +19,6 @@ public class ExpectorView extends $Sprite2DView {
     private TextureRegion waitTexture;
 
     protected ExpectorView(final String fgImg) {
-        // TODO: Do not use mirror's background
         bgTexture = loadTexture("game/cells/background/bg-common");
         fgTexture = loadTexture(fgImg);
         gearTexture = loadTexture("game/cells/expector/fg-gear");
