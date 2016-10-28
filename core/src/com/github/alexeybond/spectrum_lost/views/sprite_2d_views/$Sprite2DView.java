@@ -20,7 +20,7 @@ public abstract class $Sprite2DView implements CellView2D {
     protected TextureRegion bgTexture = null;
     protected TextureRegion fgTexture = null;
 
-    private static TextureRegion spinnerTexture;
+    private final TextureRegion spinnerTexture = Resources.getSprite("game/fx/spinner-segment");
 
     private static final Matrix4 transformMatrix = new Matrix4();
 
@@ -72,8 +72,6 @@ public abstract class $Sprite2DView implements CellView2D {
     }
 
     protected void drawSpinner(final SpriteBatch batch, final Vector2 pos, final float fill, final float size, final int d) {
-        if (null == spinnerTexture) {spinnerTexture = Resources.getSprite("game/fx/spinner-segment");}
-
         for (int i = 0; i < 8; i++) {
             if (fill < ((float)i) * .125) break;
 
