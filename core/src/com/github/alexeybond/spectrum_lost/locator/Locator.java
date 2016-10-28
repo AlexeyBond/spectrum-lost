@@ -1,4 +1,7 @@
-package com.github.alexeybond.spectrum_lost.model.interfaces;
+package com.github.alexeybond.spectrum_lost.locator;
+
+import com.github.alexeybond.spectrum_lost.model.interfaces.ICellType;
+import com.github.alexeybond.spectrum_lost.model.interfaces.ICellView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,4 +40,6 @@ public final class Locator<T> {
     public static final Locator<ICellType> CELL_TYPES = new Locator<ICellType>("cell type");
 
     public static final Locator<ICellView> CELL_VIEWS = new Locator<ICellView>("cell view");
+
+    public static final Locator<Object> RENDERER_OBJECT = new Locator<Object>("object");
 }

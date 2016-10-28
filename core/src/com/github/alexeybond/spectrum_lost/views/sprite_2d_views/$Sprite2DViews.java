@@ -1,6 +1,6 @@
 package com.github.alexeybond.spectrum_lost.views.sprite_2d_views;
 
-import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.views.CellView2D;
 
 /**

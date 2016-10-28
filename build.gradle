@@ -102,8 +102,12 @@ project(":texturePacker") {
 
 
     dependencies {
+        compile project(':core')
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+
+        // To be able to launch particle editor using packer's classpath
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
     }
 }
 

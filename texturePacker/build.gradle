@@ -4,6 +4,3 @@ sourceSets.main.java.srcDirs = ["src/"]
 eclipse.project {
     name = "tp"
 }
-dependencies {
-    compile project(':core')
-}

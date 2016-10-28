@@ -1,6 +1,7 @@
 package com.github.alexeybond.spectrum_lost.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,6 +16,7 @@ import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChaptersList;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDesc;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 
@@ -24,8 +26,8 @@ class ChapterView {
     List<ChapterView> after;
 
     final CompactChapterDesc desc;
-    static TextureRegion closedIcon;
-    static TextureRegion doneIcon;
+    private TextureRegion closedIcon;
+    private TextureRegion doneIcon;
     private final TextureRegion icon;
     private final AchievementStatus achievementStatus;
 
@@ -35,8 +37,9 @@ class ChapterView {
 
     private static int CONNECTION_POINT_OFFSET = 5;
 
-    ChapterView(CompactChapterDesc desc) {
+    ChapterView(CompactChapterDesc desc, TextureRegion closedIcon) {
         this.desc = desc;
+        this.closedIcon = closedIcon;
 
         if (desc.attrs.containsKey("icon")) {
             icon = Resources.getSprite(desc.attrs.get("icon").toString());
@@ -44,13 +47,7 @@ class ChapterView {
             icon = Resources.getSprite("chapter-icons/".concat(desc.id));
         }
 
-        if (null == closedIcon) {
-            closedIcon = Resources.getSprite("chapter-icons/closed");
-        }
-
-        if (null == doneIcon) {
-            doneIcon = Resources.getSprite("chapter-icons/open");
-        }
+        doneIcon = Resources.getSprite("chapter-icons/open");
 
         achievementStatus = Achievements.get("chapter:".concat(desc.id));
     }
@@ -125,17 +122,23 @@ public class ChapterSelectScreen extends $Screen {
     private final Vector2 focus = new Vector2();
     private float scale = 1.0f;
 
-    private final ShapeRenderer shapeRenderer = new ShapeRenderer();
+    private final ShapeRenderer shapeRenderer = (ShapeRenderer) Locator.RENDERER_OBJECT.get("shape renderer");
 
     private static final Vector2 tv = new Vector2();
 
     private ChapterView justClicked = null;
 
+    private TextureRegion closedIcon;
+
+    private boolean preExit = false;
+
     public ChapterSelectScreen() {
+        closedIcon = Resources.getSprite("chapter-icons/closed");
+
         ChaptersList list = ChaptersList.readFrom(Gdx.files.internal("levels"));
 
         for (CompactChapterDesc ccd : list.chapters) {
-            chapterViewList.put(ccd.id, new ChapterView(ccd));
+            chapterViewList.put(ccd.id, new ChapterView(ccd, closedIcon));
         }
 
         for (ChapterView view : chapterViewList.values()) {
@@ -182,8 +185,8 @@ public class ChapterSelectScreen extends $Screen {
         for (int i = 0; i < layers.size(); i++) {
             List<ChapterView> layer = layers.get(i);
 
-            int iconHeight = ChapterView.closedIcon.getRegionHeight() + 2 * iconMarginY;
-            int iconWidth = ChapterView.closedIcon.getRegionWidth() + 2 * iconMarginX;
+            int iconHeight = closedIcon.getRegionHeight() + 2 * iconMarginY;
+            int iconWidth = closedIcon.getRegionWidth() + 2 * iconMarginX;
 
             int iconStartY = (iconHeight * layer.size()) / 2;
             int iconStartX = iconWidth * i;
@@ -192,7 +195,7 @@ public class ChapterSelectScreen extends $Screen {
                 ChapterView view = layer.get(j);
 
                 view.rect.set(iconStartX + iconMarginX, iconStartY - iconHeight * (j + 1) + iconMarginY,
-                        ChapterView.closedIcon.getRegionWidth(), ChapterView.closedIcon.getRegionHeight());
+                        closedIcon.getRegionWidth(), closedIcon.getRegionHeight());
 
                 view.rect.getCenter(tv);
 
@@ -220,7 +223,7 @@ public class ChapterSelectScreen extends $Screen {
 
     private List<ChapterView> getLayerAtX(float x) {
         int l = (int) Math.floor(((float) layers.size()) * x /
-                (focusBounds.width + 2*iconMarginX + ChapterView.closedIcon.getRegionWidth()));
+                (focusBounds.width + 2*iconMarginX + closedIcon.getRegionWidth()));
 
         if (l < 0 || l >= layers.size())
             return null;
@@ -230,6 +233,7 @@ public class ChapterSelectScreen extends $Screen {
 
     @Override
     protected void onDrag(float x, float y, float dx, float dy) {
+        preExit = false;
         focus.x -= dx / scale;
         focus.x = Math.min(focusBounds.x + focusBounds.width,
                 Math.max(focusBounds.x, focus.x));
@@ -252,6 +256,7 @@ public class ChapterSelectScreen extends $Screen {
 
     @Override
     protected void onScroll(int amount) {
+        preExit = false;
         if (amount == 0) return;
         scale *= (amount < 0)?1.1f:.9f;
         scale = Math.max(scale, 0.5f);
@@ -260,6 +265,7 @@ public class ChapterSelectScreen extends $Screen {
 
     @Override
     protected void onZoom(int x, int y, float zoom) {
+        preExit = false;
         scale *= zoom;
         scale = Math.max(scale, 0.5f);
         scale = Math.min(scale, 1.0f);
@@ -267,6 +273,7 @@ public class ChapterSelectScreen extends $Screen {
 
     @Override
     protected void onClick(float x, float y) {
+        preExit = false;
         tv.set(x, y);
         toIconCoordinates(tv);
 
@@ -318,5 +325,16 @@ public class ChapterSelectScreen extends $Screen {
         }
 
         spriteBatch.end();
+    }
+
+    @Override
+    protected void onKeyPress(int code) {
+        if (code == Input.Keys.BACK) {
+            if (preExit) {
+                Gdx.app.exit();
+            } else {
+                preExit = true;
+            }
+        }
     }
 }

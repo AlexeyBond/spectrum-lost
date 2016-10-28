@@ -5,6 +5,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.github.alexeybond.spectrum_lost.achievements.Achievements;
 import com.github.alexeybond.spectrum_lost.achievements.impl.LocalFilesStorage;
 import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
@@ -13,7 +15,9 @@ import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChaptersList;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDesc;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
+import com.github.alexeybond.spectrum_lost.resources.impl.DefaultResourceManager;
 import com.github.alexeybond.spectrum_lost.screens.ChapterSelectScreen;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.GameDevScreen;
@@ -43,9 +47,16 @@ public class SpectrumLostGdx extends ApplicationAdapter {
     @Override
     public void create() {
         Achievements.use(new LocalFilesStorage());
-        Resources.useAtlas("sprites/sprites-common.atlas");
+
+        Resources.use(new DefaultResourceManager());
+        Resources.manager().preloadAtlas("sprites/sprites-common.atlas");
+        Resources.manager().loadAll();
+
         $CellTypes.register();
         $Sprite2DViews.register();
+
+        Locator.RENDERER_OBJECT.set("sprite batch", new SpriteBatch());
+        Locator.RENDERER_OBJECT.set("shape renderer", new ShapeRenderer());
 
         if (Gdx.app.getType() == Application.ApplicationType.Desktop
                 && System.getProperty("sl.devmode") != null) {
@@ -60,7 +71,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/music/0xB-00.mp3"));
         music.setLooping(true);
-//        music.play();
+        music.play();
     }
 
     @Override
@@ -93,7 +104,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
     @Override
     public void resume() {
-        Resources.awaitAll();
+        Resources.manager().loadAll();
         currentScreen.unpause();
         paused = false;
     }
@@ -107,5 +118,9 @@ public class SpectrumLostGdx extends ApplicationAdapter {
     public void dispose() {
         music.dispose();
         music = null;
+        Locator.CELL_TYPES.clear();
+        Locator.CELL_VIEWS.clear();
+        Locator.RENDERER_OBJECT.clear();
+        Resources.use(null);
     }
 }

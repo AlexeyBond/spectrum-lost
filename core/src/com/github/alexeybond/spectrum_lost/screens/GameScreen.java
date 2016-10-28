@@ -1,6 +1,7 @@
 package com.github.alexeybond.spectrum_lost.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.github.alexeybond.spectrum_lost.achievements.AchievementStatus;
 import com.github.alexeybond.spectrum_lost.achievements.Achievements;
@@ -13,6 +14,7 @@ import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.Renderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.FboRayRenderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.LineRayRenderer;
+import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.base.Button;
 import com.github.alexeybond.spectrum_lost.screens.base.ButtonListener;
 
@@ -29,7 +31,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
     private final static float simulationRate = 1.f/32.f;
 
-    private static IRayRenderer rayRenderer;
+    private IRayRenderer rayRenderer;
 
     private Button nextButton;
 
@@ -47,12 +49,10 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
         achievementStatus = Achievements.get("level:".concat(levelId));
 
-        if (rayRenderer == null) {
-            try {
-                rayRenderer = new FboRayRenderer();
-            } catch (Exception e) {
-                rayRenderer = new LineRayRenderer();
-            }
+        try {
+            rayRenderer = new FboRayRenderer();
+        } catch (Exception e) {
+            rayRenderer = new LineRayRenderer();
         }
 
         this.levelsSource = levelsSource;
@@ -190,5 +190,10 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         drawButtons();
 
         spriteBatch.end();
+    }
+
+    @Override
+    public void leave($Screen next) {
+        super.leave(next);
     }
 }

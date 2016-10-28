@@ -11,10 +11,13 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
+
+import java.util.NoSuchElementException;
 
 import static java.lang.Math.min;
 import static java.lang.Math.sin;
@@ -26,9 +29,9 @@ public class FboRayRenderer implements IRayRenderer {
     private static int FBO_SIZE_X = 128;
     private static int FBO_SIZE_Y = 128;
 
-    private static FrameBuffer frameBuffer;
-    private static TextureRegion flareTexture;
-    private static ShapeRenderer shapeRenderer = new ShapeRenderer();
+    private FrameBuffer frameBuffer;
+    private TextureRegion flareTexture;
+    private ShapeRenderer shapeRenderer = (ShapeRenderer) Locator.RENDERER_OBJECT.get("shape renderer");
 
     private static float[] animation = new float[FBO_SIZE_X];
 
@@ -45,23 +48,24 @@ public class FboRayRenderer implements IRayRenderer {
     };
 
     private static FrameBuffer initFBO() {
-        if (null != frameBuffer) {
-            frameBuffer.dispose();
-            frameBuffer = null;
+        try {
+            return (FrameBuffer) Locator.RENDERER_OBJECT.get("ray renderer fbo");
+        } catch (NoSuchElementException e) {
+            FrameBuffer fbo = new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_X, FBO_SIZE_Y, false, false);
+
+            fbo.getColorBufferTexture().setFilter(
+                    Texture.TextureFilter.MipMapLinearLinear,
+                    Texture.TextureFilter.MipMapLinearLinear);
+
+            Locator.RENDERER_OBJECT.set("ray renderer fbo", fbo);
+
+            return  fbo;
         }
-
-        frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, FBO_SIZE_X, FBO_SIZE_Y, false, false);
-
-        frameBuffer.getColorBufferTexture().setFilter(
-                Texture.TextureFilter.MipMapLinearLinear,
-                Texture.TextureFilter.MipMapLinearLinear);
-
-        return frameBuffer;
     }
 
     public FboRayRenderer() {
-        if (null == frameBuffer) frameBuffer = initFBO();
-        if (null == flareTexture) flareTexture = Resources.getSprite("game/fx/flare-00");
+        frameBuffer = initFBO();
+        flareTexture = Resources.getSprite("game/fx/flare-00");
     }
 
     private void animate() {
@@ -102,6 +106,7 @@ public class FboRayRenderer implements IRayRenderer {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.getProjectionMatrix().idt().setToOrtho2D(0, 0, FBO_SIZE_X, FBO_SIZE_Y);
+        shapeRenderer.getTransformMatrix().idt();
         shapeRenderer.updateMatrices();
         shapeRenderer.setColor(1f, 1f, 1f, 1f);
         drawLine(5, .4f, .2f);

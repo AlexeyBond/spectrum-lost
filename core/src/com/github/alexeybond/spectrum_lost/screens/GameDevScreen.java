@@ -12,7 +12,7 @@ import com.github.alexeybond.spectrum_lost.model.implementation.GameStateImpl;
 import com.github.alexeybond.spectrum_lost.model.implementation.GridImpl;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
-import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.screens.base.Button;
 import com.github.alexeybond.spectrum_lost.screens.base.ButtonListener;

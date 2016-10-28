@@ -1,41 +1,30 @@
 package com.github.alexeybond.spectrum_lost.resources;
 
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  *
  */
 public class Resources {
-    private static List<TextureAtlas> atlasList = new ArrayList<TextureAtlas>();
-
-    private static AssetManager assetManager = new AssetManager();
-
-    static {
-        Texture.setAssetManager(assetManager);
-    }
+    private static IResourceManager resourceManager;
 
     public static TextureRegion getSprite(final String name) {
-        for (TextureAtlas atlas : atlasList) {
-            TextureRegion region = atlas.findRegion(name);
+        return resourceManager.getSprite(name);
+    }
 
-            if (null != region) return region;
+    public static IResourceManager manager() {
+        return resourceManager;
+    }
+
+    public static void use(IResourceManager manager) {
+        if (null != resourceManager) {
+            resourceManager.shutdown();
         }
 
-        throw new NoSuchElementException("No such sprite: ".concat(name));
-    }
+        if (null != manager) {
+            manager.init();
+        }
 
-    public static void useAtlas(final String atlasName) {
-        atlasList.add(new TextureAtlas(atlasName));
-    }
-
-    public static void awaitAll() {
-        assetManager.finishLoading();
+        resourceManager = manager;
     }
 }

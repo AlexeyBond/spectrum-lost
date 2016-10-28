@@ -6,7 +6,7 @@ import com.github.alexeybond.spectrum_lost.model.implementation.GameStateImpl;
 import com.github.alexeybond.spectrum_lost.model.implementation.GridImpl;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
-import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 
 import java.util.LinkedList;
 import java.util.List;

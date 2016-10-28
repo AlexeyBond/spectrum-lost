@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer;
@@ -13,7 +14,7 @@ import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer
  * Draw rays as a lines.
  */
 public class LineRayRenderer implements IRayRenderer {
-    private ShapeRenderer shapeRenderer = new ShapeRenderer();
+    private ShapeRenderer shapeRenderer = (ShapeRenderer) Locator.RENDERER_OBJECT.get("shape renderer");
 
     @Override
     public void prepareFrame() {

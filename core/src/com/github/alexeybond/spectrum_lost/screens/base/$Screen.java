@@ -1,10 +1,12 @@
 package com.github.alexeybond.spectrum_lost.screens.base;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,7 +138,7 @@ public abstract class $Screen {
         }
     }
 
-    protected static SpriteBatch spriteBatch;
+    protected SpriteBatch spriteBatch;
     private $Screen prev;
     private boolean freezePrev = false;
     private $Screen next;
@@ -145,7 +147,7 @@ public abstract class $Screen {
     protected final InputProcessor inputProcessor;
 
     protected $Screen() {
-        if (spriteBatch == null) spriteBatch = new SpriteBatch();
+        spriteBatch = (SpriteBatch) Locator.RENDERER_OBJECT.get("sprite batch");
 
         inputProcessor = new InputProcessorDecorator(new GestureDetector(new GestureListener()));
     }
@@ -224,7 +226,11 @@ public abstract class $Screen {
     }
 
     protected void onDrag(final float x, final float y, final float dx, final float dy) {}
-    protected void onKeyPress(final int code) {}
+    protected void onKeyPress(final int code) {
+        if (code == Input.Keys.BACK) {
+            goBack();
+        }
+    }
     protected void onCharTyped(final char chr) {}
     protected void onScroll(final int amount) {}
     protected void onZoom(final int x, final int y, final float zoom) {}

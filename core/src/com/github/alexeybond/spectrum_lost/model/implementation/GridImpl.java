@@ -1,5 +1,6 @@
 package com.github.alexeybond.spectrum_lost.model.implementation;
 
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.model.interfaces.*;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 

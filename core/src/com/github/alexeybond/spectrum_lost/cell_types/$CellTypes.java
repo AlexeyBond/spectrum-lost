@@ -1,7 +1,7 @@
 package com.github.alexeybond.spectrum_lost.cell_types;
 
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICellType;
-import com.github.alexeybond.spectrum_lost.model.interfaces.Locator;
+import com.github.alexeybond.spectrum_lost.locator.Locator;
 
 /**
  *
