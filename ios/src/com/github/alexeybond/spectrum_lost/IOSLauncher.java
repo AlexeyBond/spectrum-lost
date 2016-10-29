@@ -10,6 +10,7 @@ import com.github.alexeybond.spectrum_lost.SpectrumLostGdx;
 public class IOSLauncher extends IOSApplication.Delegate {
     @Override
     protected IOSApplication createApplication() {
+        // TODO: Set achievements storage
         IOSApplicationConfiguration config = new IOSApplicationConfiguration();
         return new IOSApplication(new SpectrumLostGdx(), config);
     }

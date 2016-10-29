@@ -7,8 +7,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.github.alexeybond.spectrum_lost.achievements.Achievements;
-import com.github.alexeybond.spectrum_lost.achievements.impl.LocalFilesStorage;
 import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
@@ -46,8 +44,6 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
     @Override
     public void create() {
-        Achievements.use(new LocalFilesStorage(Gdx.files.external("spectrum-lost")));
-
         Resources.use(new DefaultResourceManager());
         Resources.manager().preloadAtlas("sprites/sprites-common.atlas");
 
