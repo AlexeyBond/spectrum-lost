@@ -13,10 +13,10 @@ public class AndroidLauncher extends AndroidApplication {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Achievements.use(new LocalFilesStorage(Gdx.files.local(".")));
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         initialize(new SpectrumLostGdx(), config);
 
         Gdx.input.setCatchBackKey(true);
+        Achievements.use(new LocalFilesStorage(Gdx.files.local(".")));
     }
 }
