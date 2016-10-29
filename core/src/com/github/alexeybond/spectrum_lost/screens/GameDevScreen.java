@@ -31,7 +31,7 @@ public class GameDevScreen extends GameScreen {
 
         Gdx.graphics.setTitle(levelId);
 
-        addButton(-1, -1, new ButtonListener() {
+        addButton(-1, -2, new ButtonListener() {
             @Override
             public String getSprite(Button button) {
                 return "ui/button-save";

@@ -85,6 +85,18 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
             }
         });
 
+        addButton(-1, -1, new ButtonListener() {
+            @Override
+            public String getSprite(Button button) {
+                return "ui/button-reset";
+            }
+
+            @Override
+            public void press(Button button) {
+                initLevel(levelId);
+            }
+        });
+
         initLevel(levelId);
     }
 

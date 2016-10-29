@@ -60,13 +60,10 @@ public class SpectrumLostGdx extends ApplicationAdapter {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop
                 && System.getProperty("sl.devmode") != null) {
             ILevelsSource levelsSource = getDevLevelSource(System.getProperty("sl.devch"));
-            currentScreen = new GameDevScreen(levelsSource, levelsSource.rootLevelName());
+            setCurrentScreen(new GameDevScreen(levelsSource, levelsSource.rootLevelName()));
         } else {
-            currentScreen = new ChapterSelectScreen();
+            setCurrentScreen(new ChapterSelectScreen());
         }
-
-        currentScreen.show(null);
-        currentScreen.unpause();
 
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/music/0xB-00.mp3"));
         music.setLooping(true);
@@ -77,6 +74,10 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
     @Override
     public void render() {
+        while (null != currentScreen.next()) {
+            setCurrentScreen(currentScreen.next());
+        }
+
         if (paused) {
             resume();
         }
@@ -84,18 +85,19 @@ public class SpectrumLostGdx extends ApplicationAdapter {
         currentScreen.draw();
 
 //        Gdx.graphics.setTitle(String.valueOf(Gdx.graphics.getFramesPerSecond()));
+    }
 
-        while (null != currentScreen.next()) {
-            $Screen next = currentScreen.next();
+    private void setCurrentScreen($Screen screen) {
+        if (null != currentScreen) {
             currentScreen.next(null);
-
             currentScreen.pause();
-            currentScreen.leave(next);
-            next.show(currentScreen);
-            next.unpause();
-            next.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-            currentScreen = next;
+            currentScreen.leave(screen);
         }
+
+        screen.show(currentScreen);
+        screen.unpause();
+        screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        currentScreen = screen;
     }
 
     @Override
