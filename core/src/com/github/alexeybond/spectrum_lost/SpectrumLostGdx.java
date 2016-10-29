@@ -46,7 +46,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
     @Override
     public void create() {
-        Achievements.use(new LocalFilesStorage());
+        Achievements.use(new LocalFilesStorage(Gdx.files.external("spectrum-lost")));
 
         Resources.use(new DefaultResourceManager());
         Resources.manager().preloadAtlas("sprites/sprites-common.atlas");

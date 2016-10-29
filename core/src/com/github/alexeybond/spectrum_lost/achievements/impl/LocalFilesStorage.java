@@ -1,6 +1,5 @@
 package com.github.alexeybond.spectrum_lost.achievements.impl;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
@@ -18,12 +17,17 @@ public class LocalFilesStorage implements IAchievementsStorage {
     private FileHandle mainFileHandle;
     private FileHandle backupFileHandle;
 
+    private FileHandle storageDir;
+
+    public LocalFilesStorage(FileHandle storageDir) {
+        this.storageDir = storageDir;
+    }
+
     @Override
     public void init() {
-        FileHandle dir = Gdx.files.external("spectrum-lost");
-        dir.mkdirs();
-        mainFileHandle = dir.child("achievements.json");
-        backupFileHandle = dir.child("achievements.json~");
+        storageDir.mkdirs();
+        mainFileHandle = storageDir.child("achievements.json");
+        backupFileHandle = storageDir.child("achievements.json~");
         json = new Json(JsonWriter.OutputType.minimal);
 
         try {

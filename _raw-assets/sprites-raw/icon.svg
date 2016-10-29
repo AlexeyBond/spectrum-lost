@@ -16,9 +16,9 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="icon.svg"
-   inkscape:export-filename="/home/a_bond/Projects/spectrum-lost-gdx/_raw-assets/sprites-raw/icon.png"
-   inkscape:export-xdpi="240"
-   inkscape:export-ydpi="240">
+   inkscape:export-filename="/home/a_bond/Projects/spectrum-lost-gdx/android/res/drawable-mdpi/ic_launcher.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4043">
     <linearGradient
@@ -88,7 +88,11 @@
        inkscape:label="Glow"
        inkscape:menu="Shadows and Glows"
        inkscape:menu-tooltip="Glow of object's own color at the edges"
-       color-interpolation-filters="sRGB">
+       color-interpolation-filters="sRGB"
+       y="-1.5"
+       x="-1.5"
+       width="3"
+       height="4">
       <feGaussianBlur
          stdDeviation="2 2"
          id="feGaussianBlur5028"
@@ -119,7 +123,11 @@
        inkscape:label="Glow"
        inkscape:menu="Shadows and Glows"
        inkscape:menu-tooltip="Glow of object's own color at the edges"
-       color-interpolation-filters="sRGB">
+       color-interpolation-filters="sRGB"
+       width="4"
+       height="4"
+       x="-1"
+       y="-1.5">
       <feGaussianBlur
          stdDeviation="2 2"
          id="feGaussianBlur5048"
@@ -204,7 +212,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="9.8994949"
-     inkscape:cx="22.615551"
+     inkscape:cx="18.574941"
      inkscape:cy="26.088048"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -245,7 +253,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
