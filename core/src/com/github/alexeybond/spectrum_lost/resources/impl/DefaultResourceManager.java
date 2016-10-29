@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Queue;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.github.alexeybond.spectrum_lost.resources.IResourceManager;
 
 import java.util.*;
@@ -12,10 +13,13 @@ import java.util.*;
  *
  */
 public class DefaultResourceManager implements IResourceManager {
+    private final static long MIN_LOADING_TIME = 500;
+
     private AssetManager assetManager;
 
     // true if there are resources that are not loaded yet
     private boolean isInProgress = false;
+    private long progressStartTime;
 
     private List<TextureAtlas> atlases = new LinkedList<TextureAtlas>();
     private Queue<String> atlasesQueue = new Queue<String>();
@@ -28,9 +32,13 @@ public class DefaultResourceManager implements IResourceManager {
 
     @Override
     public TextureRegion getSprite(String name) {
+        if (cachedRegions.containsKey(name)) {
+            return cachedRegions.get(name);
+        }
+
         TextureRegionReference reference = new TextureRegionReference();
 
-        if (isInProgress || pickRegionFor(reference, name)) {
+        if (pickRegionFor(reference, name) || isInProgress) {
             cachedRegions.put(name, reference);
             return reference;
         }
@@ -42,6 +50,7 @@ public class DefaultResourceManager implements IResourceManager {
     public void preloadAtlas(String path) {
         assetManager.load(path, TextureAtlas.class);
         atlasesQueue.addLast(path);
+        onResourceAdded();
     }
 
     @Override
@@ -62,14 +71,19 @@ public class DefaultResourceManager implements IResourceManager {
 
         if (result) {
             afterDoneLoading();
+        } else if (!isInProgress) {
+            isInProgress = true;
+            progressStartTime = TimeUtils.millis();
         }
 
-        return result;
+        return result && (TimeUtils.millis() - progressStartTime) >= MIN_LOADING_TIME;
     }
 
     @Override
     public float getLoadProgress() {
-        return assetManager.getProgress();
+        float minProgress = ((float) (TimeUtils.millis() - progressStartTime)) / ((float) MIN_LOADING_TIME);
+        float realProgress = assetManager.getProgress();
+        return Math.min(minProgress, realProgress);
     }
 
     @Override
@@ -78,6 +92,7 @@ public class DefaultResourceManager implements IResourceManager {
     }
 
     private void afterDoneLoading() {
+        if (!isInProgress) return;
         isInProgress = false;
 
         while (atlasesQueue.size != 0) {
@@ -89,7 +104,9 @@ public class DefaultResourceManager implements IResourceManager {
             for (Map.Entry<String, TextureRegionReference> entry : cachedRegions.entrySet()) {
                 TextureRegion newReg = atlas.findRegion(entry.getKey());
 
-                entry.getValue().setReference(newReg, atlas);
+                if (newReg != null) {
+                    entry.getValue().setReference(newReg, atlas);
+                }
             }
         }
     }
@@ -106,5 +123,12 @@ public class DefaultResourceManager implements IResourceManager {
         }
 
         return false;
+    }
+
+    private void onResourceAdded() {
+        if (isInProgress) return;
+
+        isInProgress = true;
+        progressStartTime = TimeUtils.millis();
     }
 }

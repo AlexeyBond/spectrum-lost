@@ -4,9 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.github.alexeybond.spectrum_lost.locator.Locator;
+import com.github.alexeybond.spectrum_lost.resources.Resources;
+import com.github.alexeybond.spectrum_lost.screens.LoadingScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,6 +142,7 @@ public abstract class $Screen {
     }
 
     protected SpriteBatch spriteBatch;
+    protected ShapeRenderer shapeRenderer;
     private $Screen prev;
     private boolean freezePrev = false;
     private $Screen next;
@@ -148,6 +152,7 @@ public abstract class $Screen {
 
     protected $Screen() {
         spriteBatch = (SpriteBatch) Locator.RENDERER_OBJECT.get("sprite batch");
+        shapeRenderer = (ShapeRenderer) Locator.RENDERER_OBJECT.get("shape renderer");
 
         inputProcessor = new InputProcessorDecorator(new GestureDetector(new GestureListener()));
     }
@@ -211,6 +216,18 @@ public abstract class $Screen {
         }
 
         Gdx.input.setInputProcessor(inputProcessor);
+    }
+
+    /**
+     * Await for resources to load. If not all resources are ready switches to loading screen and returns {@code true}.
+     */
+    protected boolean awaitResources() {
+        if (!Resources.manager().loadNext()) {
+            next(new LoadingScreen());
+            return true;
+        }
+
+        return false;
     }
 
     public void leave(final $Screen next) {

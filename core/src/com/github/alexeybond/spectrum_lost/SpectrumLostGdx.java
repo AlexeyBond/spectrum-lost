@@ -50,7 +50,6 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
         Resources.use(new DefaultResourceManager());
         Resources.manager().preloadAtlas("sprites/sprites-common.atlas");
-        Resources.manager().loadAll();
 
         $CellTypes.register();
         $Sprite2DViews.register();
@@ -94,6 +93,7 @@ public class SpectrumLostGdx extends ApplicationAdapter {
             currentScreen.leave(next);
             next.show(currentScreen);
             next.unpause();
+            next.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             currentScreen = next;
         }
     }

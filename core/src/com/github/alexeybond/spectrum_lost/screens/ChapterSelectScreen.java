@@ -122,8 +122,6 @@ public class ChapterSelectScreen extends $Screen {
     private final Vector2 focus = new Vector2();
     private float scale = 1.0f;
 
-    private final ShapeRenderer shapeRenderer = (ShapeRenderer) Locator.RENDERER_OBJECT.get("shape renderer");
-
     private static final Vector2 tv = new Vector2();
 
     private ChapterView justClicked = null;
@@ -131,8 +129,9 @@ public class ChapterSelectScreen extends $Screen {
     private TextureRegion closedIcon;
 
     private boolean preExit = false;
+    private boolean initialized = false;
 
-    public ChapterSelectScreen() {
+    private void init() {
         closedIcon = Resources.getSprite("chapter-icons/closed");
 
         ChaptersList list = ChaptersList.readFrom(Gdx.files.internal("levels"));
@@ -174,6 +173,21 @@ public class ChapterSelectScreen extends $Screen {
         } while (true);
 
         recalculateRectangles();
+
+        initialized = true;
+    }
+
+    @Override
+    public void show($Screen prev) {
+        super.show(prev);
+        if (awaitResources()) return;
+        if (!initialized) init();
+    }
+
+    @Override
+    public void unpause() {
+        super.unpause();
+        awaitResources();
     }
 
     private void recalculateRectangles() {

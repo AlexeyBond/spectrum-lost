@@ -167,6 +167,12 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         positioner.reset(grid);
     }
 
+    @Override
+    public void unpause() {
+        super.unpause();
+        awaitResources();
+    }
+
     private void updateGame() {
         timeSinceLastUpdate += Gdx.graphics.getDeltaTime();
         if (timeSinceLastUpdate >= simulationRate) {
