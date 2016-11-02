@@ -1,17 +1,24 @@
 package com.github.alexeybond.spectrum_lost.cell_types;
 
+import com.github.alexeybond.spectrum_lost.achievements.rating.IRatingVariable;
+import com.github.alexeybond.spectrum_lost.achievements.rating.impl.NumberVariable;
+import com.github.alexeybond.spectrum_lost.achievements.rating.impl.StringVariable;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
+
+import java.util.NoSuchElementException;
 
 /**
  *
  */
 public class SwitchCell extends MirrorCell {
-    public static class State {
+    public static class State implements IRatingVariable {
         private final static long framesToTurn = Ray.MAX_BRIGHTNESS / (Ray.FADE_STEP * 2);
 
         public boolean isTurned = false;
+
+        private int timesTurned = 0;
 
         public float fChanged() {
             if (nTurning == -1) return 0;
@@ -28,11 +35,35 @@ public class SwitchCell extends MirrorCell {
 
             if (nTurning >= framesToTurn) {
                 isTurned = turn;
+                ++timesTurned;
                 nTurning = -1;
                 return;
             }
 
             ++nTurning;
+        }
+
+        @Override
+        public IRatingVariable getV(String name) {
+            if ("timesTurned".equals(name)) {
+                return new NumberVariable(timesTurned);
+            }
+
+            if ("isTurned".equals(name)) {
+                return new StringVariable(isTurned?"true":"false");
+            }
+
+            throw new NoSuchElementException(name);
+        }
+
+        @Override
+        public double getN() {
+            throw new NoSuchElementException();
+        }
+
+        @Override
+        public String getS() {
+            throw new NoSuchElementException();
         }
     }
 

@@ -1,0 +1,17 @@
+{
+  "maxPoints": 3,
+  "criteria": [
+    {
+      "var": "taps",
+      "$lt": 6.5
+    },
+    {
+      "var": "grid/2;4/state/timesTurned",
+      "$numEq": 1
+    },
+    {
+      "var": "grid/6;1/state/timesFired",
+      "$lt": 3.5
+    }
+  ]
+}

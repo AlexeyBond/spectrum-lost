@@ -1,9 +1,13 @@
 package com.github.alexeybond.spectrum_lost.cell_types;
 
+import com.github.alexeybond.spectrum_lost.achievements.rating.IRatingVariable;
+import com.github.alexeybond.spectrum_lost.achievements.rating.impl.NumberVariable;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICellType;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
+
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -17,7 +21,26 @@ public class PulsarCell implements ICellType {
     private final boolean selfDischarge;
     private final String id;
 
-    public static class State {
+    public static class State implements IRatingVariable {
+        @Override
+        public IRatingVariable getV(String name) {
+            if ("timesFired".equals(name)) {
+                return new NumberVariable(timesFired);
+            }
+
+            throw new NoSuchElementException(name);
+        }
+
+        @Override
+        public double getN() {
+            throw new NoSuchElementException();
+        }
+
+        @Override
+        public String getS() {
+            throw new NoSuchElementException();
+        }
+
         public static class SubState {
             public boolean emitting = false;
             public int charge = 0;
@@ -29,6 +52,8 @@ public class PulsarCell implements ICellType {
 
         public final SubState direct = new SubState();
         public final SubState reverse = new SubState();
+
+        public int timesFired = 0;
     }
 
     private PulsarCell(boolean keepCharge, boolean selfDischarge, String id) {
@@ -47,7 +72,7 @@ public class PulsarCell implements ICellType {
         cell.setState(null);
     }
 
-    public void update(ICell cell, State.SubState subState, Direction srcDir, Direction dstDir) {
+    public void update(ICell cell, State state, State.SubState subState, Direction srcDir, Direction dstDir) {
         Ray receive = cell.receive(srcDir);
         Ray emit = cell.emission(dstDir);
 
@@ -62,6 +87,10 @@ public class PulsarCell implements ICellType {
         }
 
         if (subState.charge >= CAPASITY) {
+            if (!subState.emitting) {
+                ++state.timesFired;
+            }
+
             subState.emitting = true;
         }
 
@@ -83,8 +112,8 @@ public class PulsarCell implements ICellType {
         Direction r = d.reverse();
         State state = (State) cell.state();
 
-        update(cell, state.direct, r, d);
-        update(cell, state.reverse, d, r);
+        update(cell, state, state.direct, r, d);
+        update(cell, state, state.reverse, d, r);
     }
 
     @Override

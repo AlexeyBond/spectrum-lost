@@ -1,0 +1,13 @@
+{
+  "maxPoints": 2,
+  "criteria": [
+    {
+      "var": "taps",
+      "$lt": 11.5
+    },
+    {
+      "var": "taps",
+      "$lt": 12.5
+    }
+  ]
+}

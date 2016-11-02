@@ -1,0 +1,29 @@
+{
+  "maxPoints": 2,
+  "criteria": [
+    {
+      "var": "taps",
+      "$lt": 8.5
+    },
+    {
+      "$or": [
+        {
+          "var": "taps",
+          "$lt": 8.5
+        },
+        {
+          "$and": [
+            {
+              "var": "taps",
+              "$lt": 14.5
+            },
+            {
+              "var": "grid/3;2/direction",
+              "$strEq": "LF"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
