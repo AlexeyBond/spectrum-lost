@@ -1,5 +1,8 @@
 package com.github.alexeybond.spectrum_lost.levels.json;
 
+import com.github.alexeybond.spectrum_lost.achievements.AchievementStatus;
+import com.github.alexeybond.spectrum_lost.achievements.rating.IRatingVariable;
+import com.github.alexeybond.spectrum_lost.achievements.rating.RatingSettings;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc;
 import com.github.alexeybond.spectrum_lost.model.implementation.GameStateImpl;
@@ -46,6 +49,27 @@ public class JsonSource implements ILevelsSource {
         grid.attributes().putAll(desc.attrs);
 
         return grid;
+    }
+
+    @Override
+    public void rateLevelResult(String levelName, IRatingVariable rootVar, AchievementStatus achievementStatus) {
+        GridDesc desc = levels.levels.get(levelName);
+
+        if (desc == null) {
+            throw new NoSuchElementException("No such level: ".concat(levelName));
+        }
+
+        RatingSettings ratingSettings = desc.ratingSettings;
+        int maxPoints = ratingSettings.maxPoints + 1;
+        int nPoints = 1;
+
+        for (int i = 0; nPoints < maxPoints && i < ratingSettings.criteria.length; i++) {
+            if (ratingSettings.criteria[i].meet(rootVar)) {
+                ++nPoints;
+            }
+        }
+
+        achievementStatus.set(nPoints, maxPoints);
     }
 
     @Override

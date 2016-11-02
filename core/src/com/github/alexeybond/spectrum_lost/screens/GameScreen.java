@@ -5,6 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.github.alexeybond.spectrum_lost.achievements.AchievementStatus;
 import com.github.alexeybond.spectrum_lost.achievements.Achievements;
+import com.github.alexeybond.spectrum_lost.achievements.rating.impl.GridVariable;
+import com.github.alexeybond.spectrum_lost.achievements.rating.impl.MapVariable;
+import com.github.alexeybond.spectrum_lost.achievements.rating.impl.NumberVariable;
 import com.github.alexeybond.spectrum_lost.cell_types.RecursiveCell;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
@@ -18,6 +21,8 @@ import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.base.Button;
 import com.github.alexeybond.spectrum_lost.screens.base.ButtonListener;
 
+import java.util.Locale;
+
 /**
  *
  */
@@ -27,6 +32,8 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
     protected GridPositioner2D positioner;
     protected ILevelsSource levelsSource;
     protected AchievementStatus achievementStatus;
+    protected String currentLevel;
+    private int nTaps;
     private float timeSinceLastUpdate = 0;
 
     private final static float simulationRate = 1.f/32.f;
@@ -102,6 +109,9 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
     protected void initLevel(final String id) {
         goToGrid(levelsSource.initLevel(id));
+        currentLevel = id;
+
+        nTaps = 0;
     }
 
     protected void goToGrid(IGrid grid) {
@@ -117,8 +127,23 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
     }
 
     private void recordAchievement() {
-        // TODO: Calculate actual points (?)
-        achievementStatus.set(achievementStatus.getMaximumPoints(), achievementStatus.getMaximumPoints());
+        AchievementStatus tmpAchievementStatus = new AchievementStatus();
+
+        MapVariable rootVar = new MapVariable();
+        rootVar.add("grid", new GridVariable(grid));
+        rootVar.add("taps", new NumberVariable(nTaps));
+
+        levelsSource.rateLevelResult(currentLevel, rootVar, tmpAchievementStatus);
+
+        Gdx.graphics.setTitle(String.format(Locale.US, "Done: %d/%d",
+                tmpAchievementStatus.getAchievedPoints(),
+                tmpAchievementStatus.getMaximumPoints()));
+
+        if (tmpAchievementStatus.getAchievedPoints() > achievementStatus.getAchievedPoints()
+                || tmpAchievementStatus.getMaximumPoints() != achievementStatus.getMaximumPoints()) {
+            achievementStatus.set(tmpAchievementStatus.getAchievedPoints(),
+                    tmpAchievementStatus.getMaximumPoints());
+        }
 
         if (finalAchievementName != null) {
             AchievementStatus achievementStatus = Achievements.get(finalAchievementName);
@@ -151,6 +176,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
             }
         } else if (cell.getAttribute("noTurn") == null) {
             cell.setDirection(cell.direction().next());
+            ++nTaps;
         }
     }
 

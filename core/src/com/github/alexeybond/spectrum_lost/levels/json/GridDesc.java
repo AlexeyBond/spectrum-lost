@@ -1,5 +1,6 @@
 package com.github.alexeybond.spectrum_lost.levels.json;
 
+import com.github.alexeybond.spectrum_lost.achievements.rating.RatingSettings;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
 
@@ -14,6 +15,8 @@ public class GridDesc {
     public int width, height;
 
     public HashMap<String, Object> attrs = new HashMap<String, Object>();
+    
+    public RatingSettings ratingSettings = null;
 
     public static GridDesc dump(final IGrid grid) {
         GridDesc gd = new GridDesc();

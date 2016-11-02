@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
+import com.github.alexeybond.spectrum_lost.achievements.rating.RatingSettings;
 import com.github.alexeybond.spectrum_lost.levels.json.ChapterDesc;
 import com.github.alexeybond.spectrum_lost.levels.json.GridDesc;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc;
@@ -59,7 +60,17 @@ public class MyPacker {
 
             for (String ln : cd.levelNames) {
                 FileHandle fh = f.parent().child(ln.concat(".json"));
-                levels.levels.put(ln, json.fromJson(GridDesc.class, fh));
+                GridDesc levelDesc = json.fromJson(GridDesc.class, fh);
+
+                FileHandle fhR = f.parent().child(ln.concat("-rating.json"));
+
+                if (fhR.exists()) {
+                    levelDesc.ratingSettings = json.fromJson(RatingSettings.class, fhR);
+                } else if (null == levelDesc.ratingSettings) {
+                    levelDesc.ratingSettings = new RatingSettings();
+                }
+
+                levels.levels.put(ln, levelDesc);
             }
 
             levels.rootLevelName = cd.rootLevel;
