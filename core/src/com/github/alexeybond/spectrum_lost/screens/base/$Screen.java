@@ -218,6 +218,10 @@ public abstract class $Screen {
         Gdx.input.setInputProcessor(inputProcessor);
     }
 
+    protected $Screen prev() {
+        return prev;
+    }
+
     /**
      * Await for resources to load. If not all resources are ready switches to loading screen and returns {@code true}.
      */

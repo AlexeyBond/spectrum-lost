@@ -94,6 +94,20 @@ ui/button-save
   orig: 128, 128
   offset: 0, 0
   index: -1
+ui/rating-fail
+  rotate: false
+  xy: 522, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/rating-success
+  rotate: false
+  xy: 652, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
 
 sprites-common3.png
 size: 1024,1024

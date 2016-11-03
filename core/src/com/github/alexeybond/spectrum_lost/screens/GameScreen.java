@@ -72,9 +72,8 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
             @Override
             public void press(Button button) {
-                recordAchievement();
-                // TODO: Go to achievement screen (?)
-                goBack();
+                AchievementStatus status = recordAchievement();
+                next(new ResultScreen(status, prev(), GameScreen.this));
             }
         });
 
@@ -100,7 +99,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
             @Override
             public void press(Button button) {
-                initLevel(levelId);
+                resetGame();
             }
         });
 
@@ -126,7 +125,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         renderer = new Renderer(grid, rayRenderer);
     }
 
-    private void recordAchievement() {
+    private AchievementStatus recordAchievement() {
         AchievementStatus tmpAchievementStatus = new AchievementStatus();
 
         MapVariable rootVar = new MapVariable();
@@ -134,10 +133,6 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         rootVar.add("taps", new NumberVariable(nTaps));
 
         levelsSource.rateLevelResult(currentLevel, rootVar, tmpAchievementStatus);
-
-        Gdx.graphics.setTitle(String.format(Locale.US, "Done: %d/%d",
-                tmpAchievementStatus.getAchievedPoints(),
-                tmpAchievementStatus.getMaximumPoints()));
 
         if (tmpAchievementStatus.getAchievedPoints() > achievementStatus.getAchievedPoints()
                 || tmpAchievementStatus.getMaximumPoints() != achievementStatus.getMaximumPoints()) {
@@ -151,6 +146,8 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         }
 
         Achievements.save();
+
+        return tmpAchievementStatus;
     }
 
     @Override
@@ -184,8 +181,12 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         next(newLevelScreen(levelId));
     }
 
-    protected com.github.alexeybond.spectrum_lost.screens.base.$Screen newLevelScreen(final String levelId) {
+    protected $Screen newLevelScreen(final String levelId) {
         return new GameScreen(levelsSource, levelId);
+    }
+
+    public void resetGame() {
+        initLevel(currentLevel);
     }
 
     @Override
