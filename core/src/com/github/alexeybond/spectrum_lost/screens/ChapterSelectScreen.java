@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.github.alexeybond.spectrum_lost.achievements.AchievementStatus;
 import com.github.alexeybond.spectrum_lost.achievements.Achievements;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
@@ -16,7 +17,6 @@ import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChaptersList;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDesc;
-import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 
@@ -24,6 +24,8 @@ import java.util.*;
 
 class ChapterView {
     List<ChapterView> after;
+
+    static float a1, a2;
 
     final CompactChapterDesc desc;
     private TextureRegion closedIcon;
@@ -66,28 +68,30 @@ class ChapterView {
         return achievementStatus.isStarted();
     }
 
-    void draw(SpriteBatch batch, boolean justClicked) {
-        float c = justClicked ? 1.f : .7f;
+    void draw(SpriteBatch batch, ChapterView justClicked) {
+        float c = justClicked == this ? (.75f + a1 * .25f) : .7f;
 
         batch.setColor(c,c,c, 1);
         batch.draw(isOpen() ? icon : closedIcon,
                 rect.x, rect.y, rect.width, rect.height);
 
+        batch.setColor(Color.WHITE);
+
         if (isDone()) {
             batch.draw(doneIcon, rect.x, rect.y, rect.width, rect.height);
         }
-
-        batch.setColor(Color.WHITE);
     }
 
-    void drawConnections(ShapeRenderer renderer, boolean justClicked) {
+    void drawConnections(ShapeRenderer renderer, ChapterView justClicked) {
         getLeftConnectionPoint(tv1);
 
         for (ChapterView view : after) {
             view.getRightConnectionPoint(tv2);
 
-            if (justClicked) {
-                renderer.setColor(1.f, 1.f, 1.f, 1.f);
+            if (justClicked == this ||
+                    (view == justClicked && !view.isDone())) {
+                float c = .75f + .25f * a1;
+                renderer.setColor(c, c, c, c);
             } else {
                 renderer.setColor(.73f, .73f, .73f, 1.f);
             }
@@ -222,6 +226,7 @@ public class ChapterSelectScreen extends $Screen {
                 if (!focusSet && view.isOpen()) {
                     view.rect.getCenter(focus);
                     focusSet = !view.isDone();
+                    justClicked = view;
                 }
             }
         }
@@ -313,6 +318,11 @@ public class ChapterSelectScreen extends $Screen {
 
     @Override
     public void draw() {
+        ChapterView.a1 = (float) Math.sin(20000f * Math.PI *
+                ((float) (TimeUtils.millis() & 0xFFFFFF)) / (float) 0x1000000);
+        ChapterView.a2 = (float) Math.cos(20000f * Math.PI *
+                ((float) (TimeUtils.millis() & 0xFFFFFF)) / (float) 0x1000000);
+
         Gdx.gl.glClearColor(0,0,0,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -327,7 +337,7 @@ public class ChapterSelectScreen extends $Screen {
         shapeRenderer.setTransformMatrix(spriteBatch.getTransformMatrix());
 
         for (ChapterView view : chapterViewList.values()) {
-            view.drawConnections(shapeRenderer, justClicked == view);
+            view.drawConnections(shapeRenderer, justClicked);
         }
 
         shapeRenderer.end();
@@ -335,7 +345,7 @@ public class ChapterSelectScreen extends $Screen {
         spriteBatch.begin();
 
         for (ChapterView view : chapterViewList.values()) {
-            view.draw(spriteBatch, justClicked == view);
+            view.draw(spriteBatch, justClicked);
         }
 
         spriteBatch.end();

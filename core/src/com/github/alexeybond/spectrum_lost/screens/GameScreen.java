@@ -73,7 +73,12 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
             @Override
             public void press(Button button) {
                 AchievementStatus status = recordAchievement();
-                next(new ResultScreen(status, prev(), GameScreen.this));
+
+                if (status.getMaximumPoints() != 1) {
+                    next(new ResultScreen(status, prev(), GameScreen.this));
+                } else {
+                    goBack();
+                }
             }
         });
 
