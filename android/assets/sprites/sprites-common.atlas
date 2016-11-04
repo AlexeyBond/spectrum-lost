@@ -386,3 +386,37 @@ game/cells/expector/symbol-wait
   orig: 128, 128
   offset: 0, 0
   index: -1
+
+sprites-common5.png
+size: 1024,128
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+background/abg-00-00
+  rotate: false
+  xy: 0, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+background/abg-00-01
+  rotate: false
+  xy: 130, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+background/abg-00-02
+  rotate: false
+  xy: 260, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+background/abg-00-03
+  rotate: false
+  xy: 390, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

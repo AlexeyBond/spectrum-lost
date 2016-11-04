@@ -18,6 +18,7 @@ import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChaptersList;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDesc;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
+import com.github.alexeybond.spectrum_lost.screens.background.AnimatedBackground;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 
 import java.util.*;
@@ -69,7 +70,7 @@ class ChapterView {
     }
 
     void draw(SpriteBatch batch, ChapterView justClicked) {
-        float c = justClicked == this ? (.75f + a1 * .25f) : .7f;
+        float c = justClicked == this ? Math.min(1f, 1f - a1 * .4f) : .7f;
 
         batch.setColor(c,c,c, 1);
         batch.draw(isOpen() ? icon : closedIcon,
@@ -90,7 +91,7 @@ class ChapterView {
 
             if (justClicked == this ||
                     (view == justClicked && !view.isDone())) {
-                float c = .75f + .25f * a1;
+                float c = Math.min(1f, 1f - a1 * .4f);
                 renderer.setColor(c, c, c, c);
             } else {
                 renderer.setColor(.73f, .73f, .73f, 1.f);
@@ -134,6 +135,25 @@ public class ChapterSelectScreen extends $Screen {
 
     private boolean preExit = false;
     private boolean initialized = false;
+
+    private final AnimatedBackground[] backs;
+
+    public ChapterSelectScreen() {
+        backs = new AnimatedBackground[] {
+                new AnimatedBackground("background/abg-00", 4, 512),
+                new AnimatedBackground("background/abg-00", 4, 256),
+                new AnimatedBackground("background/abg-00", 4, 128)
+        };
+
+        backs[0].opacity = .075f;
+        backs[0].kVelocity = .5f;
+
+        backs[1].opacity = .15f;
+        backs[1].kVelocity = 1f;
+
+        backs[2].opacity = .3f;
+        backs[2].kVelocity = 2f;
+    }
 
     private void init() {
         closedIcon = Resources.getSprite("chapter-icons/closed");
@@ -271,23 +291,23 @@ public class ChapterSelectScreen extends $Screen {
                 view.rect.setY(view.rect.getY() + shiftY);
             }
         }
+
+        for (AnimatedBackground ab : backs) {
+            ab.applyImpulse(-dx, -dy);
+        }
     }
 
     @Override
     protected void onScroll(int amount) {
         preExit = false;
         if (amount == 0) return;
-        scale *= (amount < 0)?1.1f:.9f;
-        scale = Math.max(scale, 0.5f);
-        scale = Math.min(scale, 1.0f);
+        scale(scale * ((amount < 0)?1.1f:.9f));
     }
 
     @Override
     protected void onZoom(int x, int y, float zoom) {
         preExit = false;
-        scale *= zoom;
-        scale = Math.max(scale, 0.5f);
-        scale = Math.min(scale, 1.0f);
+        scale(scale * zoom);
     }
 
     @Override
@@ -316,15 +336,36 @@ public class ChapterSelectScreen extends $Screen {
         }
     }
 
+    private void scale(float scale) {
+        scale = Math.max(scale, 0.5f);
+        scale = Math.min(scale, 1.0f);
+
+        this.scale = scale;
+
+        for (AnimatedBackground ab : backs) {
+            ab.scale(scale);
+        }
+    }
+
     @Override
     public void draw() {
-        ChapterView.a1 = (float) Math.sin(20000f * Math.PI *
-                ((float) (TimeUtils.millis() & 0xFFFFFF)) / (float) 0x1000000);
+        ChapterView.a1 = Math.abs((float) Math.sin(20000f * Math.PI *
+                ((float) (TimeUtils.millis() & 0xFFFFFF)) / (float) 0x1000000));
         ChapterView.a2 = (float) Math.cos(20000f * Math.PI *
                 ((float) (TimeUtils.millis() & 0xFFFFFF)) / (float) 0x1000000);
 
         Gdx.gl.glClearColor(0,0,0,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        spriteBatch.getTransformMatrix().idt();
+        // begin() updates matrices
+        spriteBatch.begin();
+
+        for (AnimatedBackground ab : backs) {
+            ab.draw();
+        }
+
+        spriteBatch.end();
 
         spriteBatch.setTransformMatrix(spriteBatch.getTransformMatrix()
                 .idt()
