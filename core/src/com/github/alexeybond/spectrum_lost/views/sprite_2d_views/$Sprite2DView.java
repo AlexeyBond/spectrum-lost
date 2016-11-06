@@ -1,8 +1,9 @@
 package com.github.alexeybond.spectrum_lost.views.sprite_2d_views;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
@@ -17,6 +18,26 @@ import java.util.Map;
  *
  */
 public abstract class $Sprite2DView implements CellView2D {
+    private final static float[] spriteVertices;
+
+    private static final float _2_SQRT2 = (float)(2. / Math.sqrt(2.));
+
+    static {
+        float white = Color.WHITE.toFloatBits();
+
+        spriteVertices = new float[] {
+                // x, y, color, u, v
+                //  0, 1, 2, 3, 4
+                0, 0, white, 0, 0,
+                //  5, 6, 7, 8, 9
+                0, 0, white, 1, 0,
+                //  10,11,12,13,14
+                0, 0, white, 1, 1,
+                //  15,16,17,18,19
+                0, 0, white, 0, 1,
+        };
+    }
+
     protected TextureRegion bgTexture = null;
     protected TextureRegion fgTexture = null;
 
@@ -42,26 +63,61 @@ public abstract class $Sprite2DView implements CellView2D {
         return Resources.getSprite(name);
     }
 
+    @SuppressWarnings("PointlessArithmeticExpression")
     protected void drawSprite(
             final SpriteBatch batch,
             final Vector2 pos,
             final float size,
             final TextureRegion tx,
-            final float rotation) {
+            float rotation) {
         float hSize = size * .5f;
 
         if (rotation != 0.f) {
-            transformMatrix
-                    .translate(pos.x + hSize, pos.y + hSize, 0)
-                    .rotate(.0f, .0f, 1.f, rotation)
-                    .translate(-hSize, -hSize, 0);
+//            transformMatrix
+//                    .translate(pos.x + hSize, pos.y + hSize, 0)
+//                    .rotate(.0f, .0f, 1.f, rotation)
+//                    .translate(-hSize, -hSize, 0);
+//
+//            batch.setTransformMatrix(transformMatrix);
+//            batch.draw(tx, 0, 0, size, size);
+//
+//            // Keep matrix identity
+//            transformMatrix.idt();
+//            batch.setTransformMatrix(transformMatrix);
 
-            batch.setTransformMatrix(transformMatrix);
-            batch.draw(tx, 0, 0, size, size);
+            // Manual calculation of vertex coordinates causes cpu load change from ~40% to ~23% as sprite batch is not
+            // flushed after every sprite.
+            rotation += 45f;
+            rotation = MathUtils.degreesToRadians * rotation;
+            // Tried to use MathUtils#(sin|cos)Deg but loss of accuracy causes artifacts @90,180,270 degrees
+            float c = _2_SQRT2 * hSize * (float) Math.cos(-rotation);
+            float s = _2_SQRT2 * hSize * (float) Math.sin(-rotation);
 
-            // Keep matrix identity
-            transformMatrix.idt();
-            batch.setTransformMatrix(transformMatrix);
+            spriteVertices[0*5+3] = tx.getU();
+            spriteVertices[0*5+4] = tx.getV();
+
+            spriteVertices[1*5+3] = tx.getU2();
+            spriteVertices[1*5+4] = tx.getV();
+
+            spriteVertices[2*5+3] = tx.getU2();
+            spriteVertices[2*5+4] = tx.getV2();
+
+            spriteVertices[3*5+3] = tx.getU();
+            spriteVertices[3*5+4] = tx.getV2();
+
+            spriteVertices[0*5+0] = pos.x + s + hSize;
+            spriteVertices[0*5+1] = pos.y + c + hSize;
+
+            spriteVertices[1*5+0] = pos.x + c + hSize;
+            spriteVertices[1*5+1] = pos.y - s + hSize;
+
+            spriteVertices[2*5+0] = pos.x - s + hSize;
+            spriteVertices[2*5+1] = pos.y - c + hSize;
+
+            spriteVertices[3*5+0] = pos.x - c + hSize;
+            spriteVertices[3*5+1] = pos.y + s + hSize;
+
+            batch.draw(tx.getTexture(), spriteVertices, 0, spriteVertices.length);
         } else {
             batch.draw(tx, pos.x, pos.y, size, size);
         }

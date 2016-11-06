@@ -111,6 +111,7 @@ public class Renderer {
     }
 
     public void render(final SpriteBatch batch, final Vector2 pos0, final float cellSize) {
+        batch.setTransformMatrix(batch.getTransformMatrix().idt());
         renderCommonBackground(batch, pos0, cellSize);
         renderCellsLayer(batch, pos0, cellSize, 0);
         renderRays(batch, pos0, cellSize);
