@@ -21,9 +21,15 @@ public class Renderer {
     private static Vector2 tv0 = new Vector2();
     private static Ray tr0 = new Ray();
 
+    private static float[] flarePositions;
+
     public Renderer(final IGrid grid, final IRayRenderer rayRenderer) {
         this.grid = grid;
         this.rayRenderer = rayRenderer;
+
+        if (flarePositions == null || flarePositions.length < grid.width() * grid.height() * 2) {
+            flarePositions = new float[grid.width() * grid.height() * 2];
+        }
 
         commonBgTextures = new TextureRegion[] {
                 Resources.getSprite("game/cells/background/stones-00-00"),
@@ -67,6 +73,8 @@ public class Renderer {
     }
 
     private void renderRays(final SpriteBatch batch, final Vector2 pos0, final float cellSize) {
+        int fi = 0;
+
         rayRenderer.beginRays(batch);
 
         for (ICell cell: grid.getCells()) {
@@ -88,11 +96,18 @@ public class Renderer {
             }
 
             if (view.enableFlare() && !tr0.isDark()) {
-                rayRenderer.drawFlare(batch, tv0, cellSize, tr0);
+//                rayRenderer.drawFlare(batch, tv0, cellSize, tr0);
+                flarePositions[fi++] = tv0.x;
+                flarePositions[fi++] = tv0.y;
             }
         }
 
         rayRenderer.endRays(batch);
+
+        for (int i = 0; i < fi; i += 2) {
+            tv0.set(flarePositions[i], flarePositions[i+1]);
+            rayRenderer.drawFlare(batch, tv0, cellSize, null);
+        }
     }
 
     public void render(final SpriteBatch batch, final Vector2 pos0, final float cellSize) {
