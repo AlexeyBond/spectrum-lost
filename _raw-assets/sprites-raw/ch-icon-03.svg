@@ -28,7 +28,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="368.93363"
+     inkscape:cx="562.50506"
      inkscape:cy="272.33356"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -84,7 +84,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -94,7 +94,7 @@
      id="layer1"
      transform="translate(0,-632.36222)">
     <rect
-       style="fill:#8e8e8e;fill-opacity:0.20648968;fill-rule:nonzero;stroke:#bcbcbc;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#151515;fill-opacity:0.94901961;fill-rule:nonzero;stroke:#bcbcbc;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect2987"
        width="620"
        height="400"
@@ -126,7 +126,7 @@
        sodipodi:cy="210"
        sodipodi:rx="40"
        sodipodi:ry="40"
-       d="m 480,210 a 40,40 0 1 1 -80,0 40,40 0 1 1 80,0 z"
+       d="m 480,210 c 0,22.09139 -17.90861,40 -40,40 -22.09139,0 -40,-17.90861 -40,-40 0,-22.09139 17.90861,-40 40,-40 22.09139,0 40,17.90861 40,40 z"
        transform="translate(0,632.36222)" />
     <path
        sodipodi:type="arc"
@@ -136,7 +136,7 @@
        sodipodi:cy="110"
        sodipodi:rx="40"
        sodipodi:ry="40"
-       d="m 480,110 a 40,40 0 1 1 -80,0 40,40 0 1 1 80,0 z"
+       d="m 480,110 c 0,22.09139 -17.90861,40 -40,40 -22.09139,0 -40,-17.90861 -40,-40 0,-22.09139 17.90861,-40 40,-40 22.09139,0 40,17.90861 40,40 z"
        transform="translate(0,612.36222)" />
     <path
        sodipodi:type="arc"
@@ -146,7 +146,7 @@
        sodipodi:cy="310"
        sodipodi:rx="40"
        sodipodi:ry="40"
-       d="m 480,310 a 40,40 0 1 1 -80,0 40,40 0 1 1 80,0 z"
+       d="m 480,310 c 0,22.09139 -17.90861,40 -40,40 -22.09139,0 -40,-17.90861 -40,-40 0,-22.09139 17.90861,-40 40,-40 22.09139,0 40,17.90861 40,40 z"
        transform="translate(0,652.36222)" />
     <path
        style="fill:none;stroke:#bfbfbf;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"

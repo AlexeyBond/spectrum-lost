@@ -8,6 +8,6 @@
     "c5/l5"
   ],
   "rootLevel": "c5/l$",
-  "afterChapters": ["chapter1", "chapter2"],
+  "afterChapters": ["chapter2"],
   "attrs": {}
 }

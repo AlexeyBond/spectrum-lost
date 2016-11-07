@@ -70,7 +70,7 @@ class ChapterView {
     }
 
     void draw(SpriteBatch batch, ChapterView justClicked) {
-        float c = justClicked == this ? Math.min(1f, 1f - a1 * .4f) : .7f;
+        float c = justClicked == this ? Math.min(1f, 1f - a1 * .6f) : .7f;
 
         batch.setColor(c,c,c, 1);
         batch.draw(isOpen() ? icon : closedIcon,
@@ -120,8 +120,8 @@ public class ChapterSelectScreen extends $Screen {
     private Map<String, ChapterView> chapterViewList = new HashMap<String, ChapterView>();
     private List<List<ChapterView>> layers = new ArrayList<List<ChapterView>>();
 
-    private int iconMarginX = 10;
-    private int iconMarginY = 10;
+    private int iconMarginX = 40;
+    private int iconMarginY = 20;
 
     private final Rectangle focusBounds = new Rectangle();
     private final Vector2 focus = new Vector2();
