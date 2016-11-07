@@ -39,7 +39,9 @@ public class AnimatedBackground {
         sprites = new TextureRegion[nSprites];
 
         for (int i = 0; i < nSprites; i++) {
-            sprites[i] = Resources.getSprite(namePrefix.concat(String.format(Locale.US, "-%02d", i)));
+            // Why the fuck this does not work in GWT???
+//            sprites[i] = Resources.getSprite(namePrefix.concat(String.format("-%02d", i)));
+            sprites[i] = Resources.getSprite(namePrefix.concat("-0").concat(String.valueOf(i)));
         }
 
         spriteBatch = (SpriteBatch) Locator.RENDERER_OBJECT.get("sprite batch");
