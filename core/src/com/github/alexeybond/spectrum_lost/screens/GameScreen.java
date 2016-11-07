@@ -44,6 +44,8 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
     private String finalAchievementName;
 
+    private boolean reallyVisible = false;
+
     public GameScreen(final ILevelsSource levelsSource, final String levelId) {
         this(levelsSource, levelId, null);
     }
@@ -212,9 +214,16 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
     }
 
     @Override
+    public void pause() {
+        super.pause();
+        reallyVisible = false;
+    }
+
+    @Override
     public void unpause() {
         super.unpause();
         awaitResources();
+        reallyVisible = true;
     }
 
     private void updateGame() {
@@ -237,7 +246,9 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         spriteBatch.begin();
         renderer.render(spriteBatch, positioner.position(), positioner.size());
 
-        drawButtons();
+        if (reallyVisible) {
+            drawButtons();
+        }
 
         spriteBatch.end();
     }

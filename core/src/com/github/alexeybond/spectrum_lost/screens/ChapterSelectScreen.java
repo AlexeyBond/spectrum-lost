@@ -153,11 +153,12 @@ public class ChapterSelectScreen extends $Screen {
 
         backs[2].opacity = .3f;
         backs[2].kVelocity = 2f;
+
+        // Here, not in #init() to avoid NPE when input event occurs before initialization is completed
+        closedIcon = Resources.getSprite("chapter-icons/closed");
     }
 
     private void init() {
-        closedIcon = Resources.getSprite("chapter-icons/closed");
-
         ChaptersList list = ChaptersList.readFrom(Gdx.files.internal("levels"));
 
         for (CompactChapterDesc ccd : list.chapters) {
