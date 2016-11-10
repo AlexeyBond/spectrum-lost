@@ -20,6 +20,8 @@ import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDes
 import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.screens.background.AnimatedBackground;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
+import com.github.alexeybond.spectrum_lost.screens.base.Button;
+import com.github.alexeybond.spectrum_lost.screens.base.ButtonListener;
 
 import java.util.*;
 
@@ -156,6 +158,40 @@ public class ChapterSelectScreen extends $Screen {
 
         // Here, not in #init() to avoid NPE when input event occurs before initialization is completed
         closedIcon = Resources.getSprite("chapter-icons/closed");
+
+        final Button[] menuButtons = new Button[] {
+                addButton(1, -1, new ButtonListener() {
+                    @Override
+                    public String getSprite(Button button) {
+                        return "ui/button-sound-off";
+                    }
+
+                    @Override
+                    public void press(Button button) {
+
+                    }
+                })
+        };
+
+        for (Button b : menuButtons) b.show(false);
+
+        addButton(0, -1, new ButtonListener() {
+            private boolean showMenu = false;
+
+            @Override
+            public String getSprite(Button button) {
+                return showMenu
+                        ?"ui/button-burger-pressed"
+                        :"ui/button-burger";
+            }
+
+            @Override
+            public void press(Button button) {
+                showMenu = !showMenu;
+
+                for (Button b : menuButtons) b.show(showMenu);
+            }
+        });
     }
 
     private void init() {
@@ -319,22 +355,22 @@ public class ChapterSelectScreen extends $Screen {
 
         List<ChapterView> layer = getLayerAtX(tv.x);
 
-        if (layer == null) {
-            super.onClick(x,y);
-            return;
-        }
+        if (layer != null) {
+            for (ChapterView chapterView : layer) {
+                if (chapterView.rect.contains(tv)) {
+                    justClicked = chapterView;
 
-        for (ChapterView chapterView : layer) {
-            if (chapterView.rect.contains(tv)) {
-                justClicked = chapterView;
-
-                if (chapterView.isOpen()) {
-                    ChapterLevelsDesc levelsDesc = chapterView.desc.readLevels(Gdx.files.internal("levels"));
-                    ILevelsSource source = new JsonSource(levelsDesc, chapterView.desc.attrs);
-                    next(new GameScreen(source, source.rootLevelName(), "chapter:".concat(chapterView.desc.id)));
+                    if (chapterView.isOpen()) {
+                        ChapterLevelsDesc levelsDesc = chapterView.desc.readLevels(Gdx.files.internal("levels"));
+                        ILevelsSource source = new JsonSource(levelsDesc, chapterView.desc.attrs);
+                        next(new GameScreen(source, source.rootLevelName(), "chapter:".concat(chapterView.desc.id)));
+                        return;
+                    }
                 }
             }
         }
+
+        super.onClick(x, y);
     }
 
     private void scale(float scale) {
@@ -389,6 +425,11 @@ public class ChapterSelectScreen extends $Screen {
         for (ChapterView view : chapterViewList.values()) {
             view.draw(spriteBatch, justClicked);
         }
+
+        spriteBatch.setTransformMatrix(
+                spriteBatch.getTransformMatrix().idt());
+
+        drawButtons();
 
         spriteBatch.end();
     }

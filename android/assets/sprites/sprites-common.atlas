@@ -62,48 +62,76 @@ chapter-icons/open
   index: -1
 
 sprites-common2.png
-size: 1024,256
+size: 1024,512
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
 ui/button-back
   rotate: false
-  xy: 2, 2
+  xy: 2, 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-burger
+  rotate: false
+  xy: 2, 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-burger-pressed
+  rotate: false
+  xy: 132, 262
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 ui/button-next
   rotate: false
-  xy: 132, 2
+  xy: 2, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 ui/button-reset
   rotate: false
-  xy: 262, 2
+  xy: 132, 132
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 ui/button-save
   rotate: false
-  xy: 392, 2
+  xy: 262, 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-sound-off
+  rotate: false
+  xy: 132, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-sound-on
+  rotate: false
+  xy: 262, 132
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 ui/rating-fail
   rotate: false
-  xy: 522, 2
+  xy: 392, 262
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 ui/rating-success
   rotate: false
-  xy: 652, 2
+  xy: 262, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

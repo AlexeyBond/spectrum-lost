@@ -6,16 +6,8 @@
       "$lt": 16.5
     },
     {
-      "$and": [
-        {
-          "var": "grid/1;3/state/timesTurned",
-          "$numEq": 1
-        },
-        {
-          "var": "grid/3;4/state/timesTurned",
-          "$numEq": 2
-        }
-      ]
+      "var": "grid/1;3/state/timesTurned",
+      "$numEq": 1
     }
   ]
 }

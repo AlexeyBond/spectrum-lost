@@ -1,5 +1,5 @@
 {
-  "maxPoints": 2,
+  "maxPoints": 3,
   "criteria": [
     {
       "var": "taps",
@@ -7,6 +7,12 @@
     }, {
       "var": "taps",
       "$lt": 9.5
+    }, {
+      "var": "grid/9;1/state/completed",
+      "$strEq": "true"
+    }, {
+      "var": "grid/9;1/state/highlighted",
+      "$strEq": "true"
     }
   ]
 }

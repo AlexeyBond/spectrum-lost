@@ -2,18 +2,23 @@ package com.github.alexeybond.spectrum_lost.cell_types;
 
 import com.github.alexeybond.spectrum_lost.achievements.AchievementStatus;
 import com.github.alexeybond.spectrum_lost.achievements.Achievements;
+import com.github.alexeybond.spectrum_lost.achievements.rating.IRatingVariable;
+import com.github.alexeybond.spectrum_lost.achievements.rating.impl.NumberVariable;
+import com.github.alexeybond.spectrum_lost.achievements.rating.impl.StringVariable;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICellType;
 import com.github.alexeybond.spectrum_lost.model.util.Direction;
 import com.github.alexeybond.spectrum_lost.model.util.Ray;
 
+import java.util.NoSuchElementException;
+
 /**
  *
  */
 public class RecursiveCell implements ICellType {
-    public static class State {
+    public static class State implements IRatingVariable {
         private AchievementStatus status;
-        private boolean open;
+        private boolean highlighted;
         private boolean error;
         private int nExpectRays;
         private Direction[] emit;
@@ -23,11 +28,38 @@ public class RecursiveCell implements ICellType {
         }
 
         public boolean isOpen() {
-            return open;
+            return highlighted || isCompleted();
         }
 
         public boolean isError() {
             return error;
+        }
+
+        @Override
+        public IRatingVariable getV(String name) {
+            if ("completed".equals(name))
+                return new StringVariable(String.valueOf(isCompleted()));
+
+            if ("highlighted".equals(name))
+                return new StringVariable(String.valueOf(highlighted));
+
+            if ("rating".equals(name))
+                return new NumberVariable(isCompleted()?status.getAchievedPoints():0);
+
+            if ("fullyCompleted".equals(name))
+                return new StringVariable(String.valueOf(isCompleted() && status.isCompleted()));
+
+            throw new NoSuchElementException(name);
+        }
+
+        @Override
+        public double getN() {
+            throw new NoSuchElementException();
+        }
+
+        @Override
+        public String getS() {
+            throw new NoSuchElementException();
         }
     }
 
@@ -66,7 +98,7 @@ public class RecursiveCell implements ICellType {
 
         State state = (State) cell.state();
 
-        state.open = (nFoundRays >= state.nExpectRays);
+        state.highlighted = (nFoundRays >= state.nExpectRays);
 
         if (state.isCompleted()) {
             cell.emission(cell.direction())

@@ -1,9 +1,13 @@
 {
-  "maxPoints": 1,
+  "maxPoints": 2,
   "criteria": [
     {
       "var": "taps",
       "$lt": 7.5
+    },
+    {
+      "var": "grid/2;4/state/timesTurned",
+      "$numEq": 1
     }
   ]
 }

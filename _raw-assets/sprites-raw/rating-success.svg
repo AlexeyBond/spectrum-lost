@@ -19,7 +19,24 @@
    inkscape:export-xdpi="240"
    inkscape:export-ydpi="240">
   <defs
-     id="defs3041" />
+     id="defs3041">
+    <filter
+       id="filter3777"
+       inkscape:label="Glow"
+       inkscape:menu="Shadows and Glows"
+       inkscape:menu-tooltip="Glow of object's own color at the edges"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3779"
+         stdDeviation="5"
+         result="result91" />
+      <feComposite
+         in2="result91"
+         id="feComposite3781"
+         in="SourceGraphic"
+         operator="over" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,8 +45,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="9.8994949"
-     inkscape:cx="8.3681685"
-     inkscape:cy="29.786962"
+     inkscape:cx="21.497738"
+     inkscape:cy="23.798636"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
@@ -38,10 +55,20 @@
      inkscape:window-height="715"
      inkscape:window-x="0"
      inkscape:window-y="32"
-     inkscape:window-maximized="0">
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true">
     <inkscape:grid
        type="xygrid"
        id="grid3047" />
+    <sodipodi:guide
+       orientation="-0.70710678,0.70710678"
+       position="48,48"
+       id="guide3003" />
+    <sodipodi:guide
+       orientation="0.70710678,0.70710678"
+       position="0,48"
+       id="guide3005" />
   </sodipodi:namedview>
   <metadata
      id="metadata3044">
@@ -60,19 +87,22 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer">
     <path
-       sodipodi:type="arc"
-       style="fill:#1cff00;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.20000000000000001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       id="path3894"
+       sodipodi:type="star"
+       style="fill:#ffad00;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1.08135666;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;filter:url(#filter3777)"
+       id="path3007"
+       sodipodi:sides="5"
        sodipodi:cx="24"
        sodipodi:cy="24"
-       sodipodi:rx="7"
-       sodipodi:ry="7"
-       d="m 31,24 a 7,7 0 1 1 -14,0 7,7 0 1 1 14,0 z"
-       transform="matrix(3.2392638,0,0,3.2392679,-53.750304,-53.737151)" />
-    <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#047e00;stroke-width:0.98541135;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="M 7.7094225,24.336518 17.563535,37.475334 40.556465,17.767109 33.987057,11.1977 17.563535,27.621221 14.278829,21.051813 z"
-       id="path5168"
-       inkscape:connector-curvature="0" />
+       sodipodi:r1="22"
+       sodipodi:r2="8.6023253"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.95054684"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 24,2 5,15 15.923243,0.201626 -12.720762,9.390538 4.728795,15.20621 L 24.069412,32.602045 11.068724,41.798374 15.840418,26.724193 3.0767566,17.201626 18.887689,17.081598 z"
+       inkscape:transform-center-x="0.045242155"
+       inkscape:transform-center-y="-2.0410483"
+       transform="matrix(0.92476427,0,0,0.92476427,1.8056576,3.5163836)" />
   </g>
 </svg>
