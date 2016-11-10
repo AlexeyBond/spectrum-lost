@@ -27,20 +27,21 @@ public class SwitchCell extends MirrorCell {
 
         private long nTurning = -1;
 
-        void turnTo(boolean turn) {
+        boolean turnTo(boolean turn) {
             if (turn == isTurned) {
                 nTurning = -1;
-                return;
+                return false;
             }
 
             if (nTurning >= framesToTurn) {
                 isTurned = turn;
                 ++timesTurned;
                 nTurning = -1;
-                return;
+                return true;
             }
 
             ++nTurning;
+            return false;
         }
 
         @Override
@@ -82,7 +83,11 @@ public class SwitchCell extends MirrorCell {
         Boolean ns = !cell.receive(cell.direction().reverse()).isDark();
         State state = (State) cell.state();
 
-        state.turnTo(ns);
+        if (state.turnTo(ns)) {
+            cell.grid().emitEvent(cell,
+                    ns?"switchTurnOn":"switchTurnOff",
+                    null);
+        }
 
         Direction n = state.isTurned ? cell.direction().prev() : cell.direction().next();
 

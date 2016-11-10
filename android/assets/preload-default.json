@@ -1,0 +1,22 @@
+{
+  "atlases": ["sprites/sprites-common.atlas"],
+  "music": "sound/music/0xB-00.mp3",
+  "soundEvents": {
+    "enterRecursiveLevel": [],
+    "turnCell": [],
+    "expectationDone": [],
+    "expectationFailed": [],
+    "pulsarFire": [],
+    "switchTurnOff": [],
+    "switchTurnOn": [],
+    "showResult:Success": [
+      "sound/fx/rating-success-0.wav",
+      "sound/fx/rating-success-1.wav",
+      "sound/fx/rating-success-2.wav"
+    ],
+    "showResult:Fail": [
+      "sound/fx/rating-fail-0.wav",
+      "sound/fx/rating-fail-1.wav"
+    ]
+  }
+}

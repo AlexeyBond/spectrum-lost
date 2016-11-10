@@ -90,8 +90,10 @@ public class ResultScreen extends $Screen {
         if (curSymbols != prevSymbols) {
             if (curSymbols > achievementStatus.getAchievedPoints()) {
                 // Just appeared "fail" icon
+                Resources.manager().getSoundsFor("showResult:Fail").play(curSymbols-1);
             } else {
                 // Just appeared "success" icon
+                Resources.manager().getSoundsFor("showResult:Success").play(curSymbols-1);
             }
 
             prevSymbols = curSymbols;

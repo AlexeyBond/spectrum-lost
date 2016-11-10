@@ -26,16 +26,23 @@ public class ExpectorCell implements ICellType {
             return ((float) nFramesCharging) / ((float) nChargeTicks);
         }
 
-        void update(boolean solved) {
+        /**
+         * @return {@code true} if expectation state changed
+         */
+        boolean update(boolean solved) {
             if (!solved) nFramesCharging = 0;
             if (expectation.isDone() && !solved) {
                 expectation.setDone(false);
                 nFramesCharging = 0;
+                return true;
             } else if (solved && !expectation.isDone()) {
                 if (nChargeTicks <= ++nFramesCharging) {
                     expectation.setDone(true);
+                    return true;
                 }
             }
+
+            return false;
         }
 
         void dispose() {
@@ -82,7 +89,14 @@ public class ExpectorCell implements ICellType {
     @Override
     public void update(ICell cell) {
         State state = (State)cell.state();
-        state.update(isExpectationDone(cell));
+
+        if (state.update(isExpectationDone(cell))) {
+            cell.grid().emitEvent(cell,
+                    state.expectation.isDone()
+                        ?"expectationDone"
+                        :"expectationFailed",
+                    null);
+        }
     }
 
     @Override

@@ -92,6 +92,8 @@ public class PulsarCell implements ICellType {
             }
 
             subState.emitting = true;
+
+            cell.grid().emitEvent(cell, "pulsarFire", null);
         }
 
         if (subState.emitting) {

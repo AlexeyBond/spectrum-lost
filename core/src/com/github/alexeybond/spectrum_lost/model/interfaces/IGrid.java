@@ -46,4 +46,14 @@ public interface IGrid {
      * Default cell type.
      */
     ICellType defaultCellType();
+
+    /**
+     * Emit event on the given cell.
+     */
+    void emitEvent(ICell cell, String eventName, Object arg);
+
+    /**
+     * Add event listener. The listeners will be notified in the order they were added.
+     */
+    void addEventListener(IGridEventListener listener);
 }

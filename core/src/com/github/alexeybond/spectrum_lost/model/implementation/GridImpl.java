@@ -22,11 +22,14 @@ public class GridImpl implements IGrid {
 
     private final ICellType defaultCT;
 
+    private final List<IGridEventListener> eventListeners;
+
     public GridImpl(final int width, final int height, final String defaultCellType, final IGameState gameState) {
         this.width = width;
         this.height = height;
         this.gameState = gameState;
         this.attributes = new HashMap<String, Object>();
+        this.eventListeners = new LinkedList<IGridEventListener>();
         cells = new ArrayList<CellImpl>(Collections.<CellImpl>nCopies(this.width * this.height, null));
 
         defaultCT = Locator.CELL_TYPES.get(defaultCellType);
@@ -96,5 +99,15 @@ public class GridImpl implements IGrid {
     @Override
     public ICellType defaultCellType() {
         return defaultCT;
+    }
+
+    @Override
+    public void emitEvent(ICell cell, String eventName, Object arg) {
+        for (IGridEventListener listener : eventListeners) listener.onEvent(cell, eventName, arg);
+    }
+
+    @Override
+    public void addEventListener(IGridEventListener listener) {
+        eventListeners.add(listener);
     }
 }

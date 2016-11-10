@@ -12,11 +12,13 @@ import com.github.alexeybond.spectrum_lost.cell_types.RecursiveCell;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.model.interfaces.ICell;
 import com.github.alexeybond.spectrum_lost.model.interfaces.IGrid;
+import com.github.alexeybond.spectrum_lost.model.interfaces.IGridEventListener;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.GridPositioner2D;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.IRayRenderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.Renderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.FboRayRenderer;
 import com.github.alexeybond.spectrum_lost.renderer.two_dimensional.ray.LineRayRenderer;
+import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.base.Button;
 import com.github.alexeybond.spectrum_lost.screens.base.ButtonListener;
@@ -123,6 +125,13 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
     protected void goToGrid(IGrid grid) {
         this.grid = grid;
 
+        grid.addEventListener(new IGridEventListener() {
+            @Override
+            public void onEvent(ICell cell, String eventName, Object arg) {
+                Resources.manager().getSoundsFor(eventName).playRandom();
+            }
+        });
+
         if (positioner == null) {
             positioner = new GridPositioner2D(grid);
         } else {
@@ -177,10 +186,13 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
             if (!state.isError() && state.isOpen()) {
                 callLevel((String) cell.getAttribute("levelId"));
+
+                grid.emitEvent(cell, "enterRecursiveLevel", null);
             }
         } else if (cell.getAttribute("noTurn") == null) {
             cell.setDirection(cell.direction().next());
             ++nTaps;
+            grid.emitEvent(cell, "turnCell", null);
         }
     }
 

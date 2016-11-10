@@ -17,6 +17,7 @@ import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChapterLevelsDesc;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.ChaptersList;
 import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDesc;
+import com.github.alexeybond.spectrum_lost.resources.IMusicPlayer;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.screens.background.AnimatedBackground;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
@@ -161,14 +162,16 @@ public class ChapterSelectScreen extends $Screen {
 
         final Button[] menuButtons = new Button[] {
                 addButton(1, -1, new ButtonListener() {
+                    private IMusicPlayer player = Resources.manager().getMusicPlayer();
+
                     @Override
                     public String getSprite(Button button) {
-                        return "ui/button-sound-off";
+                        return player.isPlaying()?"ui/button-sound-off":"ui/button-sound-on";
                     }
 
                     @Override
                     public void press(Button button) {
-
+                        player.setPlaying(!player.isPlaying());
                     }
                 })
         };

@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Json;
 import com.github.alexeybond.spectrum_lost.cell_types.$CellTypes;
 import com.github.alexeybond.spectrum_lost.levels.ILevelsSource;
 import com.github.alexeybond.spectrum_lost.levels.json.JsonSource;
@@ -16,6 +17,7 @@ import com.github.alexeybond.spectrum_lost.levels.json.compact.CompactChapterDes
 import com.github.alexeybond.spectrum_lost.locator.Locator;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.resources.impl.DefaultResourceManager;
+import com.github.alexeybond.spectrum_lost.resources.json.PreloadConfig;
 import com.github.alexeybond.spectrum_lost.screens.ChapterSelectScreen;
 import com.github.alexeybond.spectrum_lost.screens.base.$Screen;
 import com.github.alexeybond.spectrum_lost.screens.GameDevScreen;
@@ -23,7 +25,6 @@ import com.github.alexeybond.spectrum_lost.views.sprite_2d_views.$Sprite2DViews;
 
 public class SpectrumLostGdx extends ApplicationAdapter {
     private $Screen currentScreen;
-    private Music music;
     private boolean paused = false;
 
     private ILevelsSource getDevLevelSource(String chapterId) {
@@ -45,7 +46,8 @@ public class SpectrumLostGdx extends ApplicationAdapter {
     @Override
     public void create() {
         Resources.use(new DefaultResourceManager());
-        Resources.manager().preloadAtlas("sprites/sprites-common.atlas");
+        Resources.manager().preload(new Json().fromJson(
+                PreloadConfig.class, Gdx.files.internal("preload-default.json")));
 
         $CellTypes.register();
         $Sprite2DViews.register();
@@ -61,10 +63,8 @@ public class SpectrumLostGdx extends ApplicationAdapter {
             setCurrentScreen(new ChapterSelectScreen());
         }
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("sound/music/0xB-00.mp3"));
-        music.setLooping(true);
-        if (!"1".equals(System.getProperty("sl.devmode.nomusic"))) {
-            music.play();
+        if ("1".equals(System.getProperty("sl.devmode.nomusic"))) {
+            Resources.manager().getMusicPlayer().setPlaying(false);
         }
     }
 
@@ -104,7 +104,6 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
     @Override
     public void resume() {
-        Resources.manager().loadAll();
         currentScreen.unpause();
         paused = false;
     }
@@ -116,8 +115,6 @@ public class SpectrumLostGdx extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-        music.dispose();
-        music = null;
         Locator.CELL_TYPES.clear();
         Locator.CELL_VIEWS.clear();
         Locator.RENDERER_OBJECT.clear();
