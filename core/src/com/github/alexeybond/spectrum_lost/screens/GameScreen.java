@@ -48,6 +48,8 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
     private boolean reallyVisible = false;
 
+    private boolean shownResultScreen = false;
+
     public GameScreen(final ILevelsSource levelsSource, final String levelId) {
         this(levelsSource, levelId, null);
     }
@@ -76,13 +78,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
             @Override
             public void press(Button button) {
-                AchievementStatus status = recordAchievement();
-
-                if (status.getMaximumPoints() != 1) {
-                    next(new ResultScreen(status, prev(), GameScreen.this));
-                } else {
-                    goBack();
-                }
+                showResultScreen(true);
             }
         });
 
@@ -120,6 +116,7 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         currentLevel = id;
 
         nTaps = 0;
+        this.shownResultScreen = false;
     }
 
     protected void goToGrid(IGrid grid) {
@@ -150,20 +147,38 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
 
         levelsSource.rateLevelResult(currentLevel, rootVar, tmpAchievementStatus);
 
+        boolean saveAchievements = false;
+
         if (tmpAchievementStatus.getAchievedPoints() > achievementStatus.getAchievedPoints()
                 || tmpAchievementStatus.getMaximumPoints() != achievementStatus.getMaximumPoints()) {
             achievementStatus.set(tmpAchievementStatus.getAchievedPoints(),
                     tmpAchievementStatus.getMaximumPoints());
+            saveAchievements = true;
         }
 
         if (finalAchievementName != null) {
-            AchievementStatus achievementStatus = Achievements.get(finalAchievementName);
-            achievementStatus.set(achievementStatus.getMaximumPoints(), achievementStatus.getMaximumPoints());
+            AchievementStatus finalAchievementStatus = Achievements.get(finalAchievementName);
+            if (finalAchievementStatus.getAchievedPoints() == 0) {
+                finalAchievementStatus.set(finalAchievementStatus.getMaximumPoints(), finalAchievementStatus.getMaximumPoints());
+                saveAchievements = true;
+            }
         }
 
-        Achievements.save();
+        if (saveAchievements) Achievements.save();
 
         return tmpAchievementStatus;
+    }
+
+    private void showResultScreen(boolean leaveAnyway) {
+        shownResultScreen = true;
+
+        AchievementStatus status = recordAchievement();
+
+        if (status.getMaximumPoints() != 1) {
+            next(new ResultScreen(status, prev(), GameScreen.this));
+        } else if (leaveAnyway) {
+            goBack();
+        }
     }
 
     @Override
@@ -243,6 +258,10 @@ public class GameScreen extends com.github.alexeybond.spectrum_lost.screens.base
         if (timeSinceLastUpdate >= simulationRate) {
             grid.update();
             timeSinceLastUpdate -= simulationRate;
+        }
+
+        if (grid.getGameState().isCompleted() && !shownResultScreen) {
+            showResultScreen(false);
         }
 
         nextButton.show(grid.getGameState().isCompleted());

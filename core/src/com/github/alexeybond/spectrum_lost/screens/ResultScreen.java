@@ -55,7 +55,7 @@ public class ResultScreen extends $Screen {
             }
         });
 
-        addButton(0, 0, new ButtonListener() {
+        addButton(-1, -1, new ButtonListener() {
             @Override
             public String getSprite(Button button) {
                 return "ui/button-reset";
@@ -67,6 +67,26 @@ public class ResultScreen extends $Screen {
                 next(gameScreen);
             }
         });
+
+        addButton(0, 0, new ButtonListener() {
+            @Override
+            public String getSprite(Button button) {
+                return "ui/button-back";
+            }
+
+            @Override
+            public void press(Button button) {
+                goBack();
+            }
+        });
+    }
+
+    @Override
+    public void show($Screen prev) {
+        super.show(prev);
+
+        showSymbols = 0;
+        prevSymbols = 0;
     }
 
     @Override
@@ -76,9 +96,6 @@ public class ResultScreen extends $Screen {
         if (awaitResources()) {
             return;
         }
-
-        showSymbols = 0;
-        prevSymbols = 0;
     }
 
     @Override
