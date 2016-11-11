@@ -3,7 +3,9 @@
   "music": "sound/music/0xB-00.mp3",
   "soundEvents": {
     "enterRecursiveLevel": [],
-    "turnCell": [],
+    "turnCell": [
+      "sound/fx/turn-0.wav"
+    ],
     "expectationDone": [
       "sound/fx/expectation-done-0.wav"
     ],
@@ -14,8 +16,12 @@
     "pulsarFire": [
       "sound/fx/pulsar-fire-0.wav"
     ],
-    "switchTurnOff": [],
-    "switchTurnOn": [],
+    "switchTurnOff": [
+      "sound/fx/switch-0.wav"
+    ],
+    "switchTurnOn": [
+      "sound/fx/switch-0.wav"
+    ],
     "showResult:Success": [
       "sound/fx/rating-success-0.wav",
       "sound/fx/rating-success-1.wav",
