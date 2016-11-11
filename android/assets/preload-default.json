@@ -4,9 +4,16 @@
   "soundEvents": {
     "enterRecursiveLevel": [],
     "turnCell": [],
-    "expectationDone": [],
+    "expectationDone": [
+      "sound/fx/expectation-done-0.wav"
+    ],
+    "expectorStartCharge": [
+      "sound/fx/expector-start-charge-0.wav"
+    ],
     "expectationFailed": [],
-    "pulsarFire": [],
+    "pulsarFire": [
+      "sound/fx/pulsar-fire-0.wav"
+    ],
     "switchTurnOff": [],
     "switchTurnOn": [],
     "showResult:Success": [

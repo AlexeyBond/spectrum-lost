@@ -197,8 +197,8 @@ public abstract class $Screen {
     }
 
     protected void drawButtons() {
-        for (Button button : buttons) {
-            button.draw(spriteBatch);
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).draw(spriteBatch);
         }
     }
 

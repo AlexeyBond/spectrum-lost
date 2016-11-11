@@ -22,14 +22,14 @@ public class GridImpl implements IGrid {
 
     private final ICellType defaultCT;
 
-    private final List<IGridEventListener> eventListeners;
+    private final ArrayList<IGridEventListener> eventListeners;
 
     public GridImpl(final int width, final int height, final String defaultCellType, final IGameState gameState) {
         this.width = width;
         this.height = height;
         this.gameState = gameState;
         this.attributes = new HashMap<String, Object>();
-        this.eventListeners = new LinkedList<IGridEventListener>();
+        this.eventListeners = new ArrayList<IGridEventListener>();
         cells = new ArrayList<CellImpl>(Collections.<CellImpl>nCopies(this.width * this.height, null));
 
         defaultCT = Locator.CELL_TYPES.get(defaultCellType);
@@ -63,7 +63,9 @@ public class GridImpl implements IGrid {
 
     @Override
     public void update() {
-        for (CellImpl cell : cells) {
+        // as get(I) is O(1) for ArrayList this should be faster than foreach
+        for (int i = 0; i < cells.size(); i++) {
+            CellImpl cell = cells.get(i);
             cell.clearEmission();
             cell.type().update(cell);
         }
@@ -72,7 +74,7 @@ public class GridImpl implements IGrid {
     }
 
     @Override
-    public Collection<? extends ICell> getCells() {
+    public List<? extends ICell> getCells() {
         return cells;
     }
 
@@ -103,7 +105,7 @@ public class GridImpl implements IGrid {
 
     @Override
     public void emitEvent(ICell cell, String eventName, Object arg) {
-        for (IGridEventListener listener : eventListeners) listener.onEvent(cell, eventName, arg);
+        for (int i = 0; i < eventListeners.size(); i++) eventListeners.get(i).onEvent(cell, eventName, arg);
     }
 
     @Override

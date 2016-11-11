@@ -90,11 +90,19 @@ public class ExpectorCell implements ICellType {
     public void update(ICell cell) {
         State state = (State)cell.state();
 
+        float oldCharge = state.getCharge();
+
         if (state.update(isExpectationDone(cell))) {
             cell.grid().emitEvent(cell,
                     state.expectation.isDone()
                         ?"expectationDone"
                         :"expectationFailed",
+                    null);
+        }
+
+        if (oldCharge < .01f && oldCharge != state.getCharge()) {
+            cell.grid().emitEvent(cell,
+                    "expectorStartCharge",
                     null);
         }
     }

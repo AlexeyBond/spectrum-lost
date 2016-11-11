@@ -10,6 +10,9 @@ import com.github.alexeybond.spectrum_lost.model.util.Ray;
 import com.github.alexeybond.spectrum_lost.resources.Resources;
 import com.github.alexeybond.spectrum_lost.views.CellView2D;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Renders a grid using 2D views ({@link CellView2D}) of cells.
  */
@@ -63,7 +66,10 @@ public class Renderer {
     }
 
     private void renderCellsLayer(final SpriteBatch batch, final Vector2 pos0, final float cellSize, final int layer) {
-        for (ICell cell: grid.getCells()) {
+        List<? extends ICell> cells = grid.getCells();
+
+        for (int i = 0; i < cells.size(); i++) {
+            ICell cell = cells.get(i);
             CellView2D view = (CellView2D) cell.getView();
 
             tv0.set(pos0).add(cellSize * (float) cell.x(), cellSize * (float) cell.y());
@@ -77,7 +83,11 @@ public class Renderer {
 
         rayRenderer.beginRays(batch);
 
-        for (ICell cell: grid.getCells()) {
+        List<? extends ICell> cells = grid.getCells();
+
+        for (int i = 0; i < cells.size(); i++) {
+            ICell cell = cells.get(i);
+
             CellView2D view = (CellView2D) cell.getView();
 
             tv0.set(pos0).add(cellSize * (.5f + (float) cell.x()), cellSize * (.5f + (float) cell.y()));
