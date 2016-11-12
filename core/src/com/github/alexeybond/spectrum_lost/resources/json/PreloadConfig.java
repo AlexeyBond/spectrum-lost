@@ -1,5 +1,6 @@
 package com.github.alexeybond.spectrum_lost.resources.json;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -9,7 +10,7 @@ public class PreloadConfig {
     /**
      * Map from sound event name to array of sound variants for that event.
      */
-    public HashMap<String, String[]> soundEvents = new HashMap<String, String[]>();
+    public HashMap<String, ArrayList<String>> soundEvents = new HashMap<String, ArrayList<String>>();
 
     /**
      * Path to music file to play.
@@ -19,5 +20,5 @@ public class PreloadConfig {
     /**
      * List of texture atlases to preload.
      */
-    public String[] atlases = new String[0];
+    public ArrayList<String> atlases = new ArrayList<String>();
 }

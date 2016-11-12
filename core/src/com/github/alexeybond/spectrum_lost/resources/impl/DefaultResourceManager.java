@@ -87,8 +87,8 @@ public class DefaultResourceManager implements IResourceManager {
         onResourceAdded();
     }
 
-    private void preloadSoundEvents(Map<String, String[]> events) {
-        for (Map.Entry<String, String[]> entry : events.entrySet()) {
+    private void preloadSoundEvents(Map<String, ArrayList<String>> events) {
+        for (Map.Entry<String, ArrayList<String>> entry : events.entrySet()) {
             for (String sound : entry.getValue()) {
                 assetManager.load(sound, Sound.class);
                 onResourceAdded();
@@ -176,9 +176,9 @@ public class DefaultResourceManager implements IResourceManager {
 
         Map<String, ISoundVariants> newVariants = new HashMap<String, ISoundVariants>();
 
-        for (Map.Entry<String, String[]> entry :
+        for (Map.Entry<String, ArrayList<String>> entry :
                 lastNewPreloadConfig.soundEvents.entrySet()) {
-            List<Sound> sounds = new ArrayList<Sound>(entry.getValue().length);
+            List<Sound> sounds = new ArrayList<Sound>(entry.getValue().size());
 
             for (String sound : entry.getValue()) {
                 sounds.add(assetManager.get(sound, Sound.class));

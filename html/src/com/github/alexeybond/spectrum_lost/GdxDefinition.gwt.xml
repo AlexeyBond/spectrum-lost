@@ -29,5 +29,7 @@
                                    value="com.github.alexeybond.spectrum_lost.achievements.rating.RatingSettings"/>
     <extend-configuration-property name="gdx.reflect.include"
                                    value="com.github.alexeybond.spectrum_lost.achievements.rating.RatingCriteria"/>
+    <extend-configuration-property name="gdx.reflect.include"
+                                   value="com.github.alexeybond.spectrum_lost.resources.json.PreloadConfig"/>
     <extend-configuration-property name="gdx.reflect.include" value="java.util.LinkedHashMap"/>
 </module>
