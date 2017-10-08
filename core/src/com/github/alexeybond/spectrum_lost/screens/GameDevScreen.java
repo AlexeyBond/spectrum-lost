@@ -73,7 +73,8 @@ public class GameDevScreen extends GameScreen {
         Json json = new Json(JsonWriter.OutputType.json);
         Gdx.files
                 .local("../../_raw-assets/levels/_save/")
-                .child(new Date().toString().concat(".json")).writeString(json.prettyPrint(GridDesc.dump(grid)), false);
+                .child(new Date().toString().replace(':', '-').concat(".json"))
+                .writeString(json.prettyPrint(GridDesc.dump(grid)), false);
     }
 
     private void setCell(final String type) {
