@@ -1,0 +1,17 @@
+{
+  "levelNames": [
+    "c0-ext/l$",
+    "c0/l9",
+    "c0/l10",
+  ],
+  "rootLevel": "c0-ext/l$",
+  "afterChapters": [
+    "chapter0"
+  ],
+  "attrs": {
+    "icon": {
+      "class": "java.lang.String",
+      "value": "chapter-icons/chapter0"
+    },
+  }
+}

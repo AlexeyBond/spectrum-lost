@@ -33,7 +33,7 @@ public class MyPacker {
     }
 
     private static void packTextures() {
-        TexturePacker.process(
+        TexturePacker.processIfModified(
                 rawSpritesPath.toString(),
                 spritesPath.toString(),
                 "sprites-common");

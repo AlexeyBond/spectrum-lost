@@ -1,5 +1,39 @@
 
 sprites-common.png
+size: 1024,128
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+background/abg-00-00
+  rotate: false
+  xy: 0, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+background/abg-00-01
+  rotate: false
+  xy: 130, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+background/abg-00-02
+  rotate: false
+  xy: 260, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+background/abg-00-03
+  rotate: false
+  xy: 390, 0
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+sprites-common2.png
 size: 1024,1024
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
@@ -61,82 +95,6 @@ chapter-icons/open
   offset: 0, 0
   index: -1
 
-sprites-common2.png
-size: 1024,512
-format: RGBA8888
-filter: MipMapLinearLinear,MipMapLinearLinear
-repeat: none
-ui/button-back
-  rotate: false
-  xy: 2, 262
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/button-burger
-  rotate: false
-  xy: 2, 132
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/button-burger-pressed
-  rotate: false
-  xy: 132, 262
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/button-next
-  rotate: false
-  xy: 2, 2
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/button-reset
-  rotate: false
-  xy: 132, 132
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/button-save
-  rotate: false
-  xy: 262, 262
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/button-sound-off
-  rotate: false
-  xy: 132, 2
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/button-sound-on
-  rotate: false
-  xy: 262, 132
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/rating-fail
-  rotate: false
-  xy: 392, 262
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-ui/rating-success
-  rotate: false
-  xy: 262, 2
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-
 sprites-common3.png
 size: 1024,1024
 format: RGBA8888
@@ -165,14 +123,14 @@ game/cells/background/stones-00-01
   index: -1
 game/cells/emitter/fg
   rotate: false
-  xy: 778, 582
+  xy: 518, 712
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg
   rotate: false
-  xy: 518, 582
+  xy: 648, 842
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -221,7 +179,7 @@ game/cells/expector/symbol-fail
   index: -1
 game/cells/fader/fg
   rotate: false
-  xy: 648, 582
+  xy: 518, 582
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -256,14 +214,14 @@ game/cells/mixer/fg
   index: -1
 game/cells/multiplier/fg
   rotate: false
-  xy: 648, 842
+  xy: 648, 582
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/portal/fg-b
   rotate: false
-  xy: 520, 452
+  xy: 390, 326
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -298,14 +256,14 @@ game/cells/prism/fg
   index: -1
 game/cells/pulsar/fg
   rotate: false
-  xy: 518, 712
+  xy: 778, 582
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/pulsar/fg-b
   rotate: false
-  xy: 390, 326
+  xy: 520, 452
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -416,34 +374,76 @@ game/cells/expector/symbol-wait
   index: -1
 
 sprites-common5.png
-size: 1024,128
+size: 1024,512
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
-background/abg-00-00
+ui/button-back
   rotate: false
-  xy: 0, 0
+  xy: 2, 262
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-background/abg-00-01
+ui/button-burger
   rotate: false
-  xy: 130, 0
+  xy: 2, 132
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-background/abg-00-02
+ui/button-burger-pressed
   rotate: false
-  xy: 260, 0
+  xy: 132, 262
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-background/abg-00-03
+ui/button-next
   rotate: false
-  xy: 390, 0
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-reset
+  rotate: false
+  xy: 132, 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-save
+  rotate: false
+  xy: 262, 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-sound-off
+  rotate: false
+  xy: 132, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/button-sound-on
+  rotate: false
+  xy: 262, 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/rating-fail
+  rotate: false
+  xy: 392, 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ui/rating-success
+  rotate: false
+  xy: 262, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
