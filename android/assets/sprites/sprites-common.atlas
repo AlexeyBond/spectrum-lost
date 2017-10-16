@@ -102,91 +102,70 @@ filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
 game/cells/background/bg-common
   rotate: false
-  xy: 260, 326
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-game/cells/background/stones-00-00
-  rotate: false
-  xy: 522, 62
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-game/cells/background/stones-00-01
-  rotate: false
-  xy: 652, 62
+  xy: 518, 584
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/emitter/fg
   rotate: false
-  xy: 518, 712
+  xy: 776, 842
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg
   rotate: false
-  xy: 648, 842
+  xy: 132, 68
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-gear
   rotate: false
-  xy: 520, 322
+  xy: 652, 194
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-type-b
   rotate: false
-  xy: 780, 322
+  xy: 652, 64
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-type-g
   rotate: false
-  xy: 262, 196
+  xy: 778, 712
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-type-none
   rotate: false
-  xy: 262, 66
+  xy: 780, 582
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/fg-type-r
   rotate: false
-  xy: 392, 192
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-game/cells/expector/symbol-fail
-  rotate: false
-  xy: 782, 62
+  xy: 782, 452
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/fader/fg
   rotate: false
-  xy: 518, 582
+  xy: 390, 326
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/hmirror/fg
   rotate: false
-  xy: 648, 712
+  xy: 648, 584
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
@@ -207,98 +186,98 @@ game/cells/switch/fg
   index: -1
 game/cells/mixer/fg
   rotate: false
-  xy: 778, 842
+  xy: 262, 196
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/multiplier/fg
   rotate: false
-  xy: 648, 582
+  xy: 262, 66
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/portal/fg-b
   rotate: false
-  xy: 390, 326
+  xy: 650, 454
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/portal/fg-g
   rotate: false
-  xy: 780, 452
+  xy: 652, 324
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/portal/fg-o
   rotate: false
-  xy: 650, 322
+  xy: 522, 64
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/portal/fg-v
   rotate: false
-  xy: 522, 192
+  xy: 782, 322
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/prism/fg
   rotate: false
-  xy: 778, 712
+  xy: 392, 196
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/pulsar/fg
   rotate: false
-  xy: 778, 582
+  xy: 392, 66
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/pulsar/fg-b
   rotate: false
-  xy: 520, 452
+  xy: 522, 324
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/pulsar/fg-c
   rotate: false
-  xy: 650, 452
+  xy: 522, 194
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/recursive/fg-error
   rotate: false
-  xy: 2, 456
+  xy: 260, 714
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 game/cells/recursive/fg-green
   rotate: false
-  xy: 260, 714
+  xy: 2, 198
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 game/cells/recursive/fg-red
   rotate: false
-  xy: 2, 198
+  xy: 260, 456
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 game/cells/recursive/fg-yellow
   rotate: false
-  xy: 260, 456
+  xy: 518, 714
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
@@ -312,62 +291,90 @@ game/cells/shifter/fg
   index: -1
 game/cells/switch/bg
   rotate: false
-  xy: 518, 842
+  xy: 2, 68
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/switch/mg
   rotate: false
-  xy: 782, 192
+  xy: 782, 62
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
+game/cells/wall-wip/fg
+  rotate: false
+  xy: 2, 456
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
 game/cells/wall/bg-00
   rotate: false
-  xy: 2, 68
+  xy: 260, 326
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/wall/fg-00
   rotate: false
-  xy: 132, 68
+  xy: 520, 454
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/fx/flare-00
   rotate: false
-  xy: 652, 192
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: -1
-game/fx/spinner-segment
-  rotate: false
-  xy: 392, 62
+  xy: 782, 192
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 
 sprites-common4.png
-size: 512,256
+size: 1024,256
 format: RGBA8888
 filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
+game/cells/background/stones-00-00
+  rotate: false
+  xy: 132, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/background/stones-00-01
+  rotate: false
+  xy: 262, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/cells/expector/symbol-fail
+  rotate: false
+  xy: 392, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
 game/cells/expector/symbol-success
   rotate: false
-  xy: 2, 2
+  xy: 522, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 game/cells/expector/symbol-wait
   rotate: false
-  xy: 132, 2
+  xy: 652, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+game/fx/spinner-segment
+  rotate: false
+  xy: 2, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0

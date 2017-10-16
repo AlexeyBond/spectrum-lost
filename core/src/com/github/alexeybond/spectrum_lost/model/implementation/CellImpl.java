@@ -42,10 +42,8 @@ final class CellImpl implements ICell {
         this.grid = grid;
         this.direction = direction;
         this.state = null;
-        this.type = Locator.CELL_TYPES.get(type);
-        this.view = Locator.CELL_VIEWS.get(this.type.id());
-        this.type.init(this);
         this.attributes = new HashMap<String, Object>();
+        setType(Locator.CELL_TYPES.get(type));
     }
 
     private Ray emission(Direction dir, int prev) {
@@ -108,9 +106,19 @@ final class CellImpl implements ICell {
         if (type == this.type)
             return;
 
-        ICellView view = Locator.CELL_VIEWS.get(type.id());
+        ICellView view;
 
-        this.type.leave(this);
+        String viewOverride = (String) attributes.get("viewOverride");
+        if (null == viewOverride) {
+            view = Locator.CELL_VIEWS.get(type.id());
+        } else {
+            view = Locator.CELL_VIEWS.get(viewOverride);
+        }
+
+        if (null != this.type) {
+            this.type.leave(this);
+        }
+
         this.type = type;
         this.view = view;
         this.type.init(this);
